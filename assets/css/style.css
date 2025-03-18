@@ -624,6 +624,7 @@ section {
 
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
+  height: auto !important; /* This portion was added by me to avoid images being cropped in the slider */
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination {
@@ -679,6 +680,14 @@ section {
 .portfolio-details .portfolio-description p {
   padding: 0;
 }
+
+/* Added CSS by myself to make sure that images in my portfolio within the slider don't get cropped */
+.swiper-slide img {
+  width: 100%; /* Ensures the image adapts to the width of its container */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: contain; /* Ensures the entire image is visible */
+}
+
 
 /*--------------------------------------------------------------
 # Services
