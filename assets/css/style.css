@@ -614,7 +614,31 @@ section {
   opacity: 1;
   bottom: 0;
 }
+/* Custom added by me to control size of screenshots and images */
 
+.portfolio-img-thirty {
+  max-width: 30%;
+  margin: auto;
+}
+
+.portfolio-img-fifty {
+  max-width: 50%;
+  margin: auto;
+}
+
+.portfolio-img-seventy {
+  max-width: 70%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  /* Set images to full width on mobile */
+  .portfolio-img-fifty,
+  .portfolio-img-thirty,
+  .portfolio-img-seventy {
+    max-width: 100%;
+  }
+}
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
