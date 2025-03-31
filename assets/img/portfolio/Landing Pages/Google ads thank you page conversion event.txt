@@ -1,0 +1,8 @@
+<!-- Event snippet for google_subscriber conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11138956390/MEZDCMuUmbEaEOb4u78p',
+      'value': 1.0,
+      'currency': 'USD'
+  });
+</script>
