@@ -61,12 +61,12 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
           <!-- <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li> -->
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -135,123 +135,161 @@
               <br>
               <!--Section 2-->
               <h2>Technology Stack</h2>
-              <p>As a photography company, Cherie Amour relies on <b>Studio Plus</b> and its CRM software, <b>myStratus</b>, which is tailored for photographers and studios. This CRM enables CA to track client data, automate marketing efforts, monitor sales, generate reports, and manage online bookings. Additionally, Studio Plus offers <b>InspiredByYou</b>, an online platform where clients can book appointments, make payments, and view and purchase their photos.</p>
+              <p>To support operations and marketing, CA leveraged a combination of industry-specific and general digital tools:</p>
 
               <p>Additional Marketing Tools:</p>
               <ul>
-                <li><b>Klaviyo – </b>Email marketing and automation</li>
-                <li><b>WordPress – </b>CMS for the company website</li>
-                <li><b>GA4 & GTM – </b>Analytics and tracking</li>
-                <li><b>Google Search Console & SEMrush – </b>SEO optimization</li>
-                <li><b>Meta Ads & Google Ads – </b>Advertising platforms</li>
+                <li><b>CRM & Booking System:</b> MyStratus by Studio Plus – CRM tailored for photography businesses</li>
+                <li><b>Marketing & Automation:</b> Klaviyo for email marketing and lead nurturing</li>
+                <li><b>Website Management:</b> WordPress as the content management system</li>
+                <li><b>Analytics & Tracking:</b> GA4 & Google Tag Manager (GTM)</li>
+                <li><b>SEO Optimization:</b> Google Search Console & SEMrush</li>
+                <li><b>Advertising Platforms:</b> Meta Ads & Google Ads</li>
               </ul>
               <br>
               <!--Section 3-->
               <h2>The Challenge</h2>
               <h3>Data Tracking & Conversion Attribution</h3>
-              <p>One major limitation of myStratus is its lack of integration with common analytics and advertising tools like GA4, Meta Pixel, or Klaviyo. Without an open API, it’s difficult to track online conversions accurately, making it challenging to optimize ad spending and improve marketing efficiency.</p>
-              <p>For a marketer, this presents a significant problem. If I can’t track conversions, abandoned carts, or lead engagement, our advertising campaigns risk inefficiencies—continuing to serve ads to users who have already converted and missing out on high-intent prospects.</p>
-              <p>After consulting with the software vendor, we explored a GTM tag implementation for GA4. However, despite multiple troubleshooting attempts, this method was unsuccessful. With no direct way to track conversions, we needed to develop a creative workaround.</p>
+              <p>A major limitation of MyStratus was its lack of integration with common analytics and advertising tools like GA4, Meta Pixel, or Klaviyo. Without an open API, accurately tracking online conversions proved difficult, impacting the ability to optimize ad spend and improve marketing efficiency.</p>
+              <p>Without reliable tracking, key challenges included:</p>
+              <ul>
+                <li>Inability to track conversions and abandoned carts</li>
+                <li>Inefficient ad spend due to continued targeting of converted users</li>
+                <li>Limited visibility into lead engagement and sales attribution</li>
+              </ul>
+              <p>After consulting with the software vendor, it became evident that a direct GA4 integration was not feasible. As an alternative, I developed a workaround using GTM, Klaviyo, unique coupon codes, and CRM exports to track user behavior and optimize campaign performance.</p>
               <br>
               <!--Section 4-->
               <h2>The Solution</h2> 
               <h3>Alternative Conversion Tracking Methods</h3>
-              <p>To bridge the gap, I implemented a manual tracking solution using Klaviyo, unique coupon codes, and CRM exports. While not as immediate or precise as native tracking integrations, this approach allowed me to:</p>
-              <ul>
-                <li>Identify users at different funnel stages</li>
-                <li>Improve retargeting efforts</li>
-                <li>Optimize ad spend by excluding converted users</li>
-              </ul>
               <br>
-              <!--Section 5-->
-              <h4>Step 1: Creating Segmented Lead Lists in Klaviyo</h4>
-              <p>To track conversion paths effectively, I created three new Klaviyo lead lists, each tied to a specific source:</p>
-              <ul>
-                <li><b>List 1:</b> Leads from Google Ads</li>
-                <li><b>List 2:</b> Leads from Meta Ads (via Instant Forms)</li>
-                <li><b>List 3:</b> Leads from our landing pages linked to ads</li>
-              </ul>
-              <p>Since each campaign uses separate landing pages tailored to specific audiences, this structure provided granular insights into where users engaged most.</p>
+              
+              <h4>Step 1: Implementing GTM for Conversion Tracking</h4>
+              <p>Since MyStratus used an external booking platform, traditional tracking methods were not an option. To capture conversions, I implemented a redirect to a "Thank You" page on our website immediately after booking.</p>
 
-              <h4>Step 2: Capturing Key Data Fields</h4>
-              <p>To ensure proper tracking, I added three custom fields to each Klaviyo list:</p>
+              <h5>GTM Configuration:</h5>
+              <p><em>Trigger:</em> "Stratus to Thank You"</p>
               <ul>
-                <li><b>Status:</b> Tracks whether a user is still a lead or has converted into a client</li>
-                <li><b>Client:</b> A unique identifier assigned once they book a session</li>
-                <li><b>City:</b> Their preferred photoshoot location</li>
+                <li>Fires on Page URL containing <code>/thank-you-for-booking</code></li>
+                <li>Referrer contains <code>cherieamour.mystratus.com</code></li>
               </ul>
-              <p>Additionally, I used hidden fields within signup forms to collect campaign attribution data:</p>
+              <p><em>Tag:</em> "Booking Completed"</p>
+              <ul>
+                <li>Measurement ID: <code>{{GA4 id}}</code></li>
+                <li>Event name: <code>booking_complete</code></li>
+                <li>Event parameters:
+                  <ul>
+                    <li><code>event_category:</code> booking</li>
+                    <li><code>event_label:</code> online_booking</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>This approach successfully recorded completed bookings as conversions in GA4. However, it had limitations—events occurring within the MyStratus platform (such as cart abandonments) remained untracked, requiring additional data sources for funnel visibility.</p>
+
+              <div style="text-align: center;">
+                <img src="assets/img/portfolio/Ads/OB Process.png" class="img-fluid portfolio-img-thirty" alt="Data flow diagram"></img>
+                <br>
+                <em>The chart above shows events in the purple boxed that happen within CA's website that can be tracked. Events in the yellow box show events within myStratus' website that cannot be tracked.</em>
+              </div>
+              <br>
+
+              <h4>Step 2: Creating Segmented Lead Lists in Klaviyo</h4>
+              <p>To track conversion paths effectively, I established three Klaviyo lead lists:</p>
+              <ul>
+                <li><b>List 1:</b>Leads from Meta ad landing pages</li>
+                <li><b>List 2:</b> Leads from Google ad landing pages</li>
+                <li><b>List 3:</b> Recent online bookings imported from MyStratus</li>
+              </ul>
+              <p>This segmentation allowed for precise analysis of lead sources and engagement levels.</p>
+
+              <h4>Step 3: Capturing Key Data Fields</h4>
+              <p>To improve attribution tracking, I created three custom fields in Klaviyo:</p>
+              <ul>
+                <li><b>Status:</b> Identifies whether a user remains a lead or has converted</li>
+                <li><b>Client Id:</b> Unique identifier assigned upon booking</li>
+                <li><b>City:</b> Preferred photoshoot location</li>
+              </ul>
+              <p>Additionally, hidden fields in signup forms captured:</p>
               <ul>
                 <li><b>UTM Campaign:</b> Associates leads with specific campaigns</li>
                 <li><b>Source:</b> Identifies whether they came from Google or Meta Ads</li>
-                <li><b>Platform:</b> Differentiates between Meta Instant Forms, Google Lead Forms, or landing page signups</li>
+                <li><b>Platform:</b> Differentiates between Instant Forms, Lead Forms, and landing page signups</li>
               </ul>
 
-              <h4>Step 3: Syncing Lead Lists with Advertising Platforms</h4>
-              <p>Klaviyo’s integrations allowed me to connect lead lists to advertising platforms. Once a user subscribed to a list, their entry was logged as a conversion event, removing them from middle-of-funnel (MOF) campaigns and pushing them into bottom-of-funnel (BOF) campaigns for higher-intent targeting.</p>
+              <h4>Step 4: Syncing Lead Lists with Advertising Platforms</h4>
+              <p>Klaviyo’s integrations enabled seamless syncing with Meta and Google Ads. Once a user subscribed, their entry triggered:</p>
+              <ul>
+                <li>Removal from middle-of-funnel (MOFU) campaigns</li>
+                <li>Inclusion in bottom-of-funnel (BOFU) campaigns for higher-intent targeting</li>
+              </ul>
+              <p>With lists and segments connected, I automated audience exclusions, ensuring that converted users no longer received conversion-focused ads.</p>
               <br>
-
+              
               <h3>Tracking Lead Conversions & Audience Segmentation</h3>
-              <p>Once a lead enters our system, they are enrolled in an email workflow designed to nurture them with promotions, educational content, and next steps.</p>
+              <p>To dynamically update audience targeting, I established two segments for each lead list:</p>
+              <ul>
+                <li><b>Converted Clients:</b> Users whose Status field updated to "Client"</li>
+                <li><b>Unconverted Leads:</b> Users without a Status field update</li>
+              </ul>              
 
-              <p>To refine our audience targeting, I built two Klaviyo segments:</p>
+              <p>With these segments, I could:</p>
               <ol>
-                <li><b>Converted Clients:</b> Users whose status updates to "Client"</li>
-                <li><b>Unconverted Leads:</b> Users in campaign lists but with an empty status field</li>
+                <li>Exclude converted users from ad campaigns</li>
+                <li>Enroll converted users into a nurturing email sequence</li>
+                <li>Build lookalike audiences for future prospecting</li>
               </ol>
               <br>
+                <div style="text-align: center;">
+                  <img src="assets/img/portfolio/Ads/Lead diagram.png" class="img-fluid portfolio-img-thirty" alt="Data flow diagram"></img>
+                  <br>
+                  <em>Data Flow from Lead to Client Status.</em>
+                </div>
+              <br>
 
-              <h3>How This Works in Practice:</h3>
+              <h3>Using the CAPI Method for Meta Ads</h3>
+              <p>To enhance accuracy, I implemented Meta’s Conversions API (CAPI) for direct data transfer from Klaviyo to Meta, enabling:</p>
               <ul>
-                <li>Leads with an empty Status field remain in BOF retargeting campaigns.</li>
-                <li>Once their Status updates to "Client," they are removed from conversion-focused ads and added to the Social Converted segment for continued engagement.</li>
+                <li>More precise event tracking</li>
+                <li>Reduced reliance on third-party cookies</li>
+                <li>Automated exclusion of converted users</li>
               </ul>
               <p>For omnichannel campaigns, I maintain separate lists for different platforms (Meta, Google, Pinterest) and update the Source field using profile property flows. This ensures that even when users move through segments, we can still track their original entry point.</p>
-
-              <p><a href="">Advertising Case Study</a></p>
               <br>
 
-              <h3>Finalizing the Process & Cross-Referencing Data</h3>
-              <p>With all lists, segments, and automations in place, we can now launch ad campaigns that dynamically adjust based on user engagement. To keep the audience targeting updated:</p>
+            <h2>Results & Key Takeaways</h2>
+              <h4>Pros:</h4>
               <ol>
-                <li>Regularly export and import bookings from myStratus into the "Client Converted" list in Klaviyo.</li>
-                <li>Update the Status field for booked users to "Client."</li>
-                <li>Ensure Klaviyo, Meta, and Google Ads remain synced for audience exclusions.</li>
+                <li>Enabled structured tracking despite CRM limitations</li>
+                <li>Improved segmentation and ad targeting</li>
+                <li>Supported omnichannel marketing by integrating multiple data sources</li>
+                <li>Leveraged Klaviyo’s automation capabilities</li>
+              </ol>
+
+              <h4>Cons:</h4>
+              <ol>
+                <li>Required manual data uploads, increasing workload</li>
+                <li>Introduced a lag in conversion tracking, affecting real-time optimizations</li>
+                <li>Could not track abandoned carts within MyStratus</li>
               </ol>
               
+              <h3>Final Process Implementation</h3>
+              <p>To maintain accurate data flow, I regularly:</p>
+              <ol>
+                <li>Exported recent online bookings from MyStratus</li>
+                <li>Updated the Status field for booked users in Klaviyo</li>
+                <li>Ensured sync between Klaviyo, Meta, and Google Ads for accurate audience targeting</li>
+              </ol>
+              <br>
               <div>
                 <img src="assets/img/portfolio/Mktg-Ops-Data-Flow.png" class="img-fluid" alt="Data flow diagram"></img>
+                <br>
                 <em>Diagram showing a simplified version of how data flows when using one advertsing channel with this workaround.</em>
               </div>
               <br>
 
-              <h4>Using the CAPI Method for Meta Ads</h4>
-              <p>By leveraging Meta’s Conversions API (CAPI), I automate conversion tracking. This method enables:</p>
-              <ul>
-                <li>Direct data transfer from Klaviyo to Meta</li>
-                <li>Better event tracking accuracy</li>
-                <li>Reduced reliance on third-party cookies</li>
-              </ul>
-              <p>To implement this, I configured Klaviyo to pass conversion data from the "Client Converted" list to Meta, signaling when a lead has become a customer. This prevents ads from being served to already-converted users, optimizing budget allocation.</p>
+              <p>Although not as seamless as a native integration, this approach significantly improved conversion tracking, audience segmentation, and budget efficiency. By strategically combining GTM, Klaviyo, and CAPI, I developed a data-driven marketing framework that enhanced campaign effectiveness within the constraints of a niche CRM.</p>
               <br>
-
-              <h3>Pros & Cons of This Workaround</h3>
-              <h4>Pros:</h4>
-              <ul>
-                <li>Provides a structured way to track leads and conversions without native integrations</li>
-                <li>Enables better segmentation and more precise ad targeting</li>
-                <li>Works well for omnichannel campaigns by integrating multiple data sources</li>
-                <li>Leverages Klaviyo’s extensive integrations for further automation</li>
-              </ul>
-              <h4>Cons:</h4>
-              <ul>
-                <li>Requires manual data uploads, making it time-consuming</li>
-                <li>Has a lag in conversion tracking, impacting real-time campaign adjustments</li>
-                <li>Does not track cart abandonments, limiting some remarketing efforts</li>
-              </ul>
-              <h3>Key Takeaways</h3>
-              <p>Although this workaround is not as seamless as a direct CRM-to-ad platform integration, it significantly improves conversion tracking, audience segmentation, and budget efficiency. By combining Klaviyo, custom lists, and CAPI, we ensure that our marketing campaigns remain data-driven and effective, even within the constraints of a niche CRM.</p>
-              <p>For more insights into how I optimize advertising and segmentation strategies, check out my <a href="">Advertising Case Study</a>.</p>
+              <p>For a deeper dive into campaign performance, refer to my <a href="Portfolio-Meta-Ads.html">Meta Advertising Case Study</a> on lead segmentation and ad targeting effectiveness.</p>
               <!--Section 6-->
               
 
