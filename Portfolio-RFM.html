@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+        .sql-code-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        margin: 24px 0;
+    }
+    
+    .sql-code-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e9ecef;
+    }
+    
+    .sql-code-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+    }
+    
+    .sql-code-description {
+        font-size: 14px;
+        color: #6c757d;
+        margin: 0;
+    }
+    
+    .sql-code-block {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 20px;
+        overflow-x: auto;
+        font-family: 'Courier New', Consolas, Monaco, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .sql-code-block code {
+        color: #212529;
+        background: none;
+        padding: 0;
+    }
+    
+    .sql-comment {
+        color: #198754;
+        font-style: italic;
+    }
+    
+    .sql-keyword {
+        color: #0d6efd;
+        font-weight: 600;
+    }
+    
+    .sql-function {
+        color: #6f42c1;
+    }
+    
+    .sql-string {
+        color: #dc3545;
+    }
+    
+    .sql-number {
+        color: #d63384;
+    }
+     .rfm-logic-table-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        margin: 24px 0;
+    }
+    
+    .rfm-logic-table thead th {
+        background-color: #f0f0f5;
+        color: #1a1a1a;
+        font-weight: 600;
+        border-bottom: 2px solid #dee2e6;
+        padding: 14px;
+        font-size: 14px;
+    }
+    
+    .rfm-logic-table tbody td {
+        padding: 14px;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .rfm-logic-table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .rfm-segment-name {
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+    
+    .rfm-score-badge {
+        display: inline-block;
+        background-color: #e9ecef;
+        color: #495057;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
+    .rfm-definition {
+        line-height: 1.6;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.10.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <!--CODE BELOW IS FOR R MARKDOWN-->
+  <meta name="author" content="Sharon Velasquez" />
+
+  <meta name="date" content="2023-02-22" />
+  
+  <title>RFM Analytics & Lifecycle Research</title>
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/sharon-velasquez/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://medium.com/@sharon.v153" class="google-plus"><i class="bx bxl-medium"></i></a>
+          <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <!-- <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li> -->
+          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Sharon V. M.</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Portfolio</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <!-- <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Marketing Operations & Analytics</li>
+                <li><strong>Client</strong>: Cherie Amour</li>
+                <li><strong>Project date</strong>: 01 March, 2020</li>
+                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+              </ul>
+            </div> -->
+            <div class="portfolio-description">
+              <h1>RFM Analytics & Lifecycle Research</h1>
+              <br>
+              <h2>Recovering $40,500 in "At Risk" Revenue through an 8-Day Strategic SQL Sprint</h2>
+              <br>
+              <!--Section 1-->
+              <h3>1. The Business Challenge</h3>
+              <p>A luxury e-commerce brand sought to increase revenue without increasing its dependence on paid advertising. Historical data showed that while the brand had a database of over 11,000 leads and customers, only 58.65% had ever made a purchase. Of those who did buy, 82% were one-time shoppers.</p>
+              <br>
+              <p>I was tasked with identifying "revenue leakage" and building a technical framework to reactivate high-value customers. The project was executed from initial exploratory research to final strategic recommendations in a comprehensive 8-day sprint.</p>
+              <br>
+              <!--Section 2-->
+              <h3>2. Data Methodology: The 2.5-Year Historical Audit</h3>
+              <p>Most standard e-commerce audits utilize a 12-month window. For this project, I engineered a 2.5-year lookback period to capture the true story of customer decay in a high-ticket, low-frequency vertical:</p>
+              <ul>
+                <li><b>Establishing "Data Density": </b>With an 88% churn rate, a shorter window would have resulted in statistically insignificant sample sizes. Expanding to 2.5 years revealed a $40,509.47 recovery opportunity in the "At Risk" segment that a standard audit would have missed.</li>
+                <li><b>Defining the "Churn Threshold":</b>By analyzing the "Lost" segment, I calculated a 27-day "Golden Window" for retention. If a second purchase doesn't occur within this window, the probability of return drops exponentially.</li>
+              </ul>
+              <br>
+
+              <!--Section 3-->
+              <h3>3. Technical Execution & Multi-Platform ETL Pipeline</h3>
+              <p>The core of this project was an end-to-end data pipeline built under significant administrative constraints. The 8-day timeline allowed for a rigorous transition from raw research to structured cloud architecture.</p>
+              <br>
+              <h4>Phase 1: Exploratory Research & Forensic Data Cleaning (Days 1-3)</h4>
+              <ul>
+                <li><b>Discovery: </b>Analyzed the Shopify database to identify that 4,800+ leads had never purchased, representing a massive untapped conversion pool.</li>
+                <li><b>Data Sanitization:</b>Handled significant formatting issues within raw CSV exports after a 10-day permission delay for direct connectors.</li>
+                <ul>
+                  <li>Completely removed disruptive commas from product names/descriptions to prevent BigQuery schema breakage.</li>
+                  <li>De-nested complex product tags into relational columns to enable future cohort analysis.</li>
+                  <li>Scrubbed test transactions and "EXC-" (exchange) orders to ensure a pure revenue dataset.</li>
+                </ul>
+              </ul>
+
+              <h4>Phase 2: Infrastructure & SQL Architecture (Days 4-7)</h4>
+              <ul>
+                <li><b>Cloud Integration:</b> Stored sanitized datasets in a GCP Cloud Storage Bucket and linked BigQuery datasets via gsutil URIs.</li>
+                <li><b>Logic Engineering:</b> Spent 4 days developing and troubleshooting the SQL scoring models. Because 83% of the customer base had a frequency of 1, standard quintile functions were insufficient.</li>
+                <li><b>Hybrid Scoring: </b>Engineered a custom <code>CASE</code> logic to manually weight repeat purchasers (1, 2, 3, 4, 5+), while using <code>NTILE(5)</code> for Recency and Monetary quintiles.</li>
+              </ul>
+              <br>
+              <!------SQL CODE HERE------------>
+              <!--SQL querry to build RFM-->
+              <div class="container">
+                <div class="sql-code-container">
+                    <div class="sql-code-header">
+                        <h3 class="sql-code-title">RFM Segmentation Query</h3>
+                        <p class="sql-code-description">BigQuery view creation for customer RFM (Recency, Frequency, Monetary) scoring</p>
+                    </div>
+                    
+                    <div class="sql-code-block">
+              <pre><code><span class="sql-comment">/*Step 3: with the query working now we can create a VIEW that we can use to classify users based on their score with a new query*/</span>
+              <span class="sql-keyword">CREATE VIEW</span> `cherie-amour-lingerie-shop.shopify_raw.RFM_scores`
+              <span class="sql-keyword">AS</span> (
+              <span class="sql-comment">/* Step 2:Calculate the RFM scores from the original query by nesting it*/</span>
+                <span class="sql-keyword">SELECT</span> email,
+                  recency,
+                  frequency,
+                  monetary,
+                  <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> recency <span class="sql-keyword">ASC</span>) <span class="sql-keyword">AS</span> R_score,
+                  <span class="sql-comment">/* Manual F_score logic for our highly skewed data where 83% clients frequency = 1*/</span>
+                  <span class="sql-keyword">CASE</span>
+                    <span class="sql-keyword">WHEN</span> frequency >= <span class="sql-number">5</span> <span class="sql-keyword">THEN</span> <span class="sql-number">5</span>
+                    <span class="sql-keyword">WHEN</span> frequency = <span class="sql-number">4</span> <span class="sql-keyword">THEN</span> <span class="sql-number">4</span>
+                    <span class="sql-keyword">WHEN</span> frequency = <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-number">3</span>
+                    <span class="sql-keyword">WHEN</span> frequency = <span class="sql-number">2</span> <span class="sql-keyword">THEN</span> <span class="sql-number">2</span>
+                    <span class="sql-keyword">WHEN</span> frequency = <span class="sql-number">1</span> <span class="sql-keyword">THEN</span> <span class="sql-number">1</span>
+                  <span class="sql-keyword">END AS</span> F_score,
+                  <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> monetary <span class="sql-keyword">DESC</span>) <span class="sql-keyword">AS</span> M_score
+                <span class="sql-keyword">FROM</span> (
+                  <span class="sql-comment">/*Step 1: Calulate the recency, frequency, and monetary values*/</span>
+                  <span class="sql-keyword">SELECT</span> email, <span class="sql-function">DATE_DIFF</span>(<span class="sql-function">CURRENT_TIMESTAMP</span>(),
+                  <span class="sql-function">max</span>(created_at), DAY) <span class="sql-keyword">AS</span> recency ,
+                  <span class="sql-function">count</span>(<span class="sql-function">distinct</span>(Order_Number)) <span class="sql-keyword">AS</span> frequency,
+                  <span class="sql-function">sum</span>(Subtotal) <span class="sql-keyword">AS</span> monetary,
+                  <span class="sql-keyword">FROM</span> `cherie-amour-lingerie-shop.shopify_raw.orders`
+                  <span class="sql-keyword">WHERE NOT</span> <span class="sql-function">REGEXP_CONTAINS</span>(Order_Number, <span class="sql-string">R'^EXC-'</span>)
+                  <span class="sql-keyword">GROUP BY</span> email)
+              );</code></pre>
+                      </div>
+                  </div>
+              </div>
+              <br>
+              <h4>Phase 3: Strategic Translation & Final Reporting (Day 8)</h4>
+              <ul>
+                <li><b>Financial Modeling:</b> Aggregated scores into a custom segmentation view to quantify "Lost Revenue" per tier.</li>
+                <li><b>Recommendation Mapping:</b> Translated raw clusters into actionable marketing plays for Champions, Loyalists, and At-Risk segments.</li>
+              </ul>
+              <br>
+             
+              <!--Section 4-->
+              <h3>4. Behavioral Insights & Findings</h3> 
+              <p>By aggregating the scores into a custom segmentation view, I identified the financial footprint of the database:</p>
+              <br>
+              <!-----------INSERT RFM PERFORMANC TABLE HERE WITH LOGIC-------->
+              <div class="container">
+                <div class="rfm-logic-table-container">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 rfm-logic-table">
+                            <thead>
+                                <tr>
+                                    <th>Segment</th>
+                                    <th>R Score</th>
+                                    <th>F Score</th>
+                                    <th>M Score</th>
+                                    <th>Business Definition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="rfm-segment-name">Champions</span></td>
+                                    <td><span class="rfm-score-badge">5</span></td>
+                                    <td><span class="rfm-score-badge">5</span></td>
+                                    <td><span class="rfm-score-badge">5</span></td>
+                                    <td class="rfm-definition">Your best customers. They buy often, recently, and spend the most.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">Loyalist</span></td>
+                                    <td><span class="rfm-score-badge">3 - 5</span></td>
+                                    <td><span class="rfm-score-badge">3 - 5</span></td>
+                                    <td><span class="rfm-score-badge">3 - 5</span></td>
+                                    <td class="rfm-definition">High frequency and spend. They like you, but aren't as recent as Champions.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">Potential Loyalist</span></td>
+                                    <td><span class="rfm-score-badge">4 - 5</span></td>
+                                    <td><span class="rfm-score-badge">2 - 3</span></td>
+                                    <td><span class="rfm-score-badge">2 - 3</span></td>
+                                    <td class="rfm-definition">Recent buyers with average frequency. They are prime for upselling.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">Promising</span></td>
+                                    <td><span class="rfm-score-badge">3 - 4</span></td>
+                                    <td><span class="rfm-score-badge">1</span></td>
+                                    <td><span class="rfm-score-badge">1</span></td>
+                                    <td class="rfm-definition">Recent buyers, but haven't spent much or returned yet.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">About to Sleep</span></td>
+                                    <td><span class="rfm-score-badge">2 - 3</span></td>
+                                    <td><span class="rfm-score-badge">1 - 2</span></td>
+                                    <td><span class="rfm-score-badge">1 - 2</span></td>
+                                    <td class="rfm-definition">Below average recency. They are starting to drift away.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">At Risk</span></td>
+                                    <td><span class="rfm-score-badge">1 - 2</span></td>
+                                    <td><span class="rfm-score-badge">3 - 5</span></td>
+                                    <td><span class="rfm-score-badge">3 - 5</span></td>
+                                    <td class="rfm-definition">Spent big and often in the past, but haven't returned in a long time.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">Hibernating</span></td>
+                                    <td><span class="rfm-score-badge">2</span></td>
+                                    <td><span class="rfm-score-badge">2</span></td>
+                                    <td><span class="rfm-score-badge">2</span></td>
+                                    <td class="rfm-definition">Low frequency and low recency. One-time buyers from a while ago.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rfm-segment-name">Lost</span></td>
+                                    <td><span class="rfm-score-badge">1</span></td>
+                                    <td><span class="rfm-score-badge">1</span></td>
+                                    <td><span class="rfm-score-badge">1</span></td>
+                                    <td class="rfm-definition">Lowest scores across the board. Likely went to a competitor.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+               <!--SQL Query to assign people to RFM groups-->
+              <div class="container">
+                <div class="sql-code-container">
+                    <div class="sql-code-header">
+                        <h3 class="sql-code-title">Customer Segmentation Logic</h3>
+                        <p class="sql-code-description">BigQuery view that classifies customers into segments based on RFM scores</p>
+                    </div>
+                    
+                    <div class="sql-code-block">
+            <pre><code><span class="sql-comment">/* Segmentation query*/</span>
+            <span class="sql-keyword">CREATE VIEW</span> `cherie-amour-lingerie-shop.shopify_raw.RFM_segments`
+            <span class="sql-keyword">AS</span> (
+            <span class="sql-keyword">SELECT</span> email,
+              <span class="sql-function">CONCAT</span> (R_score,<span class="sql-string">'-'</span>, F_score,<span class="sql-string">'-'</span>,M_score) <span class="sql-keyword">AS</span> rfm_points,
+              <span class="sql-keyword">CASE</span>
+                <span class="sql-comment">-- 1. Champions</span>
+                <span class="sql-keyword">WHEN</span> R_score = <span class="sql-number">5</span> <span class="sql-keyword">AND</span> F_score = <span class="sql-number">5</span> <span class="sql-keyword">AND</span> M_score = <span class="sql-number">5</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Champions'</span>
+                <span class="sql-comment">-- 2. Loyalists: High-value repeaters.</span>
+                <span class="sql-keyword">WHEN</span> R_score >= <span class="sql-number">3</span> <span class="sql-keyword">AND</span> F_score >= <span class="sql-number">3</span> <span class="sql-keyword">AND</span> M_score >= <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Loyalists'</span>
+                <span class="sql-comment">-- 3. At Risk: High-value past customers who stopped buying.</span>
+                <span class="sql-keyword">WHEN</span> R_score <= <span class="sql-number">2</span> <span class="sql-keyword">AND</span> F_score >= <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'At Risk'</span>
+                <span class="sql-comment">-- 4. Potential Loyalists: Recent buyers with high spend (M>=3) but low frequency.</span>
+                <span class="sql-keyword">WHEN</span> R_score >= <span class="sql-number">4</span> <span class="sql-keyword">AND</span> M_score >= <span class="sql-number">3</span> <span class="sql-keyword">AND</span> F_score <= <span class="sql-number">2</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Potential Loyalist'</span>
+                <span class="sql-comment">-- 5. Promising / Recent: Recent buyers, but lower spend/frequency.</span>
+                <span class="sql-keyword">WHEN</span> R_score >= <span class="sql-number">4</span> <span class="sql-keyword">AND</span> F_score <= <span class="sql-number">2</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Promising'</span>
+                <span class="sql-comment">-- 6. About to Sleep: Middle-of-the-road customers drifting away.</span>
+                <span class="sql-keyword">WHEN</span> R_score = <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'About to Sleep'</span>
+                <span class="sql-comment">-- 7. Hibernating: Low recency (2), low everything else.</span>
+                <span class="sql-keyword">WHEN</span> R_score = <span class="sql-number">2</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Hibernating'</span>
+                <span class="sql-comment">-- 8. Lost: The bottom of the barrel.</span>
+                <span class="sql-keyword">WHEN</span> R_score = <span class="sql-number">1</span> <span class="sql-keyword">AND</span> F_score = <span class="sql-number">1</span> <span class="sql-keyword">AND</span> M_score = <span class="sql-number">1</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Lost'</span>
+                <span class="sql-comment">-- 9. Can't Lose Them: Low recency but high historical frequency.</span>
+                <span class="sql-keyword">WHEN</span> R_score = <span class="sql-number">1</span> <span class="sql-keyword">AND</span> F_score >= <span class="sql-number">4</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Cannot Lose Them'</span>
+                <span class="sql-comment">-- If they are R=1 and not high frequency, they are truly lost.</span>    
+                <span class="sql-keyword">ELSE</span> <span class="sql-string">'Lost'</span>
+              <span class="sql-keyword">END AS</span> customer_segment
+            <span class="sql-keyword">FROM</span> `cherie-amour-lingerie-shop.shopify_raw.RFM_scores`
+            <span class="sql-keyword">ORDER BY</span> customer_segment
+            );</code></pre>
+                    </div>
+                </div>
+            </div>
+              <br>
+              <h4>Key Discovery: The Gateway Price Point</h4>
+              <p>Detailed analysis of the Champions vs. Lost segments revealed a critical pricing correlation:</p>
+              <ul>
+                <li><b>Champions </b>almost always started their journey with "Gateway" products priced below $50.</li>
+                <li><b>High-Ticket Churn: </b>Customers who started with items priced above $65 had the highest churn rates, indicating that lower-priced entry points are the primary drivers of long-term LTV for this brand.</li>
+              </ul>
+              <br>
+              <!--Section 5-->
+              <h3>5. Strategic Recommendations & Future Research</h3>
+              <ol>
+                <li><b>Acquisition Pivot: </b>Shift top-of-funnel ads to focus on "Gateway" products (< $50) to maximize the probability of a second purchase.</li>
+                <li><b>The 30-Day Retention Sprint: </b>Implement high-urgency nurturing flows within the 30-day "Golden Window" identified in the churn analysis.</li>
+                <li><b>Segment-Specific Nudging:</b> Data Layer Architecture, Master Tag Logic.</li>
+                <ul>
+                  <li><b>At Risk:</b> Focus on "Gift with Purchase" (GWP) strategies to appeal to this segment's preference for high unit counts.</li>
+                  <li><b>Hibernating:</b> Re-introduce the brand with "New Arrival" collections to bridge the 24-month gap.</li>
+                </ul>
+                <li><b>Future Research:</b>Analyze the correlation between shipping costs and AOV to identify the maximum threshold for "Free Shipping" that increases repeat order probability.</li>
+              </ol>              
+              <br>
+              <h2>Technical Toolkit</h2>
+              <ul>
+                <li><b>Platforms:</b> Shopify, GCP (Cloud Storage), BigQuery, Excel, Klaviyo.</li>
+                <li><b>Languages:</b> SQL (Standard SQL), JavaScript (GTM/Webhooks).</li>
+                <li><b>Frameworks:</b> RFM Modeling, ETL Pipeline Management, Churn Forensics.</li>
+              </ul>
+            </div>
+          <!-- </div> -->
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <!-- <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits"> -->
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer> --><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Bootstrap JS (optional, for interactive components in table) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!--The code below belongs to the R markdown file-->
+  <script>
+
+    // add bootstrap table styles to pandoc tables
+    function bootstrapStylePandocTables() {
+      $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+    }
+    $(document).ready(function () {
+      bootstrapStylePandocTables();
+    });
+    
+    
+    </script>
+    
+    <!-- tabsets -->
+    
+    <script>
+    $(document).ready(function () {
+      window.buildTabsets("TOC");
+    });
+    
+    $(document).ready(function () {
+      $('.tabset-dropdown > .nav-tabs > li').click(function () {
+        $(this).parent().toggleClass('nav-tabs-open');
+      });
+    });
+    </script>
+    
+    <!-- code folding -->
+    
+    
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+    <script>
+      (function () {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      })();
+    </script>
+</body>
+
+</html>
