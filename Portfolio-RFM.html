@@ -474,9 +474,25 @@
                 <li><b>Future Research:</b>Analyze the correlation between shipping costs and AOV to identify the maximum threshold for "Free Shipping" that increases repeat order probability.</li>
               </ol>              
               <br>
+              <!--Phase 4-->
+              <h4>Phase 4: Dynamic Business Intelligence & Tooling</h4>
+              <p>Interactive RFM Dashboard To ensure these insights weren't static, I engineered a live Looker Studio Dashboard connected directly to the BigQuery environment. This allows stakeholders to bypass the SQL console and perform their own "Segment Forensics" in real-time.</p>
+              <ul>
+                <li><b>Custom Filtering:</b> Includes a global <code>customer_segment</code> filter to isolate specific behavioral tiers (e.g., viewing only "At Risk" metrics).</li>
+                <li><b>Vendor Performance:</b> Correlates RFM segments with specific product vendors (e.g., Montelle, Thistle & Spire) to identify which brands drive the highest customer loyalty.</li>
+                <li><b>Geographic Revenue Mapping:</b> Visualizes revenue density by city to assist in localized ad targeting.</li>
+                <li><b>Shipping Fee Correlation:</b> Tracks how shipping costs impact order volume, validating the "Future Research" goal of identifying free-shipping thresholds.</li>
+              </ul>
+              <br>
+              <figure class="figure w-100">
+                <a href="https://lookerstudio.google.com/s/jnTCzfBRxUI"><img src="assets/img/portfolio/rfm-interacive-dashboard.png" class="figure-img img-fluid rounded" alt="RFM Dashboard"></a>
+                <figcaption class="figure-caption text-center">Interactive RFM segmentation dashboard built in Looker Studio</figcaption>
+              </figure>
+              <br><br>
+              <!--Final section-->
               <h2>Technical Toolkit</h2>
               <ul>
-                <li><b>Platforms:</b> Shopify, GCP (Cloud Storage), BigQuery, Excel, Klaviyo.</li>
+                <li><b>Platforms:</b> Shopify, GCP (Cloud Storage), BigQuery, Excel, Looker Studio (BI).</li>
                 <li><b>Languages:</b> SQL (Standard SQL), JavaScript (GTM/Webhooks).</li>
                 <li><b>Frameworks:</b> RFM Modeling, ETL Pipeline Management, Churn Forensics.</li>
               </ul>
