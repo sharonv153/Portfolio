@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+        .sql-code-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        margin: 24px 0;
+    }
+    
+    .sql-code-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e9ecef;
+    }
+    
+    .sql-code-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+    }
+    
+    .sql-code-description {
+        font-size: 14px;
+        color: #6c757d;
+        margin: 0;
+    }
+    
+    .sql-code-block {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 20px;
+        overflow-x: auto;
+        font-family: 'Courier New', Consolas, Monaco, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .sql-code-block code {
+        color: #212529;
+        background: none;
+        padding: 0;
+    }
+    
+    .sql-comment {
+        color: #198754;
+        font-style: italic;
+    }
+    
+    .sql-keyword {
+        color: #0d6efd;
+        font-weight: 600;
+    }
+    
+    .sql-function {
+        color: #6f42c1;
+    }
+    
+    .sql-string {
+        color: #dc3545;
+    }
+    
+    .sql-number {
+        color: #d63384;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.10.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <!--CODE BELOW IS FOR R MARKDOWN-->
+  <meta name="author" content="Sharon Velasquez" />
+
+  <meta name="date" content="2023-02-22" />
+  
+  <title>Kepler Online Learning Relational Database Design</title>
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/sharon-velasquez/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://medium.com/@sharon.v153" class="google-plus"><i class="bx bxl-medium"></i></a>
+          <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <!-- <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li> -->
+          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Sharon V. M.</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Portfolio</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <!-- <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Marketing Operations & Analytics</li>
+                <li><strong>Client</strong>: Cherie Amour</li>
+                <li><strong>Project date</strong>: 01 March, 2020</li>
+                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+              </ul>
+            </div> -->
+            <div class="portfolio-description">
+              <h1>Portfolio Project: Kepler Online Learning Relational Database Design</h1>
+              <p><b>Tech Stack:</b> Microsoft SQL Server, T-SQL, SQL Server Management Studio (SSMS)</p>
+              <br>
+              <h2>Executive Summary</h2>
+              <p>Kepler is a subscription-based EdTech platform designed for independent creators. The business requires a high-integrity relational database to manage complex revenue distribution, enrollment constraints (3-course maximum), and multi-tiered user activity tracking. This project demonstrates the transition from business requirements to a fully normalized Third Normal Form (3NF) schema, complete with complex business logic handled via T-SQL.</p>
+              <br>
+              <!--Section 1-->
+              <h3>The Business Logic Challenge</h3>
+              <p>The project required implementing specific constraints directly into the database logic:</p>
+              <ul>
+                <li><b>Revenue Splitting:</b> A fixed $20 subscription fee where instructors receive $5 per active student, and the platform retains the remainder.</li>
+                <li><b>State Management:</b>Tracking "Active" status based on concurrent subscription payments and enrollment activity.</li>
+                <li><b>Capacity Constraints:</b>Rigid enforcement of enrollment limits (max 3 courses) to maintain platform performance and educational focus.</li>
+              </ul>
+              <br>
+              <!--Section 2-->
+              <h3>Data Architecture (ERD)</h3>
+              <p>The schema was designed to eliminate redundancy through strategic normalization. Key architectural decisions include:</p>
+              <ul>
+                <li><b>Composite Key Implementation:</b>Used in junction tables like Class_enrollment to manage many-to-many relationships.</li>
+                <li><b>Integrity Constraints:</b>Extensive use of <i>FOREIGN KEY</i> constraints and <i>BIT</i> data types for Boolean logic (e.g., passed or completed status) to ensure data durability.</li>
+              </ul>
+
+              <img src="assets/img/portfolio/ER_Diagram.png" class="figure-img img-fluid rounded" alt="ER Diagram">
+              <br>
+              <!--Section 3-->
+              <h3>Advanced T-SQL Implementation</h3>
+              <p>To demonstrate professional-grade SQL skills, the project focuses on set-based logic rather than procedural loops.</p>
+
+              <!------SQL CODE HERE------------>
+              <!-- Table A -->
+              <div class="container">
+                  <div class="sql-code-container">
+                      <div class="sql-code-header">
+                          <h3 class="sql-code-title">A. Strategic Revenue Analysis</h3>
+                          <p class="sql-code-description">Goal: Identify platform-heavy revenue streams where students are enrolled in one or fewer courses.</p>
+                      </div>
+                      
+                      <div class="sql-code-block">
+                          <pre><code><span class="sql-keyword">SELECT</span> 
+                  student_id, 
+                  <span class="sql-function">DATENAME</span>(month, activity_date) <span class="sql-keyword">AS</span> active_month, 
+                  (<span class="sql-number">20</span> - (<span class="sql-function">COUNT</span>(course_id) * <span class="sql-number">5</span>)) <span class="sql-keyword">AS</span> platform_net_revenue
+              <span class="sql-keyword">FROM</span> Online_Courses.db_datawriter.Student_Activity
+              <span class="sql-keyword">GROUP BY</span> student_id, <span class="sql-function">DATENAME</span>(month, activity_date)
+              <span class="sql-keyword">HAVING</span> (<span class="sql-number">20</span> - (<span class="sql-function">COUNT</span>(course_id) * <span class="sql-number">5</span>)) > <span class="sql-number">5</span>;</code></pre>
+                      </div>
+                  </div>
+              </div>
+           
+              <!-- Table B -->
+              <div class="container">
+                  <div class="sql-code-container">
+                      <div class="sql-code-header">
+                          <h3 class="sql-code-title">B. Data Aggregation &amp; Virtualization</h3>
+                          <p class="sql-code-description">Goal: Create a Virtual Gradebook using SQL Views to centralize student performance across assignments, exams, and module completions.</p>
+                      </div>
+                      
+                      <div class="sql-code-block">
+                          <pre><code><span class="sql-keyword">CREATE VIEW</span> db_datawriter.v_StudentGrades
+              <span class="sql-keyword">AS</span> (
+                  <span class="sql-keyword">SELECT</span> 
+                      a.student_id, 
+                      mo.course_id,
+                      (<span class="sql-function">SUM</span>(a.scored_points) + <span class="sql-function">SUM</span>(e.scored_points) + <span class="sql-function">SUM</span>(m.total_points_earned)) <span class="sql-keyword">AS</span> cumulative_score
+                  <span class="sql-keyword">FROM</span> Online_Courses.db_datawriter.Assignment_submission a
+                  <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Exam_submission e <span class="sql-keyword">ON</span> a.student_id = e.student_id
+                  <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Module_completion m <span class="sql-keyword">ON</span> e.student_id = m.student_id
+                  <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Module mo <span class="sql-keyword">ON</span> mo.module_id = m.module_id
+                  <span class="sql-keyword">GROUP BY</span> a.student_id, mo.course_id
+              );</code></pre>
+                      </div>
+                  </div>
+              </div>
+              <!--Table C-->
+              <div class="container">
+                      <div class="sql-code-container">
+                          <div class="sql-code-header">
+                              <h3 class="sql-code-title">C. The "Creator Payout" Financial Report</h3>
+                              <p class="sql-code-description">This query identifies "Active" students from the `Student_Activity` table for a specific month (January) and joins them with the `Course` and `CourseCreator` tables to calculate the $5-per-student payout.</p>
+                          </div>
+
+                          <div class="sql-code-block">
+                              <pre><code><span class="sql-comment">/* Requirement: Creators receive payout on the 5th for the previous month.
+                  Logic: Find all 'Active' status records for January 2026 and calculate $5 per student.
+                  */</span>
+                  <span class="sql-keyword">DECLARE</span> @PayoutMonth <span class="sql-keyword">INT</span> = <span class="sql-number">1</span>; <span class="sql-comment">-- January</span>
+                  <span class="sql-keyword">DECLARE</span> @PayoutYear <span class="sql-keyword">INT</span> = <span class="sql-number">2026</span>;
+                  <span class="sql-keyword">SELECT</span> 
+                      CC.CreatorID,
+                      CC.FirstName + <span class="sql-string">' '</span> + CC.LastName <span class="sql-keyword">AS</span> CreatorName,
+                      C.CourseTitle,
+                      <span class="sql-function">COUNT</span>(SA.StudentID) <span class="sql-keyword">AS</span> ActiveStudentCount,
+                      <span class="sql-function">COUNT</span>(SA.StudentID) * <span class="sql-number">5.00</span> <span class="sql-keyword">AS</span> TotalPayoutAmount
+                  <span class="sql-keyword">FROM</span> CourseCreator CC
+                  <span class="sql-keyword">JOIN</span> Course C <span class="sql-keyword">ON</span> CC.CreatorID = C.CreatorID
+                  <span class="sql-keyword">JOIN</span> StudentActivity SA <span class="sql-keyword">ON</span> C.CourseID = SA.CourseID
+                  <span class="sql-keyword">WHERE</span> SA.StudentCourseStatus = <span class="sql-string">'Active'</span>
+                    <span class="sql-keyword">AND</span> <span class="sql-function">MONTH</span>(SA.ActivityDate) = @PayoutMonth
+                    <span class="sql-keyword">AND</span> <span class="sql-function">YEAR</span>(SA.ActivityDate) = @PayoutYear
+                  <span class="sql-keyword">GROUP BY</span> CC.CreatorID, CC.FirstName, CC.LastName, C.CourseTitle
+                  <span class="sql-keyword">ORDER BY</span> TotalPayoutAmount <span class="sql-keyword">DESC</span>;</code></pre>
+                          </div>
+                      </div>
+              </div>
+              <br>
+              <!--Section 5-->
+              <h3>Future Scalability</h3>
+              <ul>
+                <li><b>Schema Extensibility:</b> Mention that the modular design (separating Course, Module, and Assignment) allows Kepler to easily add new content types, such as live workshops or peer-reviewed projects, without refactoring the core architecture.</li>
+                <li><b>Performance Optimization:</b> The next phase would involve implementing Stored Procedures for automated monthly invoicing and SQL agent jobs to process creator payouts on the 5th of every month.</li>
+              </ul>
+              <br>
+              
+            </div>
+          <!-- </div> -->
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <!-- <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits"> -->
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer> --><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Bootstrap JS (optional, for interactive components in table) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!--The code below belongs to the R markdown file-->
+  <script>
+
+    // add bootstrap table styles to pandoc tables
+    function bootstrapStylePandocTables() {
+      $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+    }
+    $(document).ready(function () {
+      bootstrapStylePandocTables();
+    });
+    
+    
+    </script>
+    
+    <!-- tabsets -->
+    
+    <script>
+    $(document).ready(function () {
+      window.buildTabsets("TOC");
+    });
+    
+    $(document).ready(function () {
+      $('.tabset-dropdown > .nav-tabs > li').click(function () {
+        $(this).parent().toggleClass('nav-tabs-open');
+      });
+    });
+    </script>
+    
+    <!-- code folding -->
+    
+    
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+    <script>
+      (function () {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      })();
+    </script>
+</body>
+
+</html>
