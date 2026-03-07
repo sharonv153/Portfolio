@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>RFM & K-Means Customer Segmentation | Sharon Velasquez</title>
+  <meta name="author" content="Sharon Velasquez" />
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Page-level overrides ── */
+    .portfolio-description {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── Hero banner ── */
+    .cs-hero {
+      background: linear-gradient(135deg, #0f2a45 0%, #1B4F72 60%, #1a6a9a 100%);
+      border-radius: 12px;
+      padding: 48px 44px 44px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 120px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .cs-hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    .cs-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .cs-hero .lead {
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 640px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .cs-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .cs-meta-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── Section headings ── */
+    .cs-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      margin-bottom: 6px;
+    }
+    .cs-section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #0f2a45;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e8f0f7;
+    }
+
+    /* ── Body text ── */
+    .portfolio-description p {
+      font-size: 14.5px;
+      color: #3d4f5c;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    /* ── Callout / insight box ── */
+    .cs-insight {
+      background: #eaf4fb;
+      border-left: 4px solid #1B4F72;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+    .cs-insight-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .cs-insight p {
+      margin: 0;
+      font-size: 14px !important;
+      color: #1a3a52 !important;
+    }
+
+    /* ── Warning / context box ── */
+    .cs-context-box {
+      background: #fff8e7;
+      border-left: 4px solid #e6a817;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+    .cs-context-box p {
+      margin: 0;
+      font-size: 14px !important;
+      color: #5a4000 !important;
+    }
+    .cs-context-box strong { color: #7a5800; }
+
+    /* ── Data tables ── */
+    .cs-table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      margin: 20px 0 28px;
+      border: 1px solid #dce8f0;
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      font-family: 'DM Sans', sans-serif;
+      margin: 0;
+    }
+    .cs-table thead th {
+      background: #1B4F72;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      letter-spacing: 0.3px;
+    }
+    .cs-table tbody td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #e8f0f7;
+      color: #3a4f5c;
+      vertical-align: top;
+    }
+    .cs-table tbody tr:last-child td { border-bottom: none; }
+    .cs-table tbody tr:nth-child(even) { background: #f7fbff; }
+    .cs-table tbody tr:hover { background: #edf5fc; }
+    .cs-table .highlight-cell {
+      background: #fff3cd !important;
+      font-weight: 600;
+      color: #7a5800;
+    }
+    .cs-table tbody tr:hover .highlight-cell { background: #ffe9a0 !important; }
+
+    /* ── Segment badges ── */
+    .seg-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+    }
+    .seg-champion    { background: #d4edda; color: #155724; }
+    .seg-risk        { background: #f8d7da; color: #721c24; }
+    .seg-warning     { background: #fff3cd; color: #856404; }
+    .seg-neutral     { background: #e2e8f0; color: #2d3748; }
+    .seg-info        { background: #d1ecf1; color: #0c5460; }
+
+    /* ── SQL code blocks ── */
+    .sql-code-container {
+      background: #ffffff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .sql-code-header {
+      background: #f4f8fb;
+      border-bottom: 1px solid #dce8f0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .sql-code-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    .sql-code-description {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #6c757d;
+      margin: 0;
+    }
+    .sql-code-block {
+      background: #1a1f2e;
+      padding: 22px 24px;
+      overflow-x: auto;
+    }
+    .sql-code-block pre {
+      margin: 0;
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #cdd6f4;
+    }
+    .sql-comment  { color: #6a9955; font-style: italic; }
+    .sql-keyword  { color: #569cd6; font-weight: 600; }
+    .sql-function { color: #c586c0; }
+    .sql-string   { color: #ce9178; }
+    .sql-number   { color: #b5cea8; }
+
+    /* ── Cluster comparison cards ── */
+    .cluster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 20px 0 28px;
+    }
+    .cluster-card {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+    .cluster-card:hover { box-shadow: 0 4px 16px rgba(27,79,114,0.12); }
+    .cluster-card .cluster-id {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #1B4F72;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .cluster-card .cluster-anchor {
+      font-family: 'DM Serif Display', serif;
+      font-size: 14px;
+      color: #0f2a45;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .cluster-score-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: #6c757d;
+      font-family: 'DM Mono', monospace;
+      border-top: 1px solid #edf2f7;
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .cluster-score-row span { color: #1B4F72; font-weight: 500; }
+
+    /* ── Strategy cards ── */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 20px 0 28px;
+    }
+    .strategy-card {
+      border-radius: 10px;
+      border: 1px solid #dce8f0;
+      padding: 20px;
+      background: #fff;
+    }
+    .strategy-card .s-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .strategy-card .s-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #0f2a45;
+    }
+    .priority-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .p-critical { background: #f8d7da; color: #721c24; }
+    .p-high     { background: #ffeeba; color: #7a5800; }
+    .p-medium   { background: #d4edda; color: #155724; }
+    .p-low      { background: #e2e8f0; color: #4a5568; }
+    .strategy-card p {
+      font-size: 13px !important;
+      color: #4a5568 !important;
+      line-height: 1.6 !important;
+      margin: 0 !important;
+    }
+
+    /* ── Tech stack pills ── */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .tech-pill {
+      background: #f4f8fb;
+      border: 1px solid #dce8f0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      color: #1B4F72;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tech-pill i { font-size: 14px; }
+
+    /* ── Section spacing ── */
+    .cs-section { margin-bottom: 48px; }
+
+    /* ── Divider ── */
+    .cs-divider {
+      border: none;
+      border-top: 1px solid #e8f0f7;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/sharon-velasquez/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Lifecycle Intelligence</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Case Study</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="portfolio-description">
+
+          <!-- ── HERO ── -->
+          <div class="cs-hero">
+            <div class="cs-hero-eyebrow">Marketing Analytics · Case Study</div>
+            <h1>RFM Analysis &amp; K-Means<br>Customer Segmentation</h1>
+            <p class="lead">Combining rule-based lifecycle segmentation with unsupervised machine learning to build precision-targeted marketing strategies on Google's The Look E-Commerce dataset.</p>
+            <div class="cs-meta-pills">
+              <span class="cs-meta-pill"><i class="bi bi-database me-1"></i> Google BigQuery</span>
+              <span class="cs-meta-pill"><i class="bi bi-cpu me-1"></i> BigQuery ML · K-Means</span>
+              <span class="cs-meta-pill"><i class="bi bi-code-slash me-1"></i> Standard SQL</span>
+              <span class="cs-meta-pill"><i class="bi bi-people me-1"></i> The Look E-Commerce</span>
+            </div>
+          </div>
+
+          <!-- ── 1. EXECUTIVE SUMMARY ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">01</div>
+            <div class="cs-section-title">Executive Summary</div>
+            <p>This project demonstrates how structured SQL analysis can be layered with unsupervised machine learning to transform raw transactional data into actionable customer intelligence. By applying RFM (Recency, Frequency, Monetary) scoring and K-Means clustering in BigQuery, the analysis produces a dual-lens segmentation framework capable of guiding real-world marketing decisions.</p>
+            <p>The work was originally conceived to solve a real business problem: a client's database was so skewed that meaningful segmentation was nearly impossible — 85% of customers had never reordered, and 57% had purchased only once. Rather than deliver an analysis built on insufficient data, the project was rebuilt on a richer public dataset to validate the methodology at scale.</p>
+            <div class="cs-insight">
+              <div class="cs-insight-label">Output</div>
+              <p>A production-ready analytics pipeline that segments customers into 11 behavioral groups, validates those groups using a 5-cluster ML model, surfaces high-value sub-segment outliers, and supports automated daily refresh via BigQuery scheduled queries.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ── 2. BUSINESS CONTEXT ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">02</div>
+            <div class="cs-section-title">Business Context &amp; Problem Statement</div>
+            <p>Customer segmentation is one of the highest-leverage activities in marketing analytics. Sending the same message to every customer is both costly and ineffective — the core challenge is identifying who your customers are <em>behaviorally</em>, not just demographically, so that marketing spend is allocated where it is most likely to generate returns.</p>
+            <p>This project addresses three specific questions:</p>
+            <ul style="font-size:14.5px; color:#3d4f5c; line-height:1.9;">
+              <li>Which customers are at risk of churning and worth prioritizing for retention spend?</li>
+              <li>Which new customers show the most potential for conversion into loyal, high-value buyers?</li>
+              <li>Within each behavioral segment, are there sub-groups that require a differentiated offer rather than a one-size-fits-all campaign?</li>
+            </ul>
+            <div class="cs-context-box">
+              <p><strong>Why The Look E-Commerce?</strong> The original project used a client's proprietary data, but 85% of their customers had never reordered and 57% had purchased only once. This extreme skew made meaningful segmentation statistically unreliable. The Look provides a balanced, large-scale dataset that properly stress-tests the methodology — and using it was the right call.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ── 3. METHODOLOGY ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">03</div>
+            <div class="cs-section-title">Methodology</div>
+
+            <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin-bottom:10px;">Layer 1 — RFM Scoring Engine</h5>
+            <p>Each customer is scored 1–5 across three behavioral dimensions using NTILE quintiles. The key design decision was retaining <strong>raw values</strong> (actual dates and dollar amounts) alongside the scores, so that downstream ML output can always be translated back into real-world business metrics.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead><tr><th>Metric</th><th>Definition</th><th>Scoring Direction</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Recency (R)</strong></td><td>Most recent order date</td><td>ASC — more recent = score 5</td></tr>
+                  <tr><td><strong>Frequency (F)</strong></td><td>Count of distinct orders</td><td>DESC — more orders = score 5</td></tr>
+                  <tr><td><strong>Monetary (M)</strong></td><td>Sum of sale prices paid</td><td>DESC — higher spend = score 5</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="sql-code-container">
+              <div class="sql-code-header">
+                <h3 class="sql-code-title">RFM Scoring View</h3>
+                <p class="sql-code-description">Calculates raw metrics and applies NTILE(5) quintile scores per user.</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-keyword">CREATE OR REPLACE VIEW</span> `ecommerce-store-489019.client_analysis.RFM_scores` <span class="sql-keyword">AS</span> (
+  <span class="sql-keyword">SELECT</span> *,
+    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_recency <span class="sql-keyword">ASC</span>)    <span class="sql-keyword">AS</span> R_Score,
+    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_frequency <span class="sql-keyword">DESC</span>) <span class="sql-keyword">AS</span> F_Score,
+    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_monetary <span class="sql-keyword">DESC</span>)  <span class="sql-keyword">AS</span> M_Score
+  <span class="sql-keyword">FROM</span> (
+    <span class="sql-keyword">SELECT</span> user_id,
+      <span class="sql-function">MAX</span>(created_at)                    <span class="sql-keyword">AS</span> raw_recency,
+      <span class="sql-function">COUNT</span>(<span class="sql-function">DISTINCT</span> order_id)            <span class="sql-keyword">AS</span> raw_frequency,
+      <span class="sql-function">SUM</span>(sale_price)                    <span class="sql-keyword">AS</span> raw_monetary
+    <span class="sql-keyword">FROM</span> `ecommerce-store-489019.client_analysis.orders`
+    <span class="sql-keyword">WHERE</span> status <span class="sql-keyword">NOT LIKE</span> <span class="sql-string">'Cancelled'</span>  <span class="sql-comment">-- Exclude cancelled orders</span>
+    <span class="sql-keyword">GROUP BY</span> user_id
+  )
+);</pre>
+              </div>
+            </div>
+
+            <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">Layer 2 — Rule-Based Segment Logic</h5>
+            <p>Scored customers are classified into 11 named lifecycle segments using a CASE statement hierarchy. Segment order matters: Champions are evaluated before Loyalists to prevent higher-value customers from being downgraded by a less-specific rule.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead><tr><th>Segment</th><th>RFM Condition</th><th>Engagement Profile</th><th>Suggested Action</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="seg-badge seg-champion">Champions</span></td><td><code>R≥4, F≥4, M≥4</code></td><td>Highly engaged, high-value recent buyers</td><td>Loyalty perks, early access</td></tr>
+                  <tr><td><span class="seg-badge seg-champion">Loyalists</span></td><td><code>R≥3, F≥3, M≥3</code></td><td>Repeat buyers with strong brand trust</td><td>New arrivals, exclusive content</td></tr>
+                  <tr><td><span class="seg-badge seg-risk">Cannot Lose Them</span></td><td><code>R≤2, F=5, M=5</code></td><td>Once highly active, now going quiet</td><td>Immediate personalized outreach</td></tr>
+                  <tr><td><span class="seg-badge seg-risk">At Risk</span></td><td><code>R≤2, F≥3, M≥4</code></td><td>Past high-value buyers becoming inactive</td><td>Win-back with time-sensitive offer</td></tr>
+                  <tr><td><span class="seg-badge seg-info">Potential Loyalists</span></td><td><code>R≥3, F≥3</code></td><td>Recently active with loyalty potential</td><td>Introduce loyalty program</td></tr>
+                  <tr><td><span class="seg-badge seg-info">New Customers</span></td><td><code>R≥4, F≤2</code></td><td>Recent first-time buyers</td><td>Welcome series &amp; nurture flow</td></tr>
+                  <tr><td><span class="seg-badge seg-warning">Need Attention</span></td><td><code>R=3, F=3</code></td><td>Engaged but showing signs of plateauing</td><td>Re-engage with targeted messaging</td></tr>
+                  <tr><td><span class="seg-badge seg-warning">About to Sleep</span></td><td><code>R≤2, F≤2, M≤2</code></td><td>Drifting away across all dimensions</td><td>Time-sensitive reminders</td></tr>
+                  <tr><td><span class="seg-badge seg-neutral">Hibernating</span></td><td><code>R=2</code></td><td>Low engagement, some past history</td><td>Tailored reactivation offer</td></tr>
+                  <tr><td><span class="seg-badge seg-neutral">Lost</span></td><td>All others</td><td>No meaningful recent activity</td><td>Suppress or minimal outreach</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">Layer 3 — K-Means Clustering (BigQuery ML)</h5>
+            <p>To complement the rule-based system, a K-Means model was trained in BigQuery ML using R_Score, F_Score, and M_Score as features — and <em>only</em> those three columns. Including categorical fields like segment labels would contaminate unsupervised learning; any encoding would introduce artificial bias. KMEANS++ initialization was used to improve convergence by spreading initial centroids across the feature space.</p>
+
+            <div class="sql-code-container">
+              <div class="sql-code-header">
+                <h3 class="sql-code-title">K-Means Model Training</h3>
+                <p class="sql-code-description">5-cluster model trained on RFM scores using KMEANS++ initialization.</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-keyword">CREATE OR REPLACE MODEL</span> `client_analysis.RFM_clusters`
+<span class="sql-keyword">OPTIONS</span> (
+  MODEL_TYPE          = <span class="sql-string">'KMEANS'</span>,
+  NUM_CLUSTERS        = <span class="sql-number">5</span>,
+  KMEANS_INIT_METHOD  = <span class="sql-string">'KMEANS++'</span>
+) <span class="sql-keyword">AS</span>
+<span class="sql-keyword">SELECT</span> R_Score, F_Score, M_Score  <span class="sql-comment">-- Behavioral features only</span>
+<span class="sql-keyword">FROM</span> `client_analysis.RFM_scores_table`;</pre>
+              </div>
+            </div>
+
+            <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">Layer 4 — Cross-Validation &amp; Business Translation</h5>
+            <p>The final step joins ML.PREDICT output back to the rule-based segments and replaces score-level data with real-world metrics — days since last purchase, average order value, and lifetime revenue — so findings are immediately usable by a marketing or leadership team.</p>
+
+            <div class="sql-code-container">
+              <div class="sql-code-header">
+                <h3 class="sql-code-title">Boardroom Analysis Query</h3>
+                <p class="sql-code-description">Maps ML clusters to manual segments with business metrics (days &amp; dollars).</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-keyword">WITH</span> final_combined <span class="sql-keyword">AS</span> (
+  <span class="sql-keyword">SELECT</span>
+    s.customer_segment,
+    p.CENTROID_ID                                   <span class="sql-keyword">AS</span> ai_cluster,
+    st.raw_recency, st.raw_frequency, st.raw_monetary,
+    st.R_Score, st.F_Score, st.M_Score
+  <span class="sql-keyword">FROM</span> <span class="sql-function">ML.PREDICT</span>(<span class="sql-keyword">MODEL</span> `client_analysis.RFM_clusters`,
+    (<span class="sql-keyword">SELECT</span> * <span class="sql-keyword">FROM</span> `client_analysis.RFM_scores_table`)) p
+  <span class="sql-keyword">JOIN</span> `client_analysis.RFM_segments` s      <span class="sql-keyword">ON</span> p.user_id = s.user_id
+  <span class="sql-keyword">JOIN</span> `client_analysis.RFM_scores_table` st <span class="sql-keyword">ON</span> p.user_id = st.user_id
+)
+<span class="sql-keyword">SELECT</span>
+  customer_segment, ai_cluster,
+  <span class="sql-function">COUNT</span>(*) <span class="sql-keyword">AS</span> customer_count,
+  <span class="sql-function">ROUND</span>(<span class="sql-function">AVG</span>(<span class="sql-function">DATE_DIFF</span>(<span class="sql-function">CURRENT_DATE</span>(), <span class="sql-function">EXTRACT</span>(DATE <span class="sql-keyword">FROM</span> raw_recency), DAY)), <span class="sql-number">0</span>)
+                                                    <span class="sql-keyword">AS</span> avg_days_since_last_purchase,
+  <span class="sql-function">ROUND</span>(<span class="sql-function">AVG</span>(raw_monetary), <span class="sql-number">2</span>)                   <span class="sql-keyword">AS</span> avg_lifetime_revenue,
+  <span class="sql-function">ROUND</span>(<span class="sql-function">SUM</span>(raw_monetary) / <span class="sql-function">NULLIF</span>(<span class="sql-function">SUM</span>(raw_frequency),<span class="sql-number">0</span>), <span class="sql-number">2</span>)
+                                                    <span class="sql-keyword">AS</span> avg_order_value
+<span class="sql-keyword">FROM</span> final_combined
+<span class="sql-keyword">GROUP BY</span> <span class="sql-number">1, 2</span>
+<span class="sql-keyword">ORDER BY</span> customer_segment, ai_cluster;</pre>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ── 4. KEY FINDINGS ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">04</div>
+            <div class="cs-section-title">Key Findings</div>
+
+            <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin-bottom:12px;">Cluster Interpretation — What Differentiates Each Group?</h5>
+            <p>By extracting centroid values from the trained model, each cluster can be described by its defining axis — the single dimension where it diverges most from its nearest neighbor.</p>
+
+            <div class="cluster-grid">
+              <div class="cluster-card">
+                <div class="cluster-id">Cluster 1</div>
+                <div class="cluster-anchor">High Recency<br>Buyers</div>
+                <div class="cluster-score-row">R <span>4.58</span> &nbsp; F <span>4.11</span> &nbsp; M <span>2.15</span></div>
+              </div>
+              <div class="cluster-card">
+                <div class="cluster-id">Cluster 2</div>
+                <div class="cluster-anchor">Lapsed<br>Loyalists</div>
+                <div class="cluster-score-row">R <span>2.00</span> &nbsp; F <span>4.00</span> &nbsp; M <span>2.00</span></div>
+              </div>
+              <div class="cluster-card">
+                <div class="cluster-id">Cluster 3</div>
+                <div class="cluster-anchor">New High-Value<br>Spenders</div>
+                <div class="cluster-score-row">R <span>4.34</span> &nbsp; F <span>1.71</span> &nbsp; M <span>3.31</span></div>
+              </div>
+              <div class="cluster-card">
+                <div class="cluster-id">Cluster 4</div>
+                <div class="cluster-anchor">High-Value<br>Mid-Recency</div>
+                <div class="cluster-score-row">R <span>2.56</span> &nbsp; F <span>3.86</span> &nbsp; M <span>4.61</span></div>
+              </div>
+              <div class="cluster-card">
+                <div class="cluster-id">Cluster 5</div>
+                <div class="cluster-anchor">Disengaged<br>Customers</div>
+                <div class="cluster-score-row">R <span>1.87</span> &nbsp; F <span>1.46</span> &nbsp; M <span>2.58</span></div>
+              </div>
+            </div>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">Analytical insight — C1 vs. C2</div>
+              <p>Cluster 1 and Cluster 2 are nearly identical on frequency (diff: 0.11) and monetary (diff: 0.16) — yet recency separates them by 2.58 points. Recency is the sole anchor differentiating these two groups, meaning a targeted re-engagement based on time-since-purchase is the lever, not an offer tied to spend amount.</p>
+            </div>
+
+            <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 12px;">The "Hidden Whale" Discovery — Sub-Segment Outliers</h5>
+            <p>Mapping ML clusters back against rule-based segments reveals where a single campaign would be the wrong approach. The highlighted cells below indicate Cluster 4 outliers with meaningfully higher average order values than the rest of their segment.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead><tr><th>Segment</th><th>Cluster</th><th>Customers</th><th>Avg Days Since Purchase</th><th>Avg Order Value</th><th>Implication</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><span class="seg-badge seg-neutral">Hibernating</span></td>
+                    <td><code>C4</code></td>
+                    <td>5,111</td>
+                    <td>682 days</td>
+                    <td class="highlight-cell">$128.28</td>
+                    <td>Premium win-back offer warranted</td>
+                  </tr>
+                  <tr>
+                    <td><span class="seg-badge seg-neutral">Hibernating</span></td>
+                    <td><code>C5</code></td>
+                    <td>6,627</td>
+                    <td>691 days</td>
+                    <td>$63.15</td>
+                    <td>Standard reactivation or suppress</td>
+                  </tr>
+                  <tr>
+                    <td><span class="seg-badge seg-info">Potential Loyalists</span></td>
+                    <td><code>C4</code></td>
+                    <td>26,016</td>
+                    <td>307 days</td>
+                    <td class="highlight-cell">$136.76</td>
+                    <td>Highest AOV — prioritize for loyalty program now</td>
+                  </tr>
+                  <tr>
+                    <td><span class="seg-badge seg-info">Potential Loyalists</span></td>
+                    <td><code>C1</code></td>
+                    <td>5,560</td>
+                    <td>688 days</td>
+                    <td>$108.42</td>
+                    <td>Older purchase date — needs re-engagement first</td>
+                  </tr>
+                  <tr>
+                    <td><span class="seg-badge seg-neutral">Lost</span></td>
+                    <td><code>C4</code></td>
+                    <td>3,328</td>
+                    <td>980 days</td>
+                    <td class="highlight-cell">$119.71</td>
+                    <td>High historical AOV — worth annual win-back attempt</td>
+                  </tr>
+                  <tr>
+                    <td><span class="seg-badge seg-info">New Customers</span></td>
+                    <td><code>C4</code></td>
+                    <td>19,958</td>
+                    <td>221 days</td>
+                    <td class="highlight-cell">$124.17</td>
+                    <td>High first-order spend — priority for nurture series</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">Business impact</div>
+              <p>Without the ML layer, all ~57,000 Hibernating customers would receive the same campaign. With cluster cross-validation, the ~5,100 Cluster 4 Hibernating customers — with an AOV 2× higher than C5 — can receive a premium win-back while the rest go to a low-cost reactivation flow. This alone can meaningfully improve campaign ROI without increasing total spend.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ── 5. STRATEGY ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">05</div>
+            <div class="cs-section-title">Marketing Strategy Recommendations</div>
+            <p>Each recommendation is tied directly to the data and designed to match offer intensity to behavioral value — avoiding over-investment in low-probability segments and under-investment in high-return ones.</p>
+
+            <div class="strategy-grid">
+              <div class="strategy-card">
+                <div class="s-header">
+                  <span class="s-name">Champions</span>
+                  <span class="priority-badge p-high">High</span>
+                </div>
+                <p>Reward with early product access, loyalty tiers, or referral incentives. Low cost to retain — but high LTV risk if neglected.</p>
+              </div>
+              <div class="strategy-card">
+                <div class="s-header">
+                  <span class="s-name">Cannot Lose Them</span>
+                  <span class="priority-badge p-critical">Critical</span>
+                </div>
+                <p>Immediate, personalized 1:1 outreach. F=5 and M=5 with dropping recency — every day of delay increases churn probability.</p>
+              </div>
+              <div class="strategy-card">
+                <div class="s-header">
+                  <span class="s-name">At Risk</span>
+                  <span class="priority-badge p-high">High</span>
+                </div>
+                <p>Win-back campaign with time-sensitive discount. Focus paid spend on C4 sub-cluster (AOV ~$99) — highest expected return per dollar.</p>
+              </div>
+              <div class="strategy-card">
+                <div class="s-header">
+                  <span class="s-name">Potential Loyalists (C4)</span>
+                  <span class="priority-badge p-high">High</span>
+                </div>
+                <p>Introduce loyalty program benefits now. $136 AOV and recent activity — this is the highest-value conversion opportunity in the database.</p>
+              </div>
+              <div class="strategy-card">
+                <div class="s-header">
+                  <span class="s-name">New Customers (C4)</span>
+                  <span class="priority-badge p-medium">Medium-High</span>
+                </div>
+                <p>Launch a personalized post-purchase nurture series. $124 first-order AOV signals willingness to spend — build the habit while momentum is fresh.</p>
+              </div>
+              <div class="strategy-card">
+                <div class="s-header">
+                  <span class="s-name">Hibernating (C5) &amp; Lost</span>
+                  <span class="priority-badge p-low">Low</span>
+                </div>
+                <p>Minimal budget. Test a low-cost email reactivation. No response → move to suppression list. Preserves deliverability and keeps CAC low.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ── 6. PIPELINE ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">06</div>
+            <div class="cs-section-title">Data Pipeline &amp; Automation</div>
+            <p>A static segmentation is only useful once. The pipeline is designed to update automatically as new orders arrive, keeping segments current for ongoing campaign decisions.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead><tr><th>Layer</th><th>Object</th><th>Type</th><th>Role</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td><code>RFM_scores</code></td><td>View</td><td>Recalculates R, F, M on every execution</td></tr>
+                  <tr><td>2</td><td><code>RFM_segments</code></td><td>View</td><td>Applies CASE-based segment logic; depends on RFM_scores</td></tr>
+                  <tr><td>3</td><td><code>RFM_final_table</code></td><td>Scheduled Table</td><td>Materializes results daily at 08:00 UTC; stores history</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">Design note</div>
+              <p>Only the RFM_segments query needs to be scheduled. Because it depends on RFM_scores, scheduling segments automatically triggers scores to recalculate first. The <code>processed_at</code> timestamp column added to the scheduled query provides two things: freshness transparency in dashboards, and a silent failure detector — if the scheduled job stops running, the timestamp reveals exactly when data stopped updating.</p>
+            </div>
+
+            <div class="sql-code-container">
+              <div class="sql-code-header">
+                <h3 class="sql-code-title">Scheduled Refresh Query</h3>
+                <p class="sql-code-description">Runs daily — overwrites RFM_final_table with current segment data and a freshness timestamp.</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-keyword">SELECT</span>
+  <span class="sql-function">CURRENT_TIMESTAMP</span>()  <span class="sql-keyword">AS</span> processed_at,  <span class="sql-comment">-- Pipeline health indicator</span>
+  *,
+  <span class="sql-function">CONCAT</span>(R_Score, <span class="sql-string">'-'</span>, F_Score, <span class="sql-string">'-'</span>, M_Score) <span class="sql-keyword">AS</span> rfm_points,
+  <span class="sql-keyword">CASE</span>
+    <span class="sql-keyword">WHEN</span> R_Score >= <span class="sql-number">4</span> <span class="sql-keyword">AND</span> F_Score >= <span class="sql-number">4</span> <span class="sql-keyword">AND</span> M_Score >= <span class="sql-number">4</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Champions'</span>
+    <span class="sql-keyword">WHEN</span> R_Score >= <span class="sql-number">3</span> <span class="sql-keyword">AND</span> F_Score >= <span class="sql-number">3</span> <span class="sql-keyword">AND</span> M_Score >= <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Loyalists'</span>
+    <span class="sql-keyword">WHEN</span> R_Score <= <span class="sql-number">2</span> <span class="sql-keyword">AND</span> F_Score  = <span class="sql-number">5</span> <span class="sql-keyword">AND</span> M_Score  = <span class="sql-number">5</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Cannot Lose Them'</span>
+    <span class="sql-keyword">WHEN</span> R_Score <= <span class="sql-number">2</span> <span class="sql-keyword">AND</span> F_Score >= <span class="sql-number">3</span> <span class="sql-keyword">AND</span> M_Score >= <span class="sql-4"> 4</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'At Risk'</span>
+    <span class="sql-comment">-- ... additional segment rules</span>
+    <span class="sql-keyword">ELSE</span> <span class="sql-string">'Lost'</span>
+  <span class="sql-keyword">END AS</span> customer_segment
+<span class="sql-keyword">FROM</span> `client_analysis.RFM_scores`;</pre>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ── 7. TECH STACK ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">07</div>
+            <div class="cs-section-title">Technical Stack</div>
+            <div class="tech-stack">
+              <div class="tech-pill"><i class="bi bi-cloud"></i> Google BigQuery</div>
+              <div class="tech-pill"><i class="bi bi-cpu"></i> BigQuery ML (K-Means)</div>
+              <div class="tech-pill"><i class="bi bi-code-slash"></i> Standard SQL</div>
+              <div class="tech-pill"><i class="bi bi-clock-history"></i> Scheduled Queries</div>
+              <div class="tech-pill"><i class="bi bi-bar-chart"></i> Looker Studio</div>
+              <div class="tech-pill"><i class="bi bi-diagram-3"></i> RFM Modeling</div>
+            </div>
+          </div>
+
+        </div><!-- end portfolio-description -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; <strong><span>Sharon Velasquez</span></strong></div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
