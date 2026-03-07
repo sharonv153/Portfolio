@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Data Governance: Tracking & Attribution Standards | Sharon Velasquez</title>
+  <meta name="author" content="Sharon Velasquez" />
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .portfolio-description { font-family: 'DM Sans', sans-serif; }
+
+    /* ── Hero ── */
+    .cs-hero {
+      background: linear-gradient(135deg, #0f2a45 0%, #1B4F72 60%, #1a6a9a 100%);
+      border-radius: 12px;
+      padding: 48px 44px 44px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 120px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .cs-hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    .cs-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .cs-hero .lead {
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 660px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .cs-meta-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cs-meta-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── SOP Tab switcher ── */
+    .sop-tabs {
+      display: flex;
+      gap: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #dce8f0;
+      margin-bottom: 36px;
+      width: fit-content;
+    }
+    .sop-tab {
+      padding: 12px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #f4f8fb;
+      color: #1B4F72;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sop-tab:first-child { border-right: 1px solid #dce8f0; }
+    .sop-tab.active {
+      background: #1B4F72;
+      color: #fff;
+    }
+    .sop-tab:hover:not(.active) { background: #e8f4fb; }
+    .sop-panel { display: none; }
+    .sop-panel.active { display: block; }
+
+    /* ── Section headings ── */
+    .cs-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      margin-bottom: 6px;
+    }
+    .cs-section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #0f2a45;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #dce8f0;
+    }
+    .cs-section { margin-bottom: 48px; }
+    .cs-divider {
+      border: none;
+      border-top: 1px solid #dce8f0;
+      margin: 40px 0;
+    }
+
+    /* ── Body text ── */
+    .portfolio-description p {
+      font-size: 14.5px;
+      color: #3d4f5c;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    /* ── Insight / callout boxes ── */
+    .cs-insight {
+      background: #eaf4fb;
+      border-left: 4px solid #1B4F72;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-insight-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .cs-insight p { margin: 0; font-size: 14px !important; color: #0f2a45 !important; }
+
+    .cs-warning {
+      background: #fff8e7;
+      border-left: 4px solid #e6a817;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-warning p { margin: 0; font-size: 14px !important; color: #1a3a52 !important; }
+    .cs-warning strong { color: #1a4a6e; }
+
+    .cs-danger {
+      background: #fdf0f0;
+      border-left: 4px solid #c0392b;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-danger p { margin: 0; font-size: 14px !important; color: #5a1a1a !important; }
+    .cs-danger strong { color: #922b21; }
+
+    /* ── Tables ── */
+    .cs-table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      margin: 20px 0 28px;
+      border: 1px solid #dce8f0;
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      font-family: 'DM Sans', sans-serif;
+      margin: 0;
+    }
+    .cs-table thead th {
+      background: #1B4F72;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      letter-spacing: 0.3px;
+    }
+    .cs-table tbody td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #e8f0f7;
+      color: #3a4f5c;
+      vertical-align: top;
+    }
+    .cs-table tbody tr:last-child td { border-bottom: none; }
+    .cs-table tbody tr:nth-child(even) { background: #f4f8fb; }
+    .cs-table tbody tr:hover { background: #eaf4fb; }
+    .cs-table .correct-cell { color: #0c4a6e; font-weight: 600; }
+    .cs-table .wrong-cell  { color: #721c24; text-decoration: line-through; opacity: 0.7; }
+    .cs-table code {
+      background: #eaf4fb;
+      color: #1B4F72;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12.5px;
+    }
+
+    /* ── Code / syntax blocks ── */
+    .cs-code-container {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .cs-code-header {
+      background: #f4f8fb;
+      border-bottom: 1px solid #dce8f0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .cs-code-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f2a45;
+      margin: 0;
+    }
+    .cs-code-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #6c757d;
+      margin: 0;
+    }
+    .cs-code-block {
+      background: #1a1f2e;
+      padding: 22px 24px;
+      overflow-x: auto;
+    }
+    .cs-code-block pre {
+      margin: 0;
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #cdd6f4;
+    }
+    .token-comment  { color: #6a9955; font-style: italic; }
+    .token-key      { color: #9cdcfe; }
+    .token-value    { color: #ce9178; }
+    .token-good     { color: #4db8d4; }
+    .token-bad      { color: #f44747; }
+    .token-label    { color: #c586c0; font-weight: 600; }
+    .token-url      { color: #569cd6; }
+
+    /* ── Hierarchy tree ── */
+    .hierarchy-tree {
+      background: #f4f8fb;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 20px 0 28px;
+      font-family: 'DM Mono', monospace;
+    }
+    .tree-root {
+      font-size: 14px;
+      color: #0f2a45;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .tree-level {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 13px;
+      color: #1B4F72;
+    }
+    .tree-level .tree-connector {
+      color: #a0bfcf;
+      font-size: 16px;
+    }
+    .tree-level .tree-node {
+      background: #1B4F72;
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .tree-level .tree-node-child {
+      background: #dce8f0;
+      color: #0f2a45;
+      padding: 3px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .tree-level .tree-node-leaf {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      color: #1B4F72;
+      padding: 3px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .tree-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #6c8fa0;
+    }
+
+    /* ── Pillar cards ── */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+    .pillar-card {
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .pillar-card:hover { box-shadow: 0 4px 16px rgba(27,79,114,0.12); }
+    .pillar-icon {
+      width: 36px; height: 36px;
+      background: #eaf4fb;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #1B4F72;
+    }
+    .pillar-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f2a45;
+      margin-bottom: 6px;
+    }
+    .pillar-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      color: #5a6e7c;
+      line-height: 1.55;
+    }
+
+    /* ── Checklist ── */
+    .cs-checklist {
+      background: #f4f8fb;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 20px 0 28px;
+    }
+    .cs-checklist-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f2a45;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .cs-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #dce8f0;
+      font-size: 13.5px;
+      color: #3a4f5c;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cs-check-item:last-child { border-bottom: none; }
+    .cs-check-item .check-icon {
+      width: 18px; height: 18px;
+      background: #eaf4fb;
+      border: 1px solid #a0bfcf;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      color: #1B4F72;
+    }
+
+    /* ── Phase workflow steps ── */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+    .phase-card {
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: #fff;
+    }
+    .phase-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      margin-bottom: 6px;
+    }
+    .phase-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f2a45;
+      margin-bottom: 10px;
+    }
+    .phase-card ul {
+      margin: 0; padding-left: 18px;
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.8;
+    }
+
+    /* ── UTM anatomy display ── */
+    .utm-anatomy {
+      background: #1a1f2e;
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin: 20px 0 28px;
+      overflow-x: auto;
+    }
+    .utm-anatomy .utm-url {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      line-height: 2;
+      white-space: nowrap;
+    }
+    .utm-base    { color: #9cdcfe; }
+    .utm-sep     { color: #6a9955; }
+    .utm-source  { color: #f9826c; }
+    .utm-medium  { color: #79b8ff; }
+    .utm-campaign{ color: #b392f0; }
+    .utm-term    { color: #ffa657; }
+    .utm-content { color: #56d364; }
+    .utm-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .utm-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Tech stack pills ── */
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tech-pill {
+      background: #f4f8fb;
+      border: 1px solid #dce8f0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      color: #1B4F72;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* ── Inline badge ── */
+    .tag-badge {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+    }
+    .tag-correct { background: #d1ecf1; color: #0c4a6e; }
+    .tag-wrong   { background: #f8d7da; color: #721c24; }
+    .tag-neutral { background: #e8f0f7; color: #1B4F72; }
+  </style>
+</head>
+
+<body>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/sharon-velasquez/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Data Governance</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Case Study</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="portfolio-description">
+
+          <!-- ── HERO ── -->
+          <div class="cs-hero">
+            <div class="cs-hero-eyebrow">Marketing Analytics · Data Governance</div>
+            <h1>Tracking &amp; Attribution<br>Standards</h1>
+            <p class="lead">A unified internal framework for event taxonomy design and UTM attribution — ensuring clean, consistent, and actionable data across every analytics platform and campaign.</p>
+            <div class="cs-meta-pills">
+              <span class="cs-meta-pill"><i class="bi bi-tags me-1"></i> GA4 Event Taxonomy</span>
+              <span class="cs-meta-pill"><i class="bi bi-link-45deg me-1"></i> UTM Tagging</span>
+              <span class="cs-meta-pill"><i class="bi bi-shield-check me-1"></i> Google Tag Manager</span>
+              <span class="cs-meta-pill"><i class="bi bi-bar-chart me-1"></i> Traffic Attribution</span>
+            </div>
+          </div>
+
+          <!-- ── TAB SWITCHER ── -->
+          <div class="sop-tabs">
+            <button class="sop-tab active" onclick="switchTab('taxonomy')">
+              <i class="bi bi-diagram-3"></i> SOP 1 — Event Taxonomy
+            </button>
+            <button class="sop-tab" onclick="switchTab('utm')">
+              <i class="bi bi-link-45deg"></i> SOP 2 — UTM Attribution
+            </button>
+          </div>
+
+          <!-- ════════════════════════════════════════════
+               SOP 1 — EVENT TAXONOMY
+          ════════════════════════════════════════════ -->
+          <div id="panel-taxonomy" class="sop-panel active">
+
+            <!-- 1. Overview -->
+            <div class="cs-section">
+              <div class="cs-section-label">01</div>
+              <div class="cs-section-title">Overview &amp; Objective</div>
+              <p>This SOP establishes a unified naming convention and structural logic for all tracking deployments. The goal is data consistency across every client account — so any analyst can open a GA4 report or BigQuery table and immediately understand what they're looking at, without a decoder ring.</p>
+              <p>Three core components work together in every deployment:</p>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Component</th><th>Definition</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Event</strong></td><td>Any user interaction with a digital product — a click, scroll, form submit, video play.</td></tr>
+                    <tr><td><strong>Event Taxonomy</strong></td><td>The structured naming system that makes events searchable, filterable, and reportable in GA4 and BigQuery.</td></tr>
+                    <tr><td><strong>GTM Data Tag</strong></td><td>The bridge between the site's Data Layer and the destination platform. Uses Triggers to listen for actions and Variables to capture context.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 2. Four Pillars -->
+            <div class="cs-section">
+              <div class="cs-section-label">02</div>
+              <div class="cs-section-title">The Four Pillars of Taxonomy Design</div>
+              <p>Every tag and event created must satisfy all four of these criteria. Failing any one of them creates "tracking debt" — inconsistencies that compound over time and corrupt reporting.</p>
+              <div class="pillar-grid">
+                <div class="pillar-card">
+                  <div class="pillar-icon"><i class="bi bi-arrows-angle-contract"></i></div>
+                  <div class="pillar-name">Consistent</div>
+                  <div class="pillar-desc">Same casing and syntax enforced across the entire account. One deviation creates duplicate rows.</div>
+                </div>
+                <div class="pillar-card">
+                  <div class="pillar-icon"><i class="bi bi-layers"></i></div>
+                  <div class="pillar-name">Scalable</div>
+                  <div class="pillar-desc">Names must work for one button or one thousand buttons without restructuring the taxonomy.</div>
+                </div>
+                <div class="pillar-card">
+                  <div class="pillar-icon"><i class="bi bi-eye"></i></div>
+                  <div class="pillar-name">Clear</div>
+                  <div class="pillar-desc">A stakeholder reading a report must immediately understand the interaction — no dictionary required.</div>
+                </div>
+                <div class="pillar-card">
+                  <div class="pillar-icon"><i class="bi bi-lightbulb"></i></div>
+                  <div class="pillar-name">Intuitive</div>
+                  <div class="pillar-desc">New events must fit naturally into the existing hierarchy by logic, not guesswork.</div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 3. Syntax Rules -->
+            <div class="cs-section">
+              <div class="cs-section-label">03</div>
+              <div class="cs-section-title">Taxonomy Design Rules — The Syntax</div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin-bottom:10px;">A. Casing Standard</h5>
+              <p>All event names use <code>snake_case</code> to align with GA4's default architecture. PascalCase is only permitted if explicitly requested by developers for a technical integration.</p>
+
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Format</th><th>Example</th><th>When to Use</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><code>snake_case</code></td>
+                      <td><span class="tag-correct">click_nav_footer_cta</span></td>
+                      <td>Standard — use always</td>
+                    </tr>
+                    <tr>
+                      <td><code>PascalCase</code></td>
+                      <td><span class="tag-neutral">ClickNavFooterCta</span></td>
+                      <td>Only when developers require it for technical alignment</td>
+                    </tr>
+                    <tr>
+                      <td>Mixed</td>
+                      <td><span class="tag-wrong">click_nav_FooterButton</span></td>
+                      <td>Never — creates duplicate rows in reports</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">B. Structure: Object + Action</h5>
+              <p>To align with GA4 defaults, event names follow an <strong>Object first, Action second</strong> structure. This ensures events group logically when sorted alphabetically in reports.</p>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th></th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td class="correct-cell">✓ Correct</td><td><code>form_submit</code> &nbsp; <code>video_play</code> &nbsp; <code>file_download</code></td></tr>
+                    <tr><td class="wrong-cell">✗ Incorrect</td><td><code>submit_form</code> &nbsp; <code>play_video</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">C. The "Actor" Rule — User Perspective</h5>
+              <p>Names must always reflect the user's action, not the system's. This prevents ambiguity in reports about whether an event was triggered manually or automatically.</p>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th></th><th>Name</th><th>Problem / Why It Works</th></tr></thead>
+                  <tbody>
+                    <tr><td class="wrong-cell">✗ Ambiguous</td><td><code>message_sent</code></td><td>Did the user send it, or did the system send it automatically?</td></tr>
+                    <tr><td class="correct-cell">✓ Clear</td><td><code>user_message_submit</code></td><td>Unambiguous — this is a human action, tracked in real time.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">D. Grammar Rules</h5>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Rule</th><th>Correct</th><th>Incorrect</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Singular nouns</strong></td><td><code>click</code>, <code>form</code></td><td><code>clicks</code>, <code>forms</code></td></tr>
+                    <tr><td><strong>Present tense verbs</strong></td><td><code>click</code>, <code>submit</code></td><td><code>clicked</code>, <code>submitted</code></td></tr>
+                    <tr><td><strong>Consistent terminology</strong></td><td>Pick one: <code>cta</code>, <code>button</code>, or <code>btn</code></td><td>Using all three across the same project</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 4. Hierarchy -->
+            <div class="cs-section">
+              <div class="cs-section-label">04</div>
+              <div class="cs-section-title">Hierarchy &amp; Inheritance</div>
+              <p>The taxonomy follows a Parent-to-Child logic. This allows analysts to query at any level of granularity — from total clicks site-wide all the way down to a specific footer CTA — without restructuring the data.</p>
+
+              <div class="hierarchy-tree">
+                <div class="tree-root">Formula: [Root Action] _ [Category] _ [Component] _ [Element]</div>
+                <div class="tree-level" style="margin-top:16px;">
+                  <span class="tree-connector">▸</span>
+                  <span class="tree-node">click</span>
+                  <span class="tree-desc">Level 1 — Root Action (what type of interaction?)</span>
+                </div>
+                <div class="tree-level" style="padding-left:24px;">
+                  <span class="tree-connector">▸</span>
+                  <span class="tree-node-child">click_nav</span>
+                  <span class="tree-desc">Level 2 — Category (where on the page?)</span>
+                </div>
+                <div class="tree-level" style="padding-left:48px;">
+                  <span class="tree-connector">▸</span>
+                  <span class="tree-node-leaf">click_nav_footer_cta</span>
+                  <span class="tree-desc">Level 3 — Element (which specific element?)</span>
+                </div>
+              </div>
+
+              <div class="cs-insight">
+                <div class="cs-insight-label">Why this matters in reporting</div>
+                <p>Using <code>click_nav</code> as a filter returns every navigation click. Using <code>click_nav_footer_cta</code> isolates just that element. One taxonomy supports both a CMO-level overview and a developer-level debug in the same GA4 property.</p>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 5. E-commerce Schema -->
+            <div class="cs-section">
+              <div class="cs-section-label">05</div>
+              <div class="cs-section-title">E-Commerce Taxonomy (GA4 Recommended Events)</div>
+              <p>For e-commerce clients, the GA4 Recommended Event schema is mandatory for the purchase funnel. Custom event names for these interactions are not permitted — deviating from the standard breaks GA4's built-in e-commerce reports and Ads integration.</p>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Event Name</th><th>Action Tracked</th><th>Required Parameters</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>view_item</code></td><td>User views a product page</td><td><code>item_id</code>, <code>item_name</code>, <code>price</code></td></tr>
+                    <tr><td><code>add_to_cart</code></td><td>User adds item to cart</td><td><code>item_id</code>, <code>item_name</code>, <code>value</code></td></tr>
+                    <tr><td><code>begin_checkout</code></td><td>User starts checkout</td><td><code>coupon</code>, <code>items</code></td></tr>
+                    <tr><td><code>purchase</code></td><td>User completes payment</td><td><code>transaction_id</code>, <code>value</code>, <code>shipping</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 6. GTM Tag Naming -->
+            <div class="cs-section">
+              <div class="cs-section-label">06</div>
+              <div class="cs-section-title">GTM Tag Naming &amp; Master Tag Logic</div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin-bottom:10px;">Tag Naming in the GTM UI</h5>
+              <p>All tags follow the format <strong>[Platform] — [Type] — [Description]</strong> to make the GTM workspace scannable at a glance.</p>
+              <div class="cs-code-container">
+                <div class="cs-code-header">
+                  <h3 class="cs-code-title">Tag Naming Examples</h3>
+                  <p class="cs-code-desc">Format: [Platform] - [Type] - [Description]</p>
+                </div>
+                <div class="cs-code-block">
+<pre><span class="token-good">GA4 - Event - Navigation Clicks</span>       <span class="token-comment">// ✓ Correct format</span>
+<span class="token-good">Meta - Pixel - Purchase</span>               <span class="token-comment">// ✓ Correct format</span>
+<span class="token-bad">Navigation Click Tag</span>                  <span class="token-comment">// ✗ No platform, no type</span></pre>
+                </div>
+              </div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">Master Tag Logic — Avoiding Tag Bloat</h5>
+              <p>Rather than building 50 individual tags for 50 buttons, we use a single <strong>Master Tag</strong> with dynamic variables. This keeps the GTM container clean, reduces maintenance overhead, and makes debugging faster.</p>
+              <div class="cs-code-container">
+                <div class="cs-code-header">
+                  <h3 class="cs-code-title">GA4 — Event — Global Click Handler</h3>
+                  <p class="cs-code-desc">One tag handles all click events dynamically via lookup table or regex variable.</p>
+                </div>
+                <div class="cs-code-block">
+<pre><span class="token-label">Tag Name:</span>    <span class="token-value">GA4 - Event - Global Click Handler</span>
+<span class="token-label">Event Name:</span>  <span class="token-value">{{Event Name Hierarchy}}</span>   <span class="token-comment">// Lookup table or regex variable</span>
+<span class="token-label">Parameter:</span>   <span class="token-key">click_text</span>   <span class="token-value">{{Click Text}}</span>
+<span class="token-label">Parameter:</span>   <span class="token-key">click_url</span>    <span class="token-value">{{Click URL}}</span></pre>
+                </div>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 7. Taxonomy Builder Workflow -->
+            <div class="cs-section">
+              <div class="cs-section-label">07</div>
+              <div class="cs-section-title">Taxonomy Creation Workflow</div>
+              <p>When starting a new client deployment, work through these six phases in order. Each phase builds on the last — skipping ahead creates gaps that are expensive to fix later.</p>
+
+              <div class="phase-grid">
+                <div class="phase-card">
+                  <div class="phase-number">Phase 1</div>
+                  <div class="phase-title">Business Profile Diagnostic</div>
+                  <ul>
+                    <li>What is the business model? (E-com, Lead Gen, SaaS)</li>
+                    <li>What is the primary conversion?</li>
+                    <li>What are the secondary high-intent actions?</li>
+                  </ul>
+                </div>
+                <div class="phase-card">
+                  <div class="phase-number">Phase 2</div>
+                  <div class="phase-title">Object &amp; Interaction Mapping</div>
+                  <ul>
+                    <li>UI navigation categories (Main Nav, Footer, Sidebar)</li>
+                    <li>Form types (Contact, Quote, Login)</li>
+                    <li>Interactive assets (Videos, PDFs, Carousels)</li>
+                  </ul>
+                </div>
+                <div class="phase-card">
+                  <div class="phase-number">Phase 3</div>
+                  <div class="phase-title">Hierarchy Builder</div>
+                  <ul>
+                    <li>Step 1: Choose Root Action (click, form, view, video)</li>
+                    <li>Step 2: Add Category (nav, body, header, footer)</li>
+                    <li>Step 3: Add Component (cta, link, social, lead)</li>
+                    <li>Step 4: Add Element if needed (unique identifier)</li>
+                  </ul>
+                </div>
+                <div class="phase-card">
+                  <div class="phase-number">Phase 4</div>
+                  <div class="phase-title">Model-Specific Application</div>
+                  <ul>
+                    <li><strong>E-com:</strong> Use GA4 standard names as root (view_item, add_to_cart). Custom: click_body_product_card</li>
+                    <li><strong>Lead Gen:</strong> form_lead_start, form_lead_submit, click_contact_phone</li>
+                  </ul>
+                </div>
+                <div class="phase-card">
+                  <div class="phase-number">Phase 5</div>
+                  <div class="phase-title">Parameter Assignment</div>
+                  <ul>
+                    <li>click_nav_footer_social → <code>social_platform</code>, <code>link_url</code></li>
+                    <li>form_lead_submit → <code>form_id</code>, <code>form_location</code></li>
+                  </ul>
+                </div>
+                <div class="phase-card">
+                  <div class="phase-number">Phase 6</div>
+                  <div class="phase-title">Final Review Checklist</div>
+                  <ul>
+                    <li>Everything in snake_case?</li>
+                    <li>Object + Action structure?</li>
+                    <li>Root is a standard GTM Trigger type?</li>
+                    <li>Readable without seeing the website?</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end panel-taxonomy -->
+
+
+          <!-- ════════════════════════════════════════════
+               SOP 2 — UTM ATTRIBUTION
+          ════════════════════════════════════════════ -->
+          <div id="panel-utm" class="sop-panel">
+
+            <!-- 1. Overview -->
+            <div class="cs-section">
+              <div class="cs-section-label">01</div>
+              <div class="cs-section-title">Overview &amp; Objective</div>
+              <p>UTM codes are the foundation of traffic attribution. Without them, GA4 collapses paid campaigns, email flows, and influencer traffic into a single "Unassigned" bucket — making it impossible to measure channel ROI or optimize spend allocation.</p>
+              <p>This SOP ensures every external link is tagged consistently, every parameter follows GA4 conventions, and no session data is accidentally overwritten by internal tagging errors.</p>
+
+              <div class="utm-anatomy">
+                <div class="utm-url">
+                  <span class="utm-base">https://website.com/page/</span><span class="utm-sep">?</span><span class="utm-source">utm_source=facebook</span><span class="utm-sep">&amp;</span><span class="utm-medium">utm_medium=paid_social</span><span class="utm-sep">&amp;</span><span class="utm-campaign">utm_campaign=summer_sale</span><span class="utm-sep">&amp;</span><span class="utm-content">utm_content=hero_banner</span>
+                </div>
+                <div class="utm-legend">
+                  <div class="utm-legend-item"><div class="legend-dot" style="background:#9cdcfe"></div><span style="color:#9cdcfe">Base URL</span></div>
+                  <div class="utm-legend-item"><div class="legend-dot" style="background:#f9826c"></div><span style="color:#f9826c">utm_source</span></div>
+                  <div class="utm-legend-item"><div class="legend-dot" style="background:#79b8ff"></div><span style="color:#79b8ff">utm_medium</span></div>
+                  <div class="utm-legend-item"><div class="legend-dot" style="background:#b392f0"></div><span style="color:#b392f0">utm_campaign</span></div>
+                  <div class="utm-legend-item"><div class="legend-dot" style="background:#56d364"></div><span style="color:#56d364">utm_content</span></div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 2. Five Parameters -->
+            <div class="cs-section">
+              <div class="cs-section-label">02</div>
+              <div class="cs-section-title">The 5 Core Parameters</div>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Parameter</th><th>Description</th><th>Example Values</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>utm_source</code></td><td>The specific entity sending traffic — WHO</td><td><code>google</code>, <code>facebook</code>, <code>klaviyo</code>, <code>qr_flyer</code></td></tr>
+                    <tr><td><code>utm_medium</code></td><td>The high-level channel — HOW it arrived</td><td><code>cpc</code>, <code>email</code>, <code>paid_social</code>, <code>print</code>, <code>sms</code></td></tr>
+                    <tr><td><code>utm_campaign</code></td><td>The specific marketing effort or promotion</td><td><code>summer_sale_2024</code>, <code>abandoned_cart</code></td></tr>
+                    <tr><td><code>utm_term</code></td><td>Paid keywords (Search) or audience segment</td><td><code>running_shoes</code>, <code>prospecting_lookalike</code></td></tr>
+                    <tr><td><code>utm_content</code></td><td>Differentiates ads or link locations within a campaign</td><td><code>blue_banner</code>, <code>link_footer</code>, <code>video_ad</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="cs-danger">
+                <p><strong>The Golden Rule — Source vs. Medium:</strong> Mixing these up is the #1 cause of dirty attribution data. <code>utm_source</code> = WHO sent the traffic (e.g., <code>klaviyo</code>). <code>utm_medium</code> = HOW it arrived (e.g., <code>email</code>). If you reverse them, GA4 will not recognize the channel and the session disappears into "Unassigned."</p>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 3. Best Practices -->
+            <div class="cs-section">
+              <div class="cs-section-label">03</div>
+              <div class="cs-section-title">Strategic Best Practices</div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin-bottom:10px;">A. Never Tag Internal Links</h5>
+              <p>UTM tags must never be used on links that point from one page of the client's site to another. If a user arrives via Google Search and then clicks a UTM-tagged internal banner, the original organic session is killed — and the purchase gets attributed to the banner instead of the search campaign.</p>
+              <div class="cs-warning">
+                <p><strong>Solution:</strong> Use GTM Event Tracking (see the Event Taxonomy SOP) to track internal click interactions. UTMs are for external traffic entry points only.</p>
+              </div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">B. Casing &amp; Syntax Rules</h5>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Rule</th><th>Correct</th><th>Incorrect</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Lowercase only</strong></td><td><code>email</code></td><td><code>Email</code>, <code>EMAIL</code> — GA4 treats these as 3 separate channels</td></tr>
+                    <tr><td><strong>No spaces</strong></td><td><code>summer_sale</code></td><td><code>summer sale</code> — becomes <code>summer%20sale</code> in the URL</td></tr>
+                    <tr><td><strong>No abbreviations</strong></td><td><code>facebook</code></td><td><code>fb</code> — breaks consistency as the team grows</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h5 style="font-family:'DM Sans',sans-serif; font-weight:600; color:#0f2a45; margin: 28px 0 10px;">C. Platform-Specific Rules</h5>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Platform</th><th>Rule</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Google Ads</strong></td>
+                      <td>If Auto-tagging (GCLID) is enabled and GA4/Google Ads are linked, do not manually tag. Exception: only use manual UTMs to pass custom data to a non-Google tool like a CRM.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Meta (Facebook/Instagram)</strong></td>
+                      <td>Be cautious with dynamic tags like <code>{{campaign.name}}</code> — these have been observed failing and appearing literally in GA4. For high-stakes campaigns, use manual tagging in the URL Suffix field instead.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Print / Offline</strong></td>
+                      <td>Use QR codes. Always attach UTMs first, then shorten the link. Use <code>utm_medium=print</code> or <code>utm_medium=qr</code> to distinguish from digital traffic.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 4. Reference Matrix -->
+            <div class="cs-section">
+              <div class="cs-section-label">04</div>
+              <div class="cs-section-title">Platform Reference Matrix</div>
+              <p>Use this as the source of truth when filling out the Internal UTM Builder spreadsheet. The <code>utm_medium</code> values here are standardized to match GA4's default channel groupings — deviating from them causes misclassification.</p>
+              <div class="cs-table-wrap">
+                <table class="cs-table">
+                  <thead><tr><th>Platform</th><th>utm_source</th><th>utm_medium</th><th>utm_campaign</th><th>utm_content</th></tr></thead>
+                  <tbody>
+                    <tr><td>Facebook Organic</td><td><code>facebook</code></td><td><code>social</code></td><td><code>daily_post</code></td><td><code>link_in_bio</code></td></tr>
+                    <tr><td>Meta Paid Ads</td><td><code>facebook</code></td><td><code>paid_social</code></td><td>[campaign_name]</td><td>[ad_name]</td></tr>
+                    <tr><td>Klaviyo Promo</td><td><code>klaviyo</code></td><td><code>email</code></td><td><code>black_friday</code></td><td><code>hero_image</code></td></tr>
+                    <tr><td>Klaviyo Flow</td><td><code>klaviyo</code></td><td><code>email</code></td><td><code>abandoned_cart</code></td><td><code>button_1</code></td></tr>
+                    <tr><td>SMS (Postscript)</td><td><code>postscript</code></td><td><code>sms</code></td><td><code>vip_sale</code></td><td><code>sms_link</code></td></tr>
+                    <tr><td>Magazine Ad</td><td><code>vogue</code></td><td><code>print</code></td><td><code>september_issue</code></td><td><code>qr_code</code></td></tr>
+                    <tr><td>Direct Mail</td><td><code>mailer</code></td><td><code>print</code></td><td><code>home_owners_list</code></td><td><code>coupon_qr</code></td></tr>
+                    <tr><td>Influencer</td><td>[handle]</td><td><code>affiliate</code></td><td><code>summer_promo</code></td><td><code>story_link</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <hr class="cs-divider">
+
+            <!-- 5. Checklist -->
+            <div class="cs-section">
+              <div class="cs-section-label">05</div>
+              <div class="cs-section-title">Implementation Checklist</div>
+              <p>Complete every item before any UTM-tagged link goes live.</p>
+              <div class="cs-checklist">
+                <div class="cs-checklist-title">Pre-Launch Verification</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div>URL is correct and functional before tags are added</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div>All parameters are lowercase with no spaces</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div><code>utm_medium</code> uses a standard GA4 channel term (email, cpc, social, affiliate)</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div>Link is recorded in the Internal Tracking Sheet before distribution</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div>For print: UTMs attached before the link is shortened or converted to QR code</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div>No UTM tags used on internal site links</div>
+                <div class="cs-check-item"><div class="check-icon"><i class="bi bi-check"></i></div>For Meta: dynamic tags validated or replaced with manual tags for high-stakes campaigns</div>
+              </div>
+            </div>
+
+          </div><!-- end panel-utm -->
+
+          <hr class="cs-divider">
+
+          <!-- ── TECH STACK (always visible) ── -->
+          <div class="cs-section">
+            <div class="cs-section-label">Stack</div>
+            <div class="cs-section-title">Tools &amp; Platforms</div>
+            <div class="tech-stack">
+              <div class="tech-pill"><i class="bi bi-tags"></i> Google Tag Manager</div>
+              <div class="tech-pill"><i class="bi bi-bar-chart"></i> Google Analytics 4</div>
+              <div class="tech-pill"><i class="bi bi-database"></i> BigQuery</div>
+              <div class="tech-pill"><i class="bi bi-link-45deg"></i> UTM Builder</div>
+              <div class="tech-pill"><i class="bi bi-facebook"></i> Meta Pixel</div>
+              <div class="tech-pill"><i class="bi bi-envelope"></i> Klaviyo</div>
+              <div class="tech-pill"><i class="bi bi-qr-code"></i> QR / Bitly</div>
+            </div>
+          </div>
+
+        </div><!-- end portfolio-description -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; <strong><span>Sharon Velasquez</span></strong></div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.sop-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sop-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + tab).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

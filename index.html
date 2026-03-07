@@ -4,46 +4,525 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Sharon Velasquez — Marketing Technology & Analytics</title>
+  <meta name="description" content="Marketing Technology & Analytics Lead specializing in data governance, ETL pipelines, and lifecycle engineering.">
 
-  <title>My Portfolio</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Barlow+Condensed:wght@200;300;400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio - v3.10.0
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    :root {
+      --navy:        #0f2a45;
+      --blue:        #1B4F72;
+      --blue-mid:    #1a6a9a;
+      --blue-light:  #eaf4fb;
+      --blue-border: #dce8f0;
+      --blue-hover:  #edf5fc;
+      --text-dark:   #0f2a45;
+      --text-body:   #3d4f5c;
+      --text-muted:  #6c8fa0;
+      --white:       #ffffff;
+      --bg-soft:     #f4f8fb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-body);
+      background: #f9fbfd;
+    }
+
+    /* ── Shared section wrapper ── */
+    .sv-section {
+      padding: 72px 0;
+    }
+    .sv-section.bg-soft { background: var(--bg-soft); }
+
+    .sv-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .sv-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .sv-title-rule {
+      border: none;
+      border-bottom: 2px solid var(--blue-border);
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+    }
+    .sv-body {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    #hero {
+      background: linear-gradient(135deg, #0a1e30 0%, var(--navy) 45%, var(--blue) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(26,106,154,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(27,79,114,0.2) 0%, transparent 60%);
+    }
+    /* subtle grid texture */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 80px 0 60px;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 200;
+      font-size: clamp(52px, 8vw, 96px);
+      color: #fff;
+      line-height: 0.95;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+      padding-top: 40px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-name em {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: block;
+      font-size: 0.50em;
+      margin-top: 14px;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 30px;
+      font-weight: 300;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-hero-primary {
+      background: #fff;
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-hero-primary:hover {
+      background: var(--blue-light);
+      transform: translateY(-1px);
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .btn-hero-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.25);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-hero-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+    /* stat strip */
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .hero-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       ABOUT
+    ══════════════════════════════ */
+    .about-card {
+      background: var(--white);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .about-info-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--blue-border);
+      font-size: 14px;
+    }
+    .about-info-row:last-child { border-bottom: none; }
+    .about-info-key {
+      font-weight: 600;
+      color: var(--navy);
+      min-width: 120px;
+      flex-shrink: 0;
+    }
+    .about-info-val { color: var(--text-body); }
+    .about-info-val a { color: var(--blue); text-decoration: none; }
+    .about-info-val a:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════
+       SKILLS
+    ══════════════════════════════ */
+    .skill-group {
+      background: var(--white);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      height: 100%;
+    }
+    .skill-group-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--blue-border);
+    }
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f5f9;
+      font-size: 13.5px;
+    }
+    .skill-item:last-child { border-bottom: none; }
+    .skill-item strong {
+      color: var(--navy);
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .skill-item span { color: var(--text-body); line-height: 1.5; }
+
+    /* ══════════════════════════════
+       RESUME
+    ══════════════════════════════ */
+    .resume-block {
+      background: var(--white);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .resume-block::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 24px; bottom: 24px;
+      width: 3px;
+      background: var(--blue);
+      border-radius: 0 2px 2px 0;
+    }
+    .resume-block-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .resume-block-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .resume-block-date {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      background: var(--blue-light);
+      color: var(--blue);
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+    .resume-block ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.75;
+    }
+    .resume-block ul li { margin-bottom: 4px; }
+
+    .cert-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--blue-border);
+    }
+    .cert-row:last-child { border-bottom: none; }
+    .cert-icon {
+      width: 36px; height: 36px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+      font-size: 15px;
+    }
+    .cert-title { font-weight: 600; font-size: 13.5px; color: var(--navy); }
+    .cert-date  { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .cert-link  { font-size: 12px; color: var(--blue); text-decoration: none; }
+    .cert-link:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════
+       PORTFOLIO
+    ══════════════════════════════ */
+    #portfolio-flters {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    #portfolio-flters li {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--blue-border);
+      background: var(--white);
+      color: var(--blue);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #portfolio-flters li:hover,
+    #portfolio-flters li.filter-active {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+
+    .portfolio-item .portfolio-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--blue-border);
+      background: var(--white);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .portfolio-item .portfolio-wrap:hover {
+      box-shadow: 0 8px 32px rgba(27,79,114,0.15);
+      transform: translateY(-3px);
+    }
+    .portfolio-item img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+    }
+    .portfolio-item .p-info {
+      padding: 16px 18px 14px;
+    }
+    .portfolio-item .p-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 5px;
+    }
+    .portfolio-item .p-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .portfolio-item .p-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .portfolio-item .p-link:hover { text-decoration: underline; }
+    .portfolio-item .p-link i { font-size: 14px; }
+
+    /* ══════════════════════════════
+       CONTACT
+    ══════════════════════════════ */
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--blue-border);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+      font-size: 16px;
+    }
+    .contact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .contact-val {
+      font-size: 14px;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* ══════════════════════════════
+       SECTION TITLE (reusable)
+    ══════════════════════════════ */
+    .section-header { margin-bottom: 40px; }
+
+    /* ══════════════════════════════
+       OVERRIDE: iPortfolio sidebar to match blue theme
+    ══════════════════════════════ */
+    #header { background: var(--navy); }
+    #header .nav-menu a { color: rgba(255,255,255,0.7); }
+    #header .nav-menu a:hover,
+    #header .nav-menu .active > a,
+    #header .nav-menu li:hover > a { color: #fff; }
+    #header .social-links a {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+    }
+    #header .social-links a:hover { background: var(--blue); color: #fff; }
+
+    /* breadcrumb override */
+    #breadcrumbs { background: var(--blue-light); }
+    #breadcrumbs h2 { color: var(--navy); }
+    #breadcrumbs ol li a { color: var(--blue); }
+
+  </style>
 </head>
 
 <body>
 
-  <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-  <!-- ======= Header ======= -->
+  <!-- ======= Sidebar ======= -->
   <header id="header">
     <div class="d-flex flex-column">
-
       <div class="profile">
         <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
@@ -53,716 +532,416 @@
           <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
         </div>
       </div>
-
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <!-- <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li> -->
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="#hero"      class="nav-link scrollto active"><i class="bx bx-home"></i>         <span>Home</span></a></li>
+          <li><a href="#about"     class="nav-link scrollto">       <i class="bx bx-user"></i>         <span>About</span></a></li>
+          <li><a href="#resume"    class="nav-link scrollto">       <i class="bx bx-file-blank"></i>   <span>Resume</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto">       <i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="#contact"   class="nav-link scrollto">       <i class="bx bx-envelope"></i>     <span>Contact</span></a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+      </nav>
     </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-<!--  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Sharon Velasquez</h1>
-       <p>I'm a <span class="typed" data-typed-items="Marketing Systems Architect, Marketing Analytics Manager, Technical MarTech Lead, Bilingual Growth Engineer"></span></p>
-       <div class="container">
-       <p >I work at the intersection of marketing technology and data analytics, building the infrastructure that makes measurement possible and the analysis that makes measurement meaningful.</p>
-       </div>
-    </div>
-  </section> --><!-- End Hero -->
+  </header>
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <!-- ══════════════════════════════
+         HERO
+    ══════════════════════════════ -->
+    <section id="hero">
       <div class="container">
-
-        <div class="section-title">
-          <h2>About</h2>
-          <h3>Marketing Technology & Analytics Lead | 7+ Years of Experience</h3>
-          <p>I work at the intersection of marketing technology and data analytics, building the infrastructure that makes measurement possible and the analysis that makes measurement meaningful.</p>
-          <br>
-          <p>From server-side tracking infrastructure to advanced customer segmentation, I build the systems that make growth measurable, regardless of the scale or complexity of the challenge.</p>
-        </div>
-
-        <div class="row">
-          <!-- <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/profile-img.png" class="img-fluid" alt="">
-          </div> -->
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Quick Stats & Bio</h3>
-            <!-- <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p> -->
-            <div class="row">
- <!--              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>LinkedIn:</strong> <span>https://www.linkedin.com/in/sharon-velasquez/</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>GitHub:</strong> <span>https://github.com/sharonv153/Portfolio</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
-                </ul>
-              </div>
-  -->             <div class="col-lg-10">
-                <ul>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>29</span></li> -->
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>B.A. Marketing & Management Information Systems (MIS)</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Specialization:</strong> <span>Data Governance, ETL Pipelines, & Marketing Technology Orchestration</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Bilingual:</strong> <span>Native English & Spanish</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>sharon.v153@hotmail.com</span></li>   
-                  <li><i class="bi bi-chevron-right"></i> <strong>LinkedIn:</strong> <span><a href="https://www.linkedin.com/in/sharon-velasquez/" >linkedin.com/sharon-velasquez</a></li></span></li>                
-                  <!--<li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>-->
-                </ul>
-              </div>
+        <div class="hero-inner">
+          <div class="hero-eyebrow">Marketing Technology &amp; Analytics</div>
+          <h1 class="hero-name">
+            Sharon<br>Velasquez
+            <em>Marketing Systems Architect</em>
+          </h1>
+          <p class="hero-desc">I work at the intersection of marketing technology and data analytics — building the infrastructure that makes measurement possible, and the analysis that makes measurement meaningful.</p>
+          <div class="hero-ctas">
+            <a href="#portfolio" class="btn-hero-primary scrollto">
+              <i class="bi bi-grid-3x3-gap"></i> View Portfolio
+            </a>
+            <a href="#resume" class="btn-hero-ghost scrollto">
+              <i class="bi bi-file-person"></i> Resume
+            </a>
+            <a href="#contact" class="btn-hero-ghost scrollto">
+              <i class="bi bi-envelope"></i> Contact
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-num">7+</div>
+              <div class="hero-stat-label">Years Experience</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">SQL</div>
+              <div class="hero-stat-label">BigQuery · MySQL</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">GA4</div>
+              <div class="hero-stat-label">Advanced Implementation</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">EN/ES</div>
+              <div class="hero-stat-label">Bilingual</div>
             </div>
           </div>
         </div>
-
       </div>
-    </section><!-- End About Section -->
+    </section>
 
-    <!-- ======= Facts Section ======= -->
-<!--     <section id="facts" class="facts">
+    <!-- ══════════════════════════════
+         ABOUT
+    ══════════════════════════════ -->
+    <section id="about" class="sv-section">
       <div class="container">
-
-        <div class="section-title">
-          <h2>Facts</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <div class="section-header">
+          <div class="sv-label">01 — About</div>
+          <h2 class="sv-title sv-title-rule">Marketing Technology &amp; Analytics Lead</h2>
         </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> consequuntur quae</p>
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <p class="sv-body">I work at the intersection of marketing technology and data analytics, building the infrastructure that makes measurement possible and the analysis that makes measurement meaningful.</p>
+            <p class="sv-body">From server-side tracking infrastructure to advanced customer segmentation, I build the systems that make growth measurable — regardless of the scale or complexity of the challenge.</p>
+            <p class="sv-body">My background combines a B.A. in Marketing & Management Information Systems with 7+ years of hands-on work across ETL pipelines, attribution architecture, lifecycle orchestration, and data governance.</p>
+          </div>
+          <div class="col-lg-5">
+            <div class="about-card">
+              <div class="about-info-row">
+                <span class="about-info-key">Degree</span>
+                <span class="about-info-val">B.A. Marketing &amp; MIS — Washington State University</span>
+              </div>
+              <div class="about-info-row">
+                <span class="about-info-key">Specialization</span>
+                <span class="about-info-val">Data Governance, ETL Pipelines &amp; MarTech Orchestration</span>
+              </div>
+              <div class="about-info-row">
+                <span class="about-info-key">Languages</span>
+                <span class="about-info-val">Native English &amp; Spanish</span>
+              </div>
+              <div class="about-info-row">
+                <span class="about-info-key">Email</span>
+                <span class="about-info-val"><a href="/cdn-cgi/l/email-protection#0e7d666f7c616020783f3b3d4e66617a636f6762206d6163"><span class="__cf_email__" data-cfemail="88fbe0e9fae7e6a6feb9bdbbc8e0e7fce5e9e1e4a6ebe7e5">sharon.v153@hotmail.com</span></a></span>
+              </div>
+              <div class="about-info-row">
+                <span class="about-info-key">LinkedIn</span>
+                <span class="about-info-val"><a href="https://www.linkedin.com/in/sharon-velasquez/" target="_blank">linkedin.com/sharon-velasquez</a></span>
+              </div>
+              <div class="about-info-row">
+                <span class="about-info-key">Location</span>
+                <span class="about-info-val">Washington State, USA</span>
+              </div>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
         </div>
-
       </div>
-    </section> --><!-- End Facts Section -->
+    </section>
 
-    <!-- ======= Skills Section ======= -->
-    <!--Rebuild this section to only list skills and not show a progress bar-->
-    <section id="skills" class="skills section-bg">
+    <!-- ══════════════════════════════
+         SKILLS
+    ══════════════════════════════ -->
+    <section id="skills" class="sv-section bg-soft">
       <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
+        <div class="section-header">
+          <div class="sv-label">02 — Skills</div>
+          <h2 class="sv-title sv-title-rule">Technical Competencies</h2>
         </div>
-        <div class="row skills-content">
-          <div class="col-lg-6">
-            <h4>Marketing Analytics & Business Intelligence</h4>
-            <ul>
-              <li><strong>Languages:</strong> SQL (BigQuery, MySQL, T-SQL), JavaScript (for GTM/DOM manipulation).</li><br/>
-              <li><strong>Architecture:</strong> ETL Pipelines (Shopify/GTM to BigQuery), Data Normalization, Identity Resolution.</li><br/>
-              <li><strong>BI Tools: </strong> Looker Studio, Tableau, Power BI, Advanced Excel (Power Query/Macros/advanced formulas).</li>
-              <li><strong>Modeling: </strong> RFM Analysis, LTV Forecasting, Cohort Analysis, Churn Research.</li>
-            </ul>
-            <br>
-            <h4> MarTech Operations & Data Governance</h4>
-            <ul>
-              <li><strong>Tracking: </strong>Google Tag Manager (Server-Side Architecture), GA4 Technical Implementation.</li><br/>
-              <li><strong>Integrations:</strong>  API/Webhook Management, Lead Scoring & Routing Systems, GTM Master Tagging.</li><br/>
-              <li><strong>Standards:</strong> Global Event & UTM Taxonomy Design, Data Layer Strategy, Technical Governance SOPs.</li>
-            </ul>
+        <div class="row g-4">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-group">
+              <div class="skill-group-title">Analytics &amp; BI</div>
+              <div class="skill-item"><strong>Languages</strong><span>SQL (BigQuery, MySQL, T-SQL), JavaScript (GTM/DOM)</span></div>
+              <div class="skill-item"><strong>Architecture</strong><span>ETL Pipelines, Data Normalization, Identity Resolution</span></div>
+              <div class="skill-item"><strong>BI Tools</strong><span>Looker Studio, Tableau, Power BI, Advanced Excel (Power Query/Macros)</span></div>
+              <div class="skill-item"><strong>Modeling</strong><span>RFM Analysis, LTV Forecasting, Cohort Analysis, Churn Research</span></div>
+            </div>
           </div>
-          <div class="col-lg-6">
-            <h4>Strategic Lifecycle Engineering</h4>
-            <ul>
-              <li><strong>Activation:</strong>Connecting BigQuery/SQL insights back to CRM (Klaviyo/HubSpot).</li><br/>
-              <li><strong>Attribution:</strong> Multi-Touch Attribution (MTA), Server-Side Cookie Recovery, ROI Forecasting.</li><br/>
-              <li><strong>Experiments:</strong> A/B Testing, Conversion Rate Optimization (CRO), Experimentation Design.</li>
-            </ul>
-            <br>
-            <h4>Technical Foundations</h4>
-            <ul>
-              <li><strong>Development:</strong>HTML/CSS, Schema Markup, Technical Site Audits (Performance & Speed).</li><br/>
-              <li><strong>E-commerce Systems:</strong> Shopify & WordPress (Technical Core Architecture & Pixel Logic).</li><br/>
-            </ul>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-group">
+              <div class="skill-group-title">MarTech &amp; Governance</div>
+              <div class="skill-item"><strong>Tracking</strong><span>Google Tag Manager (Server-Side), GA4 Technical Implementation</span></div>
+              <div class="skill-item"><strong>Integrations</strong><span>API/Webhook Management, Lead Scoring &amp; Routing, GTM Master Tagging</span></div>
+              <div class="skill-item"><strong>Standards</strong><span>Global Event &amp; UTM Taxonomy, Data Layer Strategy, Governance SOPs</span></div>
+              <div class="skill-item"><strong>MarTech</strong><span>HubSpot, Salesforce, Klaviyo (Advanced Lifecycle Automation)</span></div>
+            </div>
           </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-group">
+              <div class="skill-group-title">Lifecycle &amp; Strategy</div>
+              <div class="skill-item"><strong>Activation</strong><span>BigQuery/SQL insights → CRM (Klaviyo/HubSpot)</span></div>
+              <div class="skill-item"><strong>Attribution</strong><span>Multi-Touch Attribution, Server-Side Cookie Recovery, ROI Forecasting</span></div>
+              <div class="skill-item"><strong>Experiments</strong><span>A/B Testing, CRO, Experimentation Design</span></div>
+              <div class="skill-item"><strong>Development</strong><span>HTML/CSS, Schema Markup, Technical Site Audits, Shopify &amp; WordPress</span></div>
+            </div>
+          </div>
+
         </div>
-        <!--Above is a list of skills below is the old progress bar-->
-<!--         <div class="row skills-content">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-        </div> -->
-
       </div>
-    </section><!-- End Skills Section -->
+    </section>
 
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
+    <!-- ══════════════════════════════
+         RESUME
+    ══════════════════════════════ -->
+    <section id="resume" class="sv-section">
       <div class="container">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
+        <div class="section-header">
+          <div class="sv-label">03 — Resume</div>
+          <h2 class="sv-title sv-title-rule">Experience &amp; Credentials</h2>
         </div>
 
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Summary</h3>
-            <div class="resume-item pb-0">
-              <!-- <h4>Sharon Velasquez</h4> -->
-              <p><em>Technical marketing professional with 7 years of experience engineering the intersection of data architecture and growth strategy. Specialized in building robust attribution pipelines, SQL-driven lifecycle orchestration, and scalable data governance frameworks. Expert at bridging the gap between raw, fragmented data and high-stakes business decisions.</em></p>
-            </div>
+        <div class="row g-5">
+          <!-- Left: Experience -->
+          <div class="col-lg-7">
+            <h5 style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:20px;">Professional Experience</h5>
 
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>B.A. in Marketing &amp; Management Information Systems (MIS)</h4>
-              <!-- <h5>August 2014 - May 2018</h5> -->
-              <p><em>Washington State University</em></p>
-              <p><em>Key Focus: Database Management, Systems Analysis, and Statistical Modeling.</em></p>
-              <!-- <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p> -->
-            </div>
-            <h3 class="resume-title">Certifications</h3>
-            <div class="resume-item">
-              <!--Certificate 1-->
-              <h4>Google Analytics Certification (GA4)</h4>
-              <h5>February 2025 - February 2026</h5>
-              <p><em><a href="https://skillshop.credential.net/d0cf164a-5667-4c15-b492-da9e0cd3f19f#acc.Et5mARXU">Credential ID 133568551</a></em></p>
-              <!--Certificate 2-->
-              <h4>Google Data Analytics Certificate</h4>
-              <h5>February 2023</h5>
-              <p><em>Credential ID WETN24LX2PXH</em></p>
-              <!--Certificate 2-->
-              <h4>Google Ads Measurement Certification</h4>
-              <h5>February 2025 - February 2026</h5>
-              <p><em><a href="https://skillshop.credential.net/38b94510-12fb-44c1-8bfb-88fee1a6576e#acc.Wrlwmh9Q">Credential ID 133558881</a></em></p>
-              <!-- Certificate 1 -->
-              <!-- <h4>Google AI-Powered Shopping Ads Certification</h4>
-              <h5>February 2025 - February 2026</h5>
-              <p><em><a href="https://skillshop.credential.net/a1dfebe8-e875-4d98-b0b9-3e377365cb61#acc.L4CiMmD0">Credential ID 133709061</a></em></p> -->
-              <!--Certificate 3-->
-              <!-- <h4>Google Ads Creative Certification</h4>
-              <h5>February 2025 - February 2026</h5>
-              <p><em><a href="https://skillshop.credential.net/e656fada-d8eb-4be4-9160-c43f35afff53#acc.245thwan">Credential ID 133555142</a></em></p> -->
-              <!--Certificate 4-->
-              <!-- <h4>Google Ads Display Certification</h4>
-              <h5>February 2025 - February 2026</h5>
-              <p><em><a href="https://skillshop.credential.net/7a995a9f-a97f-4274-b0d7-582e4c00692f#acc.HBuCZQVG">Credential ID 133083466</a></em></p> -->
-              <!--Certificate 5-->
-              <!-- <h4>Google Ads Search Certification</h4>
-              <h5>February 2025 - February 2026</h5>
-              <p><em><a href="https://skillshop.credential.net/a52d4b87-5afc-4cc5-8138-5c57d8abba5c#acc.7ClHyTE0">Credential ID 133103204</a></em></p> -->
-
-              <!-- <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p> -->
-            </div>
-            <h3 class="resume-title">Technical Core Skills</h3>
-            <div class="resume-item">
-              <h4>Analytics:</h4>
-              <p>SQL (BigQuery, MySQL)<br> GA4 (Advanced Implementation)<br> Attribution Modeling<br> RFM Analysis.</p>
-              <!--line break-->
-              <h4>Operations:</h4>
-              <p>Google Tag Manager (Server-Side)<br> Data Layer Architecture<br> UTM & Event Governance.</p>
-              <!--line break-->
-              <h4>MarTech:</h4>
-              <p>HubSpot (Lead Scoring/Routing) <br> Salesforce (Trailhead) <br> Klaviyo (Advanced Lifecycle Automation).</p>
-              <!--line break-->
-              <h4>Visualization:</h4>
-              <p>Looker Studio<br> Tableau<br> Power BI<br> Advanced Excel (Power Query).</p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Marketing Technology & Analytics Specialist</h4>
-              <h5>December 2022 - Present</h5>
-              <p><em>Cherie Amour:</em> Nationwide boudoir photography studio and e-commerce store.</p>
-              <bold>Key Impact:</bold>
+            <div class="resume-block">
+              <div class="resume-block-title">Marketing Technology &amp; Analytics Specialist</div>
+              <div class="resume-block-sub">Cherie Amour — Nationwide boudoir photography studio &amp; e-commerce</div>
+              <div class="resume-block-date">December 2022 — Present</div>
               <ul>
-                <li>Engineered a custom SQL-driven RFM model in BigQuery to identify a $40,500 "At Risk" revenue opportunity; implemented a 30-day "Golden Window" retention strategy based on churn threshold analysis.</li>
-                <li>Built a manual ETL pipeline to sanitize and migrate 2.5 years of legacy Shopify data into GCP, resolving complex schema conflicts to enable long-term LTV forecasting.</li>
+                <li>Engineered a custom SQL-driven RFM model in BigQuery identifying a <strong>$40,500 "At Risk" revenue opportunity</strong>; implemented a 30-day "Golden Window" retention strategy based on churn threshold analysis.</li>
+                <li>Built a manual ETL pipeline to sanitize and migrate 2.5 years of legacy Shopify data into GCP, resolving schema conflicts to enable long-term LTV forecasting.</li>
                 <li>Architected an end-to-end data pipeline to track offline session conversions, attributing high-ticket revenue back to specific digital touchpoints.</li>
-                <li>Orchestrated a multi-channel nurturing strategy using predictive lead scoring, resulting in a 10% reduction in session cancellations.</li>
+                <li>Orchestrated a multi-channel nurturing strategy using predictive lead scoring, resulting in a <strong>10% reduction in session cancellations</strong>.</li>
               </ul>
             </div>
-            <div class="resume-item">
-              <h4>Digital Marketing & Data Coordinator</h4>
-              <h5>November 2018 - November 2022</h5>
-              <p><em>CYS Group Inc.:</em> Nationwide photography company serving direct consumers in 32 states.</p>
-              <bold>Key Impact:</bold>
+
+            <div class="resume-block">
+              <div class="resume-block-title">Digital Marketing &amp; Data Coordinator</div>
+              <div class="resume-block-sub">CYS Group Inc. — Nationwide photography company, 32 states</div>
+              <div class="resume-block-date">November 2018 — November 2022</div>
               <ul>
-                <li>Audited and standardized a fragmented GTM container; implemented a universal Event & UTM Taxonomy that improved GA4 attribution accuracy and reduced "Unassigned" traffic by 20%.</li>
-                <li> Scaled organic traffic by 30% through technical SEO audits and the implementation of advanced schema markup across landing pages and blog posts.</li>
-                <li>Reduced bounce rates by 15% through rigorous A/B testing of lead-capture flows and data-driven customer segmentation.</li>
+                <li>Audited and standardized a fragmented GTM container; implemented a universal Event &amp; UTM Taxonomy that improved GA4 attribution accuracy and <strong>reduced "Unassigned" traffic by 20%</strong>.</li>
+                <li>Scaled organic traffic by <strong>30%</strong> through technical SEO audits and advanced schema markup across landing pages and blog posts.</li>
+                <li>Reduced bounce rates by <strong>15%</strong> through rigorous A/B testing of lead-capture flows and data-driven customer segmentation.</li>
               </ul>
             </div>
-            <div class="resume-item">
-              <h4>Marketing & Social Media Coordinator & Freelancer</h4>
-              <h5>January 2013 - May 2019</h5>
-              <p><em>Velmor:</em> Wholesaler and B2C retailer.</p>
-              <bold>Key Impact:</bold>
+
+            <div class="resume-block">
+              <div class="resume-block-title">Marketing &amp; Social Media Coordinator</div>
+              <div class="resume-block-sub">Velmor — Wholesaler and B2C retailer</div>
+              <div class="resume-block-date">January 2013 — May 2019</div>
               <ul>
-                <li>Developed end-to-end digital architectures for small businesses, including custom Web/E-commerce design and integrated pixel tracking logic for social advertising.</li>
+                <li>Developed end-to-end digital architectures for small businesses, including custom web/e-commerce design and integrated pixel tracking logic for social advertising.</li>
               </ul>
             </div>
           </div>
+
+          <!-- Right: Education + Certs + Core Skills -->
+          <div class="col-lg-5">
+
+            <h5 style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:20px;">Education</h5>
+            <div class="resume-block" style="margin-bottom:32px;">
+              <div class="resume-block-title">B.A. Marketing &amp; Management Information Systems</div>
+              <div class="resume-block-sub">Washington State University</div>
+              <div style="font-size:13px; color:var(--text-body); margin-top:8px;">Focus: Database Management, Systems Analysis, Statistical Modeling.</div>
+            </div>
+
+            <h5 style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:20px;">Certifications</h5>
+            <div class="about-card" style="margin-bottom:32px;">
+              <div class="cert-row">
+                <div class="cert-icon"><i class="bi bi-patch-check"></i></div>
+                <div>
+                  <div class="cert-title">Google Analytics Certification (GA4)</div>
+                  <div class="cert-date">Feb 2025 — Feb 2026</div>
+                  <a href="https://skillshop.credential.net/d0cf164a-5667-4c15-b492-da9e0cd3f19f#acc.Et5mARXU" class="cert-link" target="_blank">View Credential ↗</a>
+                </div>
+              </div>
+              <div class="cert-row">
+                <div class="cert-icon"><i class="bi bi-patch-check"></i></div>
+                <div>
+                  <div class="cert-title">Google Data Analytics Certificate</div>
+                  <div class="cert-date">February 2023 · ID: WETN24LX2PXH</div>
+                </div>
+              </div>
+              <div class="cert-row">
+                <div class="cert-icon"><i class="bi bi-patch-check"></i></div>
+                <div>
+                  <div class="cert-title">Google Ads Measurement Certification</div>
+                  <div class="cert-date">Feb 2025 — Feb 2026</div>
+                  <a href="https://skillshop.credential.net/38b94510-12fb-44c1-8bfb-88fee1a6576e#acc.Wrlwmh9Q" class="cert-link" target="_blank">View Credential ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <h5 style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:20px;">Core Tech Stack</h5>
+            <div class="about-card">
+              <div class="about-info-row"><span class="about-info-key">Analytics</span><span class="about-info-val">SQL · GA4 · Attribution Modeling · RFM</span></div>
+              <div class="about-info-row"><span class="about-info-key">Operations</span><span class="about-info-val">GTM Server-Side · Data Layer · UTM/Event Governance</span></div>
+              <div class="about-info-row"><span class="about-info-key">MarTech</span><span class="about-info-val">HubSpot · Salesforce · Klaviyo</span></div>
+              <div class="about-info-row"><span class="about-info-key">Visualization</span><span class="about-info-val">Looker Studio · Tableau · Power BI · Excel</span></div>
+            </div>
+
+          </div>
         </div>
-
       </div>
-    </section><!-- End Resume Section -->
+    </section>
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    <!-- ══════════════════════════════
+         PORTFOLIO
+    ══════════════════════════════ -->
+    <section id="portfolio" class="sv-section bg-soft">
       <div class="container">
-
-        <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Each case study documents a real problem, the technical approach taken, and the measurable outcome produced.</p>
+        <div class="section-header">
+          <div class="sv-label">04 — Portfolio</div>
+          <h2 class="sv-title sv-title-rule">Case Studies</h2>
+          <p class="sv-body" style="max-width:560px;">Each case study documents a real problem, the technical approach taken, and the measurable outcome produced.</p>
         </div>
 
         <div class="row" data-aos="fade-up">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-analytics">Analytics</li> <!--(Focus: SQL, BigQuery, Modeling)-->
-              <li data-filter=".filter-eng">Data Engineering</li> <!--(Focus: Pipelines, API/Webhooks, GTM)-->
-              <li data-filter=".filter-gov">Governance</li> <!--(Focus: Taxonomy, SOPs, Data Integrity)-->
-              <li data-filter=".filter-strat">Strategy</li> <!--(Focus: Lifecycle, CX, Attribution)-->
-              <li data-filter=".filter-mtech">MarTech</li>
-              <li data-filter=".filter-lfc">Lifecycle</li>
+              <li data-filter="*"              class="filter-active">All</li>
+              <li data-filter=".filter-analytics">Analytics</li>
+              <li data-filter=".filter-eng">   Data Engineering</li>
+              <li data-filter=".filter-gov">   Governance</li>
+              <li data-filter=".filter-strat"> Strategy</li>
+              <li data-filter=".filter-mtech"> MarTech</li>
+              <li data-filter=".filter-lfc">   Lifecycle</li>
             </ul>
           </div>
-        </div> 
+        </div>
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row portfolio-container g-4" data-aos="fade-up" data-aos-delay="100">
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-analytics filter-eng filter-strat">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-20.png" class="img-fluid" alt="">
-              <p class="home-project-name">RFM Analysis & K-Means Customer Segmentation</p>
-              <div class="portfolio-links">
-                <a href="Portfolio-RFM-Kmeans.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-20.png" alt="RFM Analysis">
+              <div class="p-info">
+                <div class="p-category">Analytics · Engineering · Strategy</div>
+                <div class="p-name">RFM Analysis &amp; K-Means Customer Segmentation</div>
+                <a href="Portfolio-RFM-Kmeans.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-analytics filter-eng">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-17.png" class="img-fluid" alt="">
-              <p class="home-project-name">SQL-Driven RFM Analysis & Revenue Recovery</p>
-              <div class="portfolio-links">
-                <a href="Portfolio-RFM.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-17.png" alt="SQL RFM Analysis">
+              <div class="p-info">
+                <div class="p-category">Analytics · Engineering</div>
+                <div class="p-name">SQL-Driven RFM Analysis &amp; Revenue Recovery</div>
+                <a href="Portfolio-RFM.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-mtech filter-gov">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-18.png" class="img-fluid" alt="">
-              <p class="home-project-name">Data Governance: Global UTM & Event Taxonomy</p>
-              <div class="portfolio-links">
-                <a href="Portfolio-UTM-Events.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-18.png" alt="Data Governance">
+              <div class="p-info">
+                <div class="p-category">MarTech · Governance</div>
+                <div class="p-name">Data Governance: Global UTM &amp; Event Taxonomy</div>
+                <a href="Portfolio-Data-Governance.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <!-- WORKING ON THIS CASE STUDY RIGHT NOW 2/6/2026-->
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-analytics filter-eng">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-16.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Closed-Loop Activation: SQL to CRM Automation</p>
-              <div class="portfolio-links">
-                <a href="BFCM-ad-strategy.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-
           <div class="col-lg-4 col-md-6 portfolio-item filter-analytics filter-eng filter-mtech">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-15.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Full-Funnel Attribution & Data Pipeline</p>
-              <div class="portfolio-links">
-                <!-- <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Mktg Ops Case Study"><i class="bx bx-plus"></i></a> -->
-                <a href="Sales-attribution-pipeline.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-15.jpg" alt="Attribution Pipeline">
+              <div class="p-info">
+                <div class="p-category">Analytics · Engineering · MarTech</div>
+                <div class="p-name">Full-Funnel Attribution &amp; Data Pipeline</div>
+                <a href="Sales-attribution-pipeline.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-eng">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-19.png" class="img-fluid" alt="">
-              <p class="home-project-name">Portfolio Project: Kepler Relational Database Design</p>
-              <div class="portfolio-links">
-                <a href="Portfolio-Kepler-db.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-19.png" alt="Kepler Database">
+              <div class="p-info">
+                <div class="p-category">Data Engineering</div>
+                <div class="p-name">Kepler Relational Database Design</div>
+                <a href="Portfolio-Kepler-db.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-lfc filter-strat">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-14.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Lifecycle Optimization Case Study</p>
-              <div class="portfolio-links">
-                <!-- <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Mktg Ops Case Study"><i class="bx bx-plus"></i></a> -->
-                <a href="Customer-lifecycle.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-14.jpg" alt="Lifecycle Optimization">
+              <div class="p-info">
+                <div class="p-category">Lifecycle · Strategy</div>
+                <div class="p-name">Lifecycle Optimization Case Study</div>
+                <a href="Customer-lifecycle.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-strat filter-lfc">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-16.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Omnichannel Strategy</p>
-              <div class="portfolio-links">
-                <!-- <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Mktg Ops Case Study"><i class="bx bx-plus"></i></a> -->
-                <a href="BFCM-ad-strategy.html" title="More Details"><i class="bx bx-link"></i></a>
+              <img src="assets/img/portfolio/portfolio-16.jpg" alt="Omnichannel Strategy">
+              <div class="p-info">
+                <div class="p-category">Strategy · Lifecycle</div>
+                <div class="p-name">Omnichannel Strategy</div>
+                <a href="BFCM-ad-strategy.html" class="p-link">View Case Study <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-email">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Email Samples</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Email Samples"><i class="bx bx-plus"></i></a>
-                <a href="Portfolio-Email-Samples.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-sem">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Landing Page Samples</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Landing Pages Samples"><i class="bx bx-plus"></i></a>
-                <a href="Portfolio-Landing-Samples.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-sem">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-13.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Meta Ads Strategy with Klaviyo Integration</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-13.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Meta Ads Campaign"><i class="bx bx-plus"></i></a>
-                <a href="Portfolio-Meta-Ads.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-sem">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-11.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Google Ads Campaign for Niche Industry</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-11.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="Portfolio-Google-Ads.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-other">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Sample Tableua Dashboard</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="U.S. Vehicle Market Dashboard"><i class="bx bx-plus"></i></a>
-                <a href="https://public.tableau.com/views/USvehicles/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-other">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-              <p class="home-project-name">Sales Forecasting Spreadsheets</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Forecasting with Spreadsheets"><i class="bx bx-plus"></i></a>
-                <a href="https://medium.com/@sharon.v153/forecasting-with-spreadsheets-cff894ba1bb" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-<!-- 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
- -->
         </div>
-
       </div>
-    </section><!-- End Portfolio Section -->
+    </section>
 
-    <!-- ======= Services Section ======= -->
-<!--     <section id="services" class="services">
+    <!-- ══════════════════════════════
+         CONTACT
+    ══════════════════════════════ -->
+    <section id="contact" class="sv-section">
       <div class="container">
-
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <div class="section-header">
+          <div class="sv-label">05 — Contact</div>
+          <h2 class="sv-title sv-title-rule">Get In Touch</h2>
+          <p class="sv-body" style="max-width:480px;">If you wish to connect, follow any of my social accounts or reach me directly by email.</p>
         </div>
-
         <div class="row">
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><i class="bi bi-briefcase"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-bar-chart"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i class="bi bi-binoculars"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon"><i class="bi bi-brightness-high"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-          </div>
-        </div>
-
-      </div>
-    </section> --><!-- End Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!--TESTIMONIAL CODE USED TO GO HERE-->
-    <!-- End Testimonials Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>If you wish to connect with me feel free to follow any of my social accounts or email me.</p>
-        </div>
-
-        <div class="row" data-aos="fade-in">
-
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Washington State</p>
+          <div class="col-lg-5">
+            <div class="contact-card">
+              <div class="contact-item">
+                <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <div class="contact-label">Location</div>
+                  <div class="contact-val">Washington State, USA</div>
+                </div>
               </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>sharon.v153@hotmail.com</p>
+              <div class="contact-item">
+                <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <div class="contact-label">Email</div>
+                  <div class="contact-val"><a href="/cdn-cgi/l/email-protection#6f1c070e1d000141195e5a5c2f07001b020e0603410c0002" style="color:var(--navy); text-decoration:none;"><span class="__cf_email__" data-cfemail="7a09121b081514540c4b4f493a12150e171b131654191517">[email&#160;protected]</span></a></div>
+                </div>
               </div>
-
-              <!-- <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
-              </div> -->
-
-              <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe> -->
+              <div class="contact-item">
+                <div class="contact-icon"><i class="bx bxl-linkedin" style="font-size:16px;"></i></div>
+                <div>
+                  <div class="contact-label">LinkedIn</div>
+                  <div class="contact-val"><a href="https://www.linkedin.com/in/sharon-velasquez/" target="_blank" style="color:var(--blue); text-decoration:none;">linkedin.com/sharon-velasquez</a></div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon"><i class="bx bxl-github" style="font-size:16px;"></i></div>
+                <div>
+                  <div class="contact-label">GitHub</div>
+                  <div class="contact-val"><a href="https://github.com/sharonv153" target="_blank" style="color:var(--blue); text-decoration:none;">github.com/sharonv153</a></div>
+                </div>
+              </div>
             </div>
-
           </div>
-
-          <!-- <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div> -->
-
         </div>
-
       </div>
-    </section><!-- End Contact Section -->
+    </section>
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-<!--   <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>iPortfolio</span></strong>
-      </div>
-      <div class="credits"> -->
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer> --><!-- End  Footer -->
+  </main>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
-
+  <script src=
