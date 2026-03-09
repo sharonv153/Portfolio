@@ -1,396 +1,824 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <style>
-        .sql-code-container {
-        background-color: white;
-        border-radius: 8px;
-        padding: 24px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-        margin: 24px 0;
-    }
-    
-    .sql-code-header {
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid #e9ecef;
-    }
-    
-    .sql-code-title {
-        font-size: 18px;
-        font-weight: 600;
-        color: #1a1a1a;
-        margin-bottom: 4px;
-    }
-    
-    .sql-code-description {
-        font-size: 14px;
-        color: #6c757d;
-        margin: 0;
-    }
-    
-    .sql-code-block {
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 6px;
-        padding: 20px;
-        overflow-x: auto;
-        font-family: 'Courier New', Consolas, Monaco, monospace;
-        font-size: 14px;
-        line-height: 1.6;
-    }
-    
-    .sql-code-block code {
-        color: #212529;
-        background: none;
-        padding: 0;
-    }
-    
-    .sql-comment {
-        color: #198754;
-        font-style: italic;
-    }
-    
-    .sql-keyword {
-        color: #0d6efd;
-        font-weight: 600;
-    }
-    
-    .sql-function {
-        color: #6f42c1;
-    }
-    
-    .sql-string {
-        color: #dc3545;
-    }
-    
-    .sql-number {
-        color: #d63384;
-    }
-  </style>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Kepler Relational Database Design | Sharon Velasquez</title>
+  <meta name="author" content="Sharon Velasquez" />
 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio - v3.10.0
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-  <!--CODE BELOW IS FOR R MARKDOWN-->
-  <meta name="author" content="Sharon Velasquez" />
+  <style>
+    .portfolio-description { font-family: 'DM Sans', sans-serif; }
 
-  <meta name="date" content="2023-02-22" />
-  
-  <title>Kepler Online Learning Relational Database Design</title>
+    /* ── Hero ── */
+    .cs-hero {
+      background: linear-gradient(135deg, #0f2a45 0%, #1B4F72 60%, #1a6a9a 100%);
+      border-radius: 12px;
+      padding: 48px 44px 44px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 120px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .cs-hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    .cs-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .cs-hero .lead {
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 640px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .cs-meta-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cs-meta-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── Section headings ── */
+    .cs-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      margin-bottom: 6px;
+    }
+    .cs-section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #0f2a45;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #dce8f0;
+    }
+    .cs-section { margin-bottom: 48px; }
+    .cs-divider { border: none; border-top: 1px solid #dce8f0; margin: 40px 0; }
+
+    /* ── Body text ── */
+    .portfolio-description p {
+      font-size: 14.5px;
+      color: #3d4f5c;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .portfolio-description h5 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      color: #0f2a45;
+      margin: 28px 0 10px;
+      font-size: 15px;
+    }
+
+    /* ── Callout boxes ── */
+    .cs-insight {
+      background: #eaf4fb;
+      border-left: 4px solid #1B4F72;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-insight-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .cs-insight p { margin: 0; font-size: 14px !important; color: #0f2a45 !important; }
+    .cs-warning {
+      background: #fff8e7;
+      border-left: 4px solid #e6a817;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-warning p { margin: 0; font-size: 14px !important; color: #5a4000 !important; }
+    .cs-warning strong { color: #7a5800; }
+
+    /* ── SQL code blocks ── */
+    .sql-block-wrap {
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .sql-code-header {
+      background: #f4f8fb;
+      border-bottom: 1px solid #dce8f0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .sql-code-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    .sql-code-description {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #6c757d;
+      margin: 0;
+    }
+    .sql-code-block {
+      background: #1a1f2e;
+      padding: 22px 24px;
+      overflow-x: auto;
+    }
+    .sql-code-block pre {
+      margin: 0;
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #cdd6f4;
+    }
+    .sql-comment  { color: #6a9955; font-style: italic; }
+    .sql-keyword  { color: #569cd6; font-weight: 600; }
+    .sql-function { color: #c586c0; }
+    .sql-string   { color: #ce9178; }
+    .sql-number   { color: #b5cea8; }
+    .sql-type     { color: #4ec9b0; }
+    .sql-declare  { color: #dcdcaa; }
+
+    /* ── Business requirement cards ── */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+    .req-card {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 20px 20px 18px;
+    }
+    .req-icon {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: #eaf4fb;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+      color: #1B4F72;
+      font-size: 17px;
+    }
+    .req-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #0f2a45;
+      margin-bottom: 6px;
+    }
+    .req-desc {
+      font-size: 12.5px;
+      color: #6c8fa0;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Normalization steps ── */
+    .nf-steps {
+      counter-reset: nf-counter;
+      margin: 20px 0 28px;
+    }
+    .nf-step {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .nf-badge {
+      background: #0f2a45;
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+    .nf-content { flex: 1; padding-top: 3px; }
+    .nf-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f2a45;
+      margin-bottom: 4px;
+    }
+    .nf-desc {
+      font-size: 13.5px;
+      color: #3d4f5c;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .nf-desc code {
+      background: #eaf4fb;
+      color: #1B4F72;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+    }
+
+        /* ── Tables ── */
+    .cs-table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      margin: 20px 0 28px;
+      border: 1px solid #dce8f0;
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      font-family: 'DM Sans', sans-serif;
+      margin: 0;
+    }
+    .cs-table thead th {
+      background: #1B4F72;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .cs-table tbody td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #e8f0f7;
+      color: #3a4f5c;
+      vertical-align: top;
+    }
+    .cs-table tbody tr:last-child td { border-bottom: none; }
+    .cs-table tbody tr:nth-child(even) { background: #f7fbff; }
+    .cs-table tbody tr:hover { background: #edf5fc; }
+    .cs-table code {
+      background: #eaf4fb;
+      color: #1B4F72;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+    }
+    .cs-table .pk-cell { color: #b8860b; font-weight: 700; }
+    .cs-table .fk-cell { color: #7a4fa0; font-weight: 700; }
+
+    /* ── Revenue model visual ── */
+    .rev-model {
+      background: #0f2a45;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin: 20px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .rev-block {
+      text-align: center;
+      padding: 0 24px;
+    }
+    .rev-amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .rev-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .rev-arrow {
+      font-size: 22px;
+      color: rgba(255,255,255,0.2);
+      padding: 0 4px;
+    }
+    .rev-split {
+      width: 1px;
+      height: 60px;
+      background: rgba(255,255,255,0.12);
+      margin: 0 24px;
+    }
+    .rev-block.instructor .rev-amount { color: #7ab8f5; }
+    .rev-block.platform   .rev-amount { color: #4ec9b0; }
+
+    /* ── Future roadmap ── */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .roadmap-card {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .roadmap-phase {
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6c8fa0;
+      margin-bottom: 6px;
+    }
+    .roadmap-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f2a45;
+      margin-bottom: 8px;
+    }
+    .roadmap-desc {
+      font-size: 13px;
+      color: #3d4f5c;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Tech stack ── */
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tech-pill {
+      background: #f4f8fb;
+      border: 1px solid #dce8f0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      color: #1B4F72;
+      display: flex; align-items: center; gap: 6px;
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
-  <!-- ======= Header ======= -->
   <header id="header">
     <div class="d-flex flex-column">
-
       <div class="profile">
         <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://www.linkedin.com/in/sharon-velasquez/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://medium.com/@sharon.v153" class="google-plus"><i class="bx bxl-medium"></i></a>
           <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
         </div>
       </div>
-
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#hero"      class="nav-link scrollto"><i class="bx bx-home"></i>         <span>Home</span></a></li>
           <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <!-- <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li> -->
-          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+      </nav>
     </div>
-  </header><!-- End Header -->
+  </header>
 
   <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Sharon V. M.</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Portfolio</li>
-          </ol>
+          <h2>Database Design</h2>
+          <ol><li><a href="index.html">Home</a></li><li>Case Study</li></ol>
         </div>
-
       </div>
-    </section><!-- End Breadcrumbs -->
+    </section>
 
-    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
+        <div class="portfolio-description">
 
-        <div class="row gy-4">
-
-          <!-- <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
-                </div>
-
-              </div>
-              <div class="swiper-pagination"></div>
+          <!-- ══ HERO ══ -->
+          <div class="cs-hero">
+            <div class="cs-hero-eyebrow">Relational Database Design · T-SQL · Data Architecture</div>
+            <h1>Kepler EdTech Platform<br>Relational Database Design</h1>
+            <p class="lead">A fully normalized 3NF relational schema for a subscription-based EdTech platform — translating complex business rules (revenue splits, enrollment caps, creator payouts) directly into database architecture and T-SQL logic.</p>
+            <div class="cs-meta-pills">
+              <span class="cs-meta-pill">Microsoft SQL Server</span>
+              <span class="cs-meta-pill">T-SQL</span>
+              <span class="cs-meta-pill">SSMS</span>
+              <span class="cs-meta-pill">3NF Normalization</span>
+              <span class="cs-meta-pill">ERD Design</span>
+              <span class="cs-meta-pill">Financial Logic</span>
             </div>
           </div>
 
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Marketing Operations & Analytics</li>
-                <li><strong>Client</strong>: Cherie Amour</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-              </ul>
-            </div> -->
-            <div class="portfolio-description">
-              <h1>Portfolio Project: Kepler Online Learning Relational Database Design</h1>
-              <p><b>Tech Stack:</b> Microsoft SQL Server, T-SQL, SQL Server Management Studio (SSMS)</p>
-              <br>
-              <h2>Executive Summary</h2>
-              <p>Kepler is a subscription-based EdTech platform designed for independent creators. The business requires a high-integrity relational database to manage complex revenue distribution, enrollment constraints (3-course maximum), and multi-tiered user activity tracking. This project demonstrates the transition from business requirements to a fully normalized Third Normal Form (3NF) schema, complete with complex business logic handled via T-SQL.</p>
-              <br>
-              <!--Section 1-->
-              <h3>The Business Logic Challenge</h3>
-              <p>The project required implementing specific constraints directly into the database logic:</p>
-              <ul>
-                <li><b>Revenue Splitting:</b> A fixed $20 subscription fee where instructors receive $5 per active student, and the platform retains the remainder.</li>
-                <li><b>State Management:</b>Tracking "Active" status based on concurrent subscription payments and enrollment activity.</li>
-                <li><b>Capacity Constraints:</b>Rigid enforcement of enrollment limits (max 3 courses) to maintain platform performance and educational focus.</li>
-              </ul>
-              <br>
-              <!--Section 2-->
-              <h3>Data Architecture (ERD)</h3>
-              <p>The schema was designed to eliminate redundancy through strategic normalization. Key architectural decisions include:</p>
-              <ul>
-                <li><b>Composite Key Implementation:</b>Used in junction tables like Class_enrollment to manage many-to-many relationships.</li>
-                <li><b>Integrity Constraints:</b>Extensive use of <i>FOREIGN KEY</i> constraints and <i>BIT</i> data types for Boolean logic (e.g., passed or completed status) to ensure data durability.</li>
-              </ul>
-
-              <img src="assets/img/portfolio/ER_Diagram.png" class="figure-img img-fluid rounded" alt="ER Diagram">
-              <br>
-              <!--Section 3-->
-              <h3>Advanced T-SQL Implementation</h3>
-              <p>To demonstrate professional-grade SQL skills, the project focuses on set-based logic rather than procedural loops.</p>
-
-              <!------SQL CODE HERE------------>
-              <!-- Table A -->
-              <div class="container">
-                  <div class="sql-code-container">
-                      <div class="sql-code-header">
-                          <h3 class="sql-code-title">A. Strategic Revenue Analysis</h3>
-                          <p class="sql-code-description">Goal: Identify platform-heavy revenue streams where students are enrolled in one or fewer courses.</p>
-                      </div>
-                      
-                      <div class="sql-code-block">
-                          <pre><code><span class="sql-keyword">SELECT</span> 
-                  student_id, 
-                  <span class="sql-function">DATENAME</span>(month, activity_date) <span class="sql-keyword">AS</span> active_month, 
-                  (<span class="sql-number">20</span> - (<span class="sql-function">COUNT</span>(course_id) * <span class="sql-number">5</span>)) <span class="sql-keyword">AS</span> platform_net_revenue
-              <span class="sql-keyword">FROM</span> Online_Courses.db_datawriter.Student_Activity
-              <span class="sql-keyword">GROUP BY</span> student_id, <span class="sql-function">DATENAME</span>(month, activity_date)
-              <span class="sql-keyword">HAVING</span> (<span class="sql-number">20</span> - (<span class="sql-function">COUNT</span>(course_id) * <span class="sql-number">5</span>)) > <span class="sql-number">5</span>;</code></pre>
-                      </div>
-                  </div>
-              </div>
-           
-              <!-- Table B -->
-              <div class="container">
-                  <div class="sql-code-container">
-                      <div class="sql-code-header">
-                          <h3 class="sql-code-title">B. Data Aggregation &amp; Virtualization</h3>
-                          <p class="sql-code-description">Goal: Create a Virtual Gradebook using SQL Views to centralize student performance across assignments, exams, and module completions.</p>
-                      </div>
-                      
-                      <div class="sql-code-block">
-                          <pre><code><span class="sql-keyword">CREATE VIEW</span> db_datawriter.v_StudentGrades
-              <span class="sql-keyword">AS</span> (
-                  <span class="sql-keyword">SELECT</span> 
-                      a.student_id, 
-                      mo.course_id,
-                      (<span class="sql-function">SUM</span>(a.scored_points) + <span class="sql-function">SUM</span>(e.scored_points) + <span class="sql-function">SUM</span>(m.total_points_earned)) <span class="sql-keyword">AS</span> cumulative_score
-                  <span class="sql-keyword">FROM</span> Online_Courses.db_datawriter.Assignment_submission a
-                  <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Exam_submission e <span class="sql-keyword">ON</span> a.student_id = e.student_id
-                  <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Module_completion m <span class="sql-keyword">ON</span> e.student_id = m.student_id
-                  <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Module mo <span class="sql-keyword">ON</span> mo.module_id = m.module_id
-                  <span class="sql-keyword">GROUP BY</span> a.student_id, mo.course_id
-              );</code></pre>
-                      </div>
-                  </div>
-              </div>
-              <!--Table C-->
-              <div class="container">
-                      <div class="sql-code-container">
-                          <div class="sql-code-header">
-                              <h3 class="sql-code-title">C. The "Creator Payout" Financial Report</h3>
-                              <p class="sql-code-description">This query identifies "Active" students from the `Student_Activity` table for a specific month (January) and joins them with the `Course` and `CourseCreator` tables to calculate the $5-per-student payout.</p>
-                          </div>
-
-                          <div class="sql-code-block">
-                              <pre><code><span class="sql-comment">/* Requirement: Creators receive payout on the 5th for the previous month.
-                  Logic: Find all 'Active' status records for January 2026 and calculate $5 per student.
-                  */</span>
-                  <span class="sql-keyword">DECLARE</span> @PayoutMonth <span class="sql-keyword">INT</span> = <span class="sql-number">1</span>; <span class="sql-comment">-- January</span>
-                  <span class="sql-keyword">DECLARE</span> @PayoutYear <span class="sql-keyword">INT</span> = <span class="sql-number">2026</span>;
-                  <span class="sql-keyword">SELECT</span> 
-                      CC.CreatorID,
-                      CC.FirstName + <span class="sql-string">' '</span> + CC.LastName <span class="sql-keyword">AS</span> CreatorName,
-                      C.CourseTitle,
-                      <span class="sql-function">COUNT</span>(SA.StudentID) <span class="sql-keyword">AS</span> ActiveStudentCount,
-                      <span class="sql-function">COUNT</span>(SA.StudentID) * <span class="sql-number">5.00</span> <span class="sql-keyword">AS</span> TotalPayoutAmount
-                  <span class="sql-keyword">FROM</span> CourseCreator CC
-                  <span class="sql-keyword">JOIN</span> Course C <span class="sql-keyword">ON</span> CC.CreatorID = C.CreatorID
-                  <span class="sql-keyword">JOIN</span> StudentActivity SA <span class="sql-keyword">ON</span> C.CourseID = SA.CourseID
-                  <span class="sql-keyword">WHERE</span> SA.StudentCourseStatus = <span class="sql-string">'Active'</span>
-                    <span class="sql-keyword">AND</span> <span class="sql-function">MONTH</span>(SA.ActivityDate) = @PayoutMonth
-                    <span class="sql-keyword">AND</span> <span class="sql-function">YEAR</span>(SA.ActivityDate) = @PayoutYear
-                  <span class="sql-keyword">GROUP BY</span> CC.CreatorID, CC.FirstName, CC.LastName, C.CourseTitle
-                  <span class="sql-keyword">ORDER BY</span> TotalPayoutAmount <span class="sql-keyword">DESC</span>;</code></pre>
-                          </div>
-                      </div>
-              </div>
-              <br>
-              <!--Section 5-->
-              <h3>Future Scalability</h3>
-              <ul>
-                <li><b>Schema Extensibility:</b> Mention that the modular design (separating Course, Module, and Assignment) allows Kepler to easily add new content types, such as live workshops or peer-reviewed projects, without refactoring the core architecture.</li>
-                <li><b>Performance Optimization:</b> The next phase would involve implementing Stored Procedures for automated monthly invoicing and SQL agent jobs to process creator payouts on the 5th of every month.</li>
-              </ul>
-              <br>
-              
+          <!-- ══ 01 · EXECUTIVE SUMMARY ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">01</div>
+            <div class="cs-section-title">Executive Summary</div>
+            <p>Kepler is a subscription-based EdTech platform built for independent content creators. This project documents the full lifecycle of database design: translating a set of complex, non-trivial business requirements into a normalized relational schema, then implementing that logic in T-SQL with production-grade constraints and financial reporting queries.</p>
+            <p>The work demonstrates something beyond query authorship — the ability to <strong>design how data is stored</strong> before writing a single line of SQL. Schema decisions made at the ERD stage have cascading consequences for query complexity, data integrity, and system scalability. The choices documented here — normalization level, composite key placement, foreign key enforcement, junction table strategy — reflect deliberate architectural thinking rather than ad-hoc table creation.</p>
+            <div class="cs-insight">
+              <div class="cs-insight-label">Design Philosophy</div>
+              <p>The schema was optimized for <strong>data integrity over query convenience</strong>. Enforcing the 3-course enrollment cap and revenue logic at the database level — rather than in application code — means these rules hold regardless of which system or user accesses the data. Constraints belong in the schema; business logic belongs in the schema; application code should trust the database.</p>
             </div>
-          <!-- </div> -->
-        </div>
+          </div>
 
+          <hr class="cs-divider">
+
+          <!-- ══ 02 · BUSINESS REQUIREMENTS ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">02</div>
+            <div class="cs-section-title">Business Requirements — Translating Rules into Schema</div>
+            <p>Before modeling a single table, the business requirements were mapped into explicit constraints and data relationships. Each requirement below corresponds to a deliberate architectural decision in the schema.</p>
+
+            <div class="req-grid">
+              <div class="req-card">
+                <div class="req-icon"><i class="bi bi-currency-dollar"></i></div>
+                <div class="req-title">Revenue Splitting</div>
+                <p class="req-desc">Fixed $20 subscription fee. Instructors receive $5 per active enrolled student; platform retains the remainder. Must be calculable from stored activity data.</p>
+              </div>
+              <div class="req-card">
+                <div class="req-icon"><i class="bi bi-person-badge"></i></div>
+                <div class="req-title">State Management</div>
+                <p class="req-desc">"Active" status is conditional — requires both concurrent subscription payment and enrollment activity. Status must reflect real-time compound conditions.</p>
+              </div>
+              <div class="req-card">
+                <div class="req-icon"><i class="bi bi-slash-circle"></i></div>
+                <div class="req-title">Enrollment Cap (Max 3)</div>
+                <p class="req-desc">Students may not enroll in more than 3 courses simultaneously. This constraint must be enforced at the data layer, not just application logic.</p>
+              </div>
+              <div class="req-card">
+                <div class="req-icon"><i class="bi bi-layers"></i></div>
+                <div class="req-title">Multi-Level Activity Tracking</div>
+                <p class="req-desc">Student progress must be tracked across three separate layers: assignments, exams, and module completions — each with their own scoring and completion states.</p>
+              </div>
+              <div class="req-card">
+                <div class="req-icon"><i class="bi bi-calendar-check"></i></div>
+                <div class="req-title">Monthly Creator Payouts</div>
+                <p class="req-desc">Payouts are calculated on the 5th of each month for the prior month's active enrollment. Query must be reproducible, parameterized, and auditable.</p>
+              </div>
+              <div class="req-card">
+                <div class="req-icon"><i class="bi bi-diagram-3"></i></div>
+                <div class="req-title">Many-to-Many Relationships</div>
+                <p class="req-desc">Students enroll in multiple courses; creators publish multiple courses. These relationships require proper junction table architecture with composite keys.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 03 · NORMALIZATION ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">03</div>
+            <div class="cs-section-title">Normalization Strategy — From Raw Data to 3NF</div>
+            <p>Normalization is not a formality — it is the process of eliminating the structural conditions that cause data anomalies. A schema that is not normalized will eventually produce incorrect data through insertion, update, or deletion operations, often silently. The Kepler schema was designed to Third Normal Form (3NF), the standard for production relational databases.</p>
+
+            <div class="nf-steps">
+              <div class="nf-step">
+                <div class="nf-badge">1NF</div>
+                <div class="nf-content">
+                  <div class="nf-title">First Normal Form — Atomic Values</div>
+                  <p class="nf-desc">Every column holds a single, indivisible value. No repeating groups, no comma-separated lists inside a cell. Example: storing <code>course_id</code> as a separate row per enrollment rather than a concatenated string like <code>"course_1,course_2"</code> in the student record.</p>
+                </div>
+              </div>
+              <div class="nf-step">
+                <div class="nf-badge">2NF</div>
+                <div class="nf-content">
+                  <div class="nf-title">Second Normal Form — Full Functional Dependency</div>
+                  <p class="nf-desc">All non-key attributes depend on the <em>entire</em> primary key, not just part of it. Critical for composite-key tables like <code>Class_enrollment</code>: attributes like <code>enrollment_date</code> depend on the full <code>(student_id, course_id)</code> pair, not on either key alone.</p>
+                </div>
+              </div>
+              <div class="nf-step">
+                <div class="nf-badge">3NF</div>
+                <div class="nf-content">
+                  <div class="nf-title">Third Normal Form — No Transitive Dependencies</div>
+                  <p class="nf-desc">Non-key columns depend directly on the primary key, not on other non-key columns. Example: <code>instructor_name</code> must not live in the <code>Course</code> table — it belongs in <code>CourseCreator</code> and is accessed via <code>creator_id</code>. Storing it in both tables creates update anomaly risk and is a 3NF violation.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">Why this matters for Kepler specifically</div>
+              <p>Kepler's revenue logic depends on accurate active enrollment counts. A denormalized schema — where student-course relationships were stored as repeated values inside a single row — would make it impossible to correctly COUNT active students per course without complex parsing logic. Normalization made the revenue query straightforward because the data shape matches the question being asked.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 04 · SCHEMA ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">04</div>
+            <div class="cs-section-title">Schema Architecture — Entity Relationship Design</div>
+            <p>The schema is organized into three logical domains: <strong>Users</strong> (Students and CourseCreators), <strong>Content</strong> (Courses, Modules, Assignments, Exams), and <strong>Activity</strong> (enrollment, submissions, completions). Junction tables with composite primary keys manage the many-to-many relationships between these domains.</p>
+
+            <!-- ERD Visual -->
+            <figure class="figure" style="display:block; margin: 20px 0 28px;">
+              <img src="assets/img/portfolio/ER_Diagram.png" class="figure-img img-fluid rounded" alt="ER Diagram" style="width:100%; border:1px solid #dce8f0; border-radius:10px; box-shadow:0 2px 12px rgba(15,42,69,0.10);">
+              <figcaption class="figure-caption" style="font-family:'DM Mono',monospace; font-size:11px; color:#6c8fa0; margin-top:8px; text-align:center; letter-spacing:0.5px;">Entity Relationship Diagram — Kepler Online Learning Platform</figcaption>
+            </figure>
+
+                        <!-- Schema decisions table -->
+            <h5>Key Architectural Decisions</h5>
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead>
+                  <tr><th>Decision</th><th>Tables Affected</th><th>Reasoning</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Composite Primary Keys</strong></td>
+                    <td><code>Class_enrollment</code>, <code>Assignment_submission</code>, <code>Exam_submission</code>, <code>Module_completion</code></td>
+                    <td>Junction tables need a compound key to enforce uniqueness on the relationship itself — a student can only have one enrollment record per course, one submission per assignment.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>BIT columns for Boolean state</strong></td>
+                    <td><code>Student.subscription_status</code>, <code>Class_enrollment.is_active</code>, <code>Assignment_submission.passed</code>, <code>Module_completion.completed</code></td>
+                    <td>BIT enforces binary states at the type level. Using VARCHAR("Yes"/"No") would allow invalid values and require application-level validation. BIT moves constraint enforcement into the schema.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>enrollment_count in Student</strong></td>
+                    <td><code>Student</code></td>
+                    <td>Denormalized count cached to support the 3-course cap constraint check without requiring a COUNT query on every INSERT. Updated via trigger or stored procedure on enrollment change.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Separating Course, Module, Assignment</strong></td>
+                    <td>Content domain</td>
+                    <td>Each content type has distinct attributes and relationships. Collapsing them into a single table would require nullable columns and make queries ambiguous. Separation enables clean joins and allows new content types to be added without schema refactoring.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Student_Activity as activity log</strong></td>
+                    <td><code>Student_Activity</code></td>
+                    <td>Maintains a timestamped record of status per student-course combination per period. This is the source of truth for monthly revenue calculations and historical reporting — not a live state table.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 05 · REVENUE LOGIC ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">05</div>
+            <div class="cs-section-title">Revenue Logic &amp; Financial Model</div>
+            <p>The subscription fee structure creates a three-way financial relationship between the student, the creator, and the platform. This logic needed to be implemented so that any query against <code>Student_Activity</code> could derive correct revenue figures without relying on hardcoded application values.</p>
+
+            <div class="rev-model">
+              <div class="rev-block">
+                <div class="rev-amount">$20</div>
+                <div class="rev-label">Student subscription</div>
+              </div>
+              <div class="rev-arrow">→</div>
+              <div class="rev-split"></div>
+              <div class="rev-block instructor">
+                <div class="rev-amount">$5</div>
+                <div class="rev-label">Per active student<br>to course creator</div>
+              </div>
+              <div class="rev-split"></div>
+              <div class="rev-block platform">
+                <div class="rev-amount">$20 − (n × $5)</div>
+                <div class="rev-label">Platform net<br>per student</div>
+              </div>
+            </div>
+
+            <div class="cs-warning">
+              <p><strong>The cap matters financially:</strong> With a 3-course maximum, the minimum platform revenue per student is $5 (3 courses × $5 = $15 paid out, $5 retained). A student enrolled in 1 course generates $15 for the platform. The revenue query below identifies platform-favorable enrollment patterns.</p>
+            </div>
+
+            <!-- Query A: Revenue Analysis -->
+            <div class="sql-block-wrap">
+              <div class="sql-code-header">
+                <p class="sql-code-title">A — Strategic Revenue Analysis</p>
+                <p class="sql-code-description">Identifies students enrolled in ≤1 course — where platform net revenue exceeds $5 — by month</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-keyword">SELECT</span>
+    student_id,
+    <span class="sql-function">DATENAME</span>(<span class="sql-string">month</span>, activity_date)           <span class="sql-keyword">AS</span> active_month,
+    (<span class="sql-number">20</span> - (<span class="sql-function">COUNT</span>(course_id) * <span class="sql-number">5</span>))         <span class="sql-keyword">AS</span> platform_net_revenue
+<span class="sql-keyword">FROM</span> Online_Courses.db_datawriter.Student_Activity
+<span class="sql-keyword">GROUP BY</span>
+    student_id,
+    <span class="sql-function">DATENAME</span>(<span class="sql-string">month</span>, activity_date)
+<span class="sql-keyword">HAVING</span> (<span class="sql-number">20</span> - (<span class="sql-function">COUNT</span>(course_id) * <span class="sql-number">5</span>)) &gt; <span class="sql-number">5</span>;
+<span class="sql-comment">-- Returns students generating >$5 for the platform
+-- i.e., those enrolled in fewer than 3 active courses</span></pre>
+              </div>
+            </div>
+
+            <!-- Query C: Creator Payout -->
+            <div class="sql-block-wrap">
+              <div class="sql-code-header">
+                <p class="sql-code-title">C — Monthly Creator Payout Report</p>
+                <p class="sql-code-description">Parameterized query calculating $5-per-active-student payout per creator for a given month</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-comment">/* Requirement: Creators receive payout on the 5th for the previous month.
+   Logic: Count 'Active' status records per creator per course, multiply by $5. */</span>
+
+<span class="sql-keyword">DECLARE</span> <span class="sql-declare">@PayoutMonth</span> <span class="sql-type">INT</span> = <span class="sql-number">1</span>;   <span class="sql-comment">-- January</span>
+<span class="sql-keyword">DECLARE</span> <span class="sql-declare">@PayoutYear</span>  <span class="sql-type">INT</span> = <span class="sql-number">2026</span>;
+
+<span class="sql-keyword">SELECT</span>
+    CC.CreatorID,
+    CC.FirstName + <span class="sql-string">' '</span> + CC.LastName          <span class="sql-keyword">AS</span> CreatorName,
+    C.CourseTitle,
+    <span class="sql-function">COUNT</span>(SA.StudentID)                        <span class="sql-keyword">AS</span> ActiveStudentCount,
+    <span class="sql-function">COUNT</span>(SA.StudentID) * <span class="sql-number">5.00</span>               <span class="sql-keyword">AS</span> TotalPayoutAmount
+<span class="sql-keyword">FROM</span>       CourseCreator CC
+<span class="sql-keyword">JOIN</span>       Course C        <span class="sql-keyword">ON</span> CC.CreatorID = C.CreatorID
+<span class="sql-keyword">JOIN</span>       StudentActivity SA <span class="sql-keyword">ON</span> C.CourseID = SA.CourseID
+<span class="sql-keyword">WHERE</span>  SA.StudentCourseStatus = <span class="sql-string">'Active'</span>
+  <span class="sql-keyword">AND</span>  <span class="sql-function">MONTH</span>(SA.ActivityDate) = <span class="sql-declare">@PayoutMonth</span>
+  <span class="sql-keyword">AND</span>  <span class="sql-function">YEAR</span>(SA.ActivityDate)  = <span class="sql-declare">@PayoutYear</span>
+<span class="sql-keyword">GROUP BY</span>
+    CC.CreatorID, CC.FirstName, CC.LastName,
+    C.CourseTitle
+<span class="sql-keyword">ORDER BY</span> TotalPayoutAmount <span class="sql-keyword">DESC</span>;</pre>
+              </div>
+            </div>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">Why parameterization matters</div>
+              <p>Using <code>DECLARE</code> variables instead of hardcoded month/year values makes this query reusable for any payout cycle without code modification. This is the foundational pattern for Stored Procedures — the next phase would wrap this in a <code>CREATE PROCEDURE</code> block and call it via a SQL Server Agent job on the 5th of each month.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 06 · ADVANCED T-SQL ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">06</div>
+            <div class="cs-section-title">Advanced T-SQL — Views &amp; Set-Based Logic</div>
+            <p>The project deliberately emphasizes <strong>set-based logic over procedural loops</strong>. SQL is a set-based language — queries that operate on result sets outperform row-by-row cursor operations by orders of magnitude at scale. The Virtual Gradebook below is an example of aggregating across three separate submission tables in a single pass using <code>INNER JOIN</code> chains.</p>
+
+            <!-- Query B: Gradebook View -->
+            <div class="sql-block-wrap">
+              <div class="sql-code-header">
+                <p class="sql-code-title">B — Virtual Gradebook View</p>
+                <p class="sql-code-description">SQL View aggregating cumulative student scores across assignments, exams, and module completions</p>
+              </div>
+              <div class="sql-code-block">
+<pre><span class="sql-keyword">CREATE VIEW</span> db_datawriter.v_StudentGrades <span class="sql-keyword">AS</span> (
+    <span class="sql-keyword">SELECT</span>
+        a.student_id,
+        mo.course_id,
+        (
+            <span class="sql-function">SUM</span>(a.scored_points) +
+            <span class="sql-function">SUM</span>(e.scored_points) +
+            <span class="sql-function">SUM</span>(m.total_points_earned)
+        ) <span class="sql-keyword">AS</span> cumulative_score
+    <span class="sql-keyword">FROM</span>       Online_Courses.db_datawriter.Assignment_submission a
+    <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Exam_submission    e  <span class="sql-keyword">ON</span> a.student_id = e.student_id
+    <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Module_completion  m  <span class="sql-keyword">ON</span> e.student_id = m.student_id
+    <span class="sql-keyword">INNER JOIN</span> Online_Courses.db_datawriter.Module             mo <span class="sql-keyword">ON</span> mo.module_id = m.module_id
+    <span class="sql-keyword">GROUP BY</span>
+        a.student_id,
+        mo.course_id
+);</pre>
+              </div>
+            </div>
+
+            <h5>Why a View — Not a Table?</h5>
+            <p>The gradebook is implemented as a <strong>SQL View</strong> (a stored query) rather than a materialized table for two reasons. First, grades are derived values — they should always reflect current submission data, not a snapshot that can fall out of sync. Second, a View acts as a security boundary: downstream users or applications can query <code>v_StudentGrades</code> without direct access to the underlying submission tables, limiting exposure of raw assessment data.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead>
+                  <tr><th>Pattern Used</th><th>Technique</th><th>Benefit</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Set-based aggregation</strong></td>
+                    <td>Single query with three <code>INNER JOIN</code> chains and <code>SUM()</code></td>
+                    <td>One pass through the data vs. iterative cursor loops — scales to millions of rows</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SQL View abstraction</strong></td>
+                    <td><code>CREATE VIEW</code> over raw tables</td>
+                    <td>Always-current derived data; access control boundary; simplifies downstream queries</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Parameterized reporting</strong></td>
+                    <td><code>DECLARE</code> variables in payout query</td>
+                    <td>Reusable without code changes; Stored Procedure-ready pattern</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Constraint-first design</strong></td>
+                    <td><code>FOREIGN KEY</code>, <code>BIT</code> types, composite PKs</td>
+                    <td>Business rules enforced at data layer — cannot be bypassed by application code</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 07 · FUTURE SCALABILITY ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">07</div>
+            <div class="cs-section-title">Future Scalability &amp; Roadmap</div>
+            <p>The modular schema design enables Kepler to extend its content offerings and automate financial operations without refactoring the core architecture. The separation of Course, Module, and Assessment into distinct tables is the foundation for both extensibility and performance optimization.</p>
+
+            <div class="roadmap-grid">
+              <div class="roadmap-card">
+                <div class="roadmap-phase">Phase 2 · Automation</div>
+                <div class="roadmap-title">Stored Procedures + SQL Agent Jobs</div>
+                <p class="roadmap-desc">Wrap the creator payout query in a <code>CREATE PROCEDURE</code> block and schedule it via SQL Server Agent to execute automatically on the 5th of each month — eliminating manual reporting and creating an auditable execution log.</p>
+              </div>
+              <div class="roadmap-card">
+                <div class="roadmap-phase">Phase 3 · Extensibility</div>
+                <div class="roadmap-title">New Content Types</div>
+                <p class="roadmap-desc">Adding live workshops, peer-reviewed projects, or cohort sessions requires only new tables (e.g., <code>Workshop</code>, <code>PeerReview</code>) with foreign keys back to <code>Course</code>. The core schema is untouched — this is the payoff of proper normalization.</p>
+              </div>
+              <div class="roadmap-card">
+                <div class="roadmap-phase">Phase 4 · Performance</div>
+                <div class="roadmap-title">Index Optimization</div>
+                <p class="roadmap-desc">As Student_Activity grows, non-clustered indexes on <code>(course_id, activity_date, student_course_status)</code> would dramatically reduce the monthly payout query's I/O cost by enabling index seeks instead of full table scans.</p>
+              </div>
+              <div class="roadmap-card">
+                <div class="roadmap-phase">Phase 5 · Integrity</div>
+                <div class="roadmap-title">Enrollment Cap Trigger</div>
+                <p class="roadmap-desc">Implement an <code>AFTER INSERT</code> trigger on <code>Class_enrollment</code> that checks <code>enrollment_count</code> against the 3-course limit and raises an error if exceeded — moving the business rule fully into the database engine.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 08 · TOOLS ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">08</div>
+            <div class="cs-section-title">Tools &amp; Stack</div>
+            <div class="tech-stack">
+              <div class="tech-pill"><i class="bi bi-database"></i> Microsoft SQL Server</div>
+              <div class="tech-pill"><i class="bi bi-code-slash"></i> T-SQL</div>
+              <div class="tech-pill"><i class="bi bi-window-desktop"></i> SQL Server Management Studio</div>
+              <div class="tech-pill"><i class="bi bi-diagram-3"></i> ERD Design (Manual)</div>
+              <div class="tech-pill"><i class="bi bi-shield-check"></i> 3NF Normalization</div>
+              <div class="tech-pill"><i class="bi bi-eye"></i> SQL Views</div>
+            </div>
+          </div>
+
+        </div><!-- /portfolio-description -->
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </section>
+  </main>
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <!-- <footer id="footer">
+  <footer id="footer">
     <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>iPortfolio</span></strong>
-      </div>
-      <div class="credits"> -->
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+      <div class="copyright">&copy; <strong><span>Sharon Velasquez</span></strong></div>
     </div>
-  </footer> --><!-- End  Footer -->
+  </footer>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Bootstrap JS (optional, for interactive components in table) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!--The code below belongs to the R markdown file-->
-  <script>
-
-    // add bootstrap table styles to pandoc tables
-    function bootstrapStylePandocTables() {
-      $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
-    }
-    $(document).ready(function () {
-      bootstrapStylePandocTables();
-    });
-    
-    
-    </script>
-    
-    <!-- tabsets -->
-    
-    <script>
-    $(document).ready(function () {
-      window.buildTabsets("TOC");
-    });
-    
-    $(document).ready(function () {
-      $('.tabset-dropdown > .nav-tabs > li').click(function () {
-        $(this).parent().toggleClass('nav-tabs-open');
-      });
-    });
-    </script>
-    
-    <!-- code folding -->
-    
-    
-    <!-- dynamically load mathjax for compatibility with self-contained -->
-    <script>
-      (function () {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-        document.getElementsByTagName("head")[0].appendChild(script);
-      })();
-    </script>
 </body>
-
 </html>

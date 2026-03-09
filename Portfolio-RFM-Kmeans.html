@@ -481,8 +481,8 @@
 <pre><span class="sql-keyword">CREATE OR REPLACE VIEW</span> `ecommerce-store-489019.client_analysis.RFM_scores` <span class="sql-keyword">AS</span> (
   <span class="sql-keyword">SELECT</span> *,
     <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_recency <span class="sql-keyword">ASC</span>)    <span class="sql-keyword">AS</span> R_Score,
-    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_frequency <span class="sql-keyword">DESC</span>) <span class="sql-keyword">AS</span> F_Score,
-    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_monetary <span class="sql-keyword">DESC</span>)  <span class="sql-keyword">AS</span> M_Score
+    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_frequency <span class="sql-keyword">ASC</span>) <span class="sql-keyword">AS</span> F_Score,
+    <span class="sql-function">NTILE</span>(<span class="sql-number">5</span>) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> raw_monetary <span class="sql-keyword">ASC</span>)  <span class="sql-keyword">AS</span> M_Score
   <span class="sql-keyword">FROM</span> (
     <span class="sql-keyword">SELECT</span> user_id,
       <span class="sql-function">MAX</span>(created_at)                    <span class="sql-keyword">AS</span> raw_recency,
@@ -624,51 +624,51 @@
                 <tbody>
                   <tr>
                     <td><span class="seg-badge seg-neutral">Hibernating</span></td>
-                    <td><code>C4</code></td>
-                    <td>5,111</td>
-                    <td>682 days</td>
-                    <td class="highlight-cell">$128.28</td>
-                    <td>Premium win-back offer warranted</td>
+                    <td><code>C3</code></td>
+                    <td>6,518</td>
+                    <td>700 days</td>
+                    <td class="highlight-cell">$118.69</td>
+                    <td>High-spend lapsed buyers — premium win-back offer warranted</td>
                   </tr>
                   <tr>
                     <td><span class="seg-badge seg-neutral">Hibernating</span></td>
                     <td><code>C5</code></td>
-                    <td>6,627</td>
-                    <td>691 days</td>
-                    <td>$63.15</td>
-                    <td>Standard reactivation or suppress</td>
+                    <td>16,436</td>
+                    <td>856 days</td>
+                    <td>$61.84</td>
+                    <td>Low-spend lapsed — standard reactivation or suppress</td>
                   </tr>
                   <tr>
-                    <td><span class="seg-badge seg-info">Potential Loyalists</span></td>
-                    <td><code>C4</code></td>
-                    <td>26,016</td>
-                    <td>307 days</td>
-                    <td class="highlight-cell">$136.76</td>
-                    <td>Highest AOV — prioritize for loyalty program now</td>
+                    <td><span class="seg-badge seg-risk">Cannot Lose Them</span></td>
+                    <td><code>C3</code></td>
+                    <td>1,365</td>
+                    <td>820 days</td>
+                    <td class="highlight-cell">$162.38</td>
+                    <td>Highest AOV in entire dataset — immediate premium outreach</td>
                   </tr>
                   <tr>
-                    <td><span class="seg-badge seg-info">Potential Loyalists</span></td>
-                    <td><code>C1</code></td>
-                    <td>5,560</td>
-                    <td>688 days</td>
-                    <td>$108.42</td>
-                    <td>Older purchase date — needs re-engagement first</td>
+                    <td><span class="seg-badge seg-risk">At Risk</span></td>
+                    <td><code>C3</code></td>
+                    <td>3,839</td>
+                    <td>798 days</td>
+                    <td class="highlight-cell">$135.98</td>
+                    <td>High-value at-risk group — strongest ROI win-back target</td>
                   </tr>
                   <tr>
                     <td><span class="seg-badge seg-neutral">Lost</span></td>
                     <td><code>C4</code></td>
-                    <td>3,328</td>
-                    <td>980 days</td>
-                    <td class="highlight-cell">$119.71</td>
-                    <td>High historical AOV — worth annual win-back attempt</td>
+                    <td>10,544</td>
+                    <td>1,230 days</td>
+                    <td class="highlight-cell">$114.38</td>
+                    <td>High historical spend — worth targeted annual win-back</td>
                   </tr>
                   <tr>
                     <td><span class="seg-badge seg-info">New Customers</span></td>
-                    <td><code>C4</code></td>
-                    <td>19,958</td>
-                    <td>221 days</td>
-                    <td class="highlight-cell">$124.17</td>
-                    <td>High first-order spend — priority for nurture series</td>
+                    <td><code>C3</code></td>
+                    <td>21,779</td>
+                    <td>231 days</td>
+                    <td class="highlight-cell">$111.93</td>
+                    <td>Recent high-spenders — priority for nurture series</td>
                   </tr>
                 </tbody>
               </table>
@@ -708,21 +708,21 @@
                   <span class="s-name">At Risk</span>
                   <span class="priority-badge p-high">High</span>
                 </div>
-                <p>Win-back campaign with time-sensitive discount. Focus paid spend on C4 sub-cluster (AOV ~$99) — highest expected return per dollar.</p>
+                <p>Win-back campaign with time-sensitive discount. Focus paid spend on C3 sub-cluster (AOV ~$136) — highest expected return per dollar.</p>
               </div>
               <div class="strategy-card">
                 <div class="s-header">
-                  <span class="s-name">Potential Loyalists (C4)</span>
+                  <span class="s-name">Cannot Lose Them (C3)</span>
                   <span class="priority-badge p-high">High</span>
                 </div>
-                <p>Introduce loyalty program benefits now. $136 AOV and recent activity — this is the highest-value conversion opportunity in the database.</p>
+                <p>Immediate 1:1 outreach. At $162 AOV, this is the highest-value sub-segment in the entire analysis — every day of inaction increases churn risk.</p>
               </div>
               <div class="strategy-card">
                 <div class="s-header">
-                  <span class="s-name">New Customers (C4)</span>
+                  <span class="s-name">New Customers (C3)</span>
                   <span class="priority-badge p-medium">Medium-High</span>
                 </div>
-                <p>Launch a personalized post-purchase nurture series. $124 first-order AOV signals willingness to spend — build the habit while momentum is fresh.</p>
+                <p>Launch a personalized post-purchase nurture series. $112 first-order AOV signals willingness to spend — build the habit while momentum is fresh.</p>
               </div>
               <div class="strategy-card">
                 <div class="s-header">
