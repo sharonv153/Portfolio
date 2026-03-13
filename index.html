@@ -488,12 +488,18 @@
       color: var(--navy);
       font-weight: 500;
     }
-
+ 
     /* ══════════════════════════════
        SECTION TITLE (reusable)
     ══════════════════════════════ */
     .section-header { margin-bottom: 40px; }
-
+ 
+ 
+    /* ── Hard overrides for iPortfolio template portfolio conflicts ── */
+    #portfolio .portfolio-wrap { position: relative !important; overflow: visible !important; height: auto !important; }
+    #portfolio .portfolio-wrap img { position: static !important; width: 100% !important; height: auto !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+    #portfolio .portfolio-wrap::before,
+    #portfolio .portfolio-wrap::after { display: none !important; }
     /* ══════════════════════════════
        OVERRIDE: iPortfolio sidebar to match blue theme
     ══════════════════════════════ */
@@ -507,12 +513,195 @@
       color: rgba(255,255,255,0.7);
     }
     #header .social-links a:hover { background: var(--blue); color: #fff; }
-
+ 
     /* breadcrumb override */
     #breadcrumbs { background: var(--blue-light); }
     #breadcrumbs h2 { color: var(--navy); }
     #breadcrumbs ol li a { color: var(--blue); }
-
+ 
+ 
+    /* ── Contact Form ── */
+    .contact-split {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .contact-split { grid-template-columns: 1fr; } }
+ 
+    .contact-info-block { display: flex; flex-direction: column; gap: 0; }
+    .contact-info-block .contact-card {
+      margin-bottom: 0;
+    }
+ 
+    /* Form card */
+    .cf-card {
+      background: #fff;
+      border: 1px solid var(--blue-border);
+      border-radius: 14px;
+      padding: 32px 32px 28px;
+      box-shadow: 0 2px 16px rgba(15,42,69,0.07);
+    }
+    .cf-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .cf-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 560px) { .cf-row { grid-template-columns: 1fr; } }
+    .cf-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .cf-group.full { grid-column: 1 / -1; }
+    .cf-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 500;
+    }
+    .cf-label .opt {
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      font-size: 10px;
+    }
+    .cf-input,
+    .cf-select,
+    .cf-textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      color: var(--navy);
+      background: #f7fbff;
+      border: 1px solid var(--blue-border);
+      border-radius: 7px;
+      padding: 10px 13px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .cf-input:focus,
+    .cf-select:focus,
+    .cf-textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(27,79,114,0.08);
+      background: #fff;
+    }
+    .cf-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B4F72' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+    .cf-textarea { resize: vertical; min-height: 100px; }
+    .cf-radio-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cf-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--text-body);
+      cursor: pointer;
+      padding: 8px 14px;
+      border: 1px solid var(--blue-border);
+      border-radius: 6px;
+      background: #f7fbff;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .cf-radio-label:has(input:checked) {
+      border-color: var(--blue);
+      background: var(--blue-light);
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .cf-radio-label input { display: none; }
+    .cf-submit {
+      width: 100%;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .cf-submit:hover { background: var(--blue); transform: translateY(-1px); }
+    .cf-submit:disabled { background: #9ab0c0; cursor: not-allowed; transform: none; }
+ 
+    /* Success message */
+    .cf-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      gap: 14px;
+    }
+    .cf-success.show { display: flex; }
+    .cf-success-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #d4edda;
+      color: #155724;
+      font-size: 26px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cf-success h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin: 0;
+    }
+    .cf-success p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .cf-error-msg {
+      font-size: 12px;
+      color: #c0392b;
+      font-family: 'DM Sans', sans-serif;
+      display: none;
+      margin-top: 3px;
+    }
+    .cf-field-error .cf-input,
+    .cf-field-error .cf-select,
+    .cf-field-error .cf-textarea { border-color: #c0392b; }
+    .cf-field-error .cf-error-msg { display: block; }
+ 
   </style>
 </head>
 
@@ -907,11 +1096,14 @@
       <div class="container">
         <div class="section-header">
           <div class="sv-label">05 — Contact</div>
-          <h2 class="sv-title sv-title-rule">Get In Touch</h2>
-          <p class="sv-body" style="max-width:480px;">If you wish to connect, follow any of my social accounts or reach me directly by email.</p>
+          <h2 class="sv-title sv-title-rule">Let's Work Together</h2>
+          <p class="sv-body" style="max-width:540px;">Whether you're an agency looking for a contractor or a business that needs marketing automation, data engineering, or AI — I'd love to hear from you.</p>
         </div>
-        <div class="row">
-          <div class="col-lg-5">
+ 
+        <div class="contact-split">
+ 
+          <!-- Left: info -->
+          <div class="contact-info-block">
             <div class="contact-card">
               <div class="contact-item">
                 <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
@@ -920,13 +1112,13 @@
                   <div class="contact-val">Washington State, USA</div>
                 </div>
               </div>
-              <div class="contact-item">
+              <!-- <div class="contact-item">
                 <div class="contact-icon"><i class="bi bi-envelope"></i></div>
                 <div>
                   <div class="contact-label">Email</div>
-                  <div class="contact-val"><a href="/cdn-cgi/l/email-protection#6f1c070e1d000141195e5a5c2f07001b020e0603410c0002" style="color:var(--navy); text-decoration:none;"><span class="__cf_email__" data-cfemail="7a09121b081514540c4b4f493a12150e171b131654191517">[email&#160;protected]</span></a></div>
+                  <div class="contact-val"><a href="/cdn-cgi/l/email-protection#87f4efe6f5e8e9a9f1b6b2b4c7efe8f3eae6eeeba9e4e8ea" style="color:var(--navy); text-decoration:none;"><span class="__cf_email__" data-cfemail="d2a1bab3a0bdbcfca4e3e7e192babda6bfb3bbbefcb1bdbf">[email&#160;protected]</span></a></div>
                 </div>
-              </div>
+              </div> -->
               <div class="contact-item">
                 <div class="contact-icon"><i class="bx bxl-linkedin" style="font-size:16px;"></i></div>
                 <div>
@@ -943,15 +1135,94 @@
               </div>
             </div>
           </div>
-        </div>
+ 
+          <!-- Right: form -->
+          <div class="cf-card">
+ 
+            <!-- Form -->
+            <div id="cf-form-wrap">
+              <div class="cf-title">Send a Message</div>
+              <p class="cf-subtitle">Fill in the details below and I'll get back to you within 1–2 business days.</p>
+ 
+              <form id="cf-form" novalidate>
+ 
+                <div class="cf-row">
+                  <div class="cf-group" id="grp-name">
+                    <label class="cf-label" for="cf-name">Full Name</label>
+                    <input class="cf-input" type="text" id="cf-name" name="from_name" placeholder="Jane Smith" autocomplete="name">
+                    <span class="cf-error-msg">Please enter your name.</span>
+                  </div>
+                  <div class="cf-group" id="grp-email">
+                    <label class="cf-label" for="cf-email">Email</label>
+                    <input class="cf-input" type="email" id="cf-email" name="from_email" placeholder="jane@agency.com" autocomplete="email">
+                    <span class="cf-error-msg">Please enter a valid email.</span>
+                  </div>
+                </div>
+ 
+                <div class="cf-row">
+                  <div class="cf-group" id="grp-company">
+                    <label class="cf-label" for="cf-company">Company <span class="opt">(optional)</span></label>
+                    <input class="cf-input" type="text" id="cf-company" name="company" placeholder="Agency or Company name" autocomplete="organization">
+                  </div>
+                  <div class="cf-group" id="grp-phone">
+                    <label class="cf-label" for="cf-phone">Phone <span class="opt">(optional)</span></label>
+                    <input class="cf-input" type="tel" id="cf-phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+                  </div>
+                  <div class="cf-group" id="grp-service">
+                    <label class="cf-label" for="cf-service">Service Interested In</label>
+                    <select class="cf-select" id="cf-service" name="service">
+                      <option value="" disabled selected>Select a service…</option>
+                      <option value="Marketing Automation">Marketing Automation</option>
+                      <option value="Data Engineering & Analytics">Data Engineering &amp; Analytics</option>
+                      <option value="AI Agents & Chatbots">AI Agents &amp; Chatbots</option>
+                      <option value="Not sure yet">Not sure yet — let's talk</option>
+                    </select>
+                    <span class="cf-error-msg">Please select a service.</span>
+                  </div>
+                </div>
+ 
+                <div class="cf-group" id="grp-type">
+                  <label class="cf-label">You are a…</label>
+                  <div class="cf-radio-group">
+                    <label class="cf-radio-label"><input type="radio" name="contact_type" value="Recruiter"> Recruiter</label>
+                    <label class="cf-radio-label"><input type="radio" name="contact_type" value="Contract Client"> Contract Client</label>
+                    <label class="cf-radio-label"><input type="radio" name="contact_type" value="Agency"> Agency</label>
+                    <label class="cf-radio-label"><input type="radio" name="contact_type" value="Other"> Other</label>
+                  </div>
+                  <span class="cf-error-msg" id="type-error">Please select one.</span>
+                </div>
+ 
+                <div class="cf-group full" id="grp-message">
+                  <label class="cf-label" for="cf-message">Message</label>
+                  <textarea class="cf-textarea" id="cf-message" name="message" placeholder="Tell me about your project or what you're looking for…"></textarea>
+                  <span class="cf-error-msg">Please add a short message.</span>
+                </div>
+ 
+                <button type="submit" class="cf-submit" id="cf-btn">
+                  <i class="bi bi-send"></i>
+                  <span id="cf-btn-text">Send Message</span>
+                </button>
+ 
+              </form>
+            </div>
+ 
+            <!-- Success state -->
+            <div class="cf-success" id="cf-success">
+              <div class="cf-success-icon"><i class="bi bi-check-lg"></i></div>
+              <h4>Message Sent!</h4>
+              <p>Thanks for reaching out — I'll get back to you within 1–2 business days.</p>
+            </div>
+ 
+          </div><!-- /cf-card -->
+        </div><!-- /contact-split -->
       </div>
     </section>
-
+ 
   </main>
-
+ 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+ 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -961,6 +1232,95 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/js/main.js"></script>
-
+ 
+ 
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ─────────────────────────────────────────────────────────────
+    // EmailJS Configuration
+    // 1. Sign up at https://www.emailjs.com (free)
+    // 2. Add your Gmail as an Email Service → copy Service ID below
+    // 3. Create an Email Template → copy Template ID below
+    //    Template variables to use: {{from_name}}, {{from_email}},
+    //    {{phone}}, {{service}}, {{contact_type}}, {{message}}
+    // 4. Go to Account → copy your Public Key below
+    // ─────────────────────────────────────────────────────────────
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← replace
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace
+ 
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+ 
+    document.getElementById('cf-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+ 
+      // ── Validation ──
+      let valid = true;
+ 
+      const name    = document.getElementById('cf-name');
+      const email   = document.getElementById('cf-email');
+      const service = document.getElementById('cf-service');
+      const message = document.getElementById('cf-message');
+      const typeRadios = document.querySelectorAll('input[name="contact_type"]');
+      const typeChecked = [...typeRadios].some(r => r.checked);
+ 
+      const fields = [
+        { el: name,    grp: 'grp-name',    check: () => name.value.trim().length > 1 },
+        { el: email,   grp: 'grp-email',   check: () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()) },
+        { el: service, grp: 'grp-service', check: () => service.value !== '' },
+        { el: message, grp: 'grp-message', check: () => message.value.trim().length > 5 },
+      ];
+ 
+      fields.forEach(({ el, grp, check }) => {
+        const group = document.getElementById(grp);
+        if (!check()) {
+          group.classList.add('cf-field-error');
+          valid = false;
+        } else {
+          group.classList.remove('cf-field-error');
+        }
+      });
+ 
+      // Radio validation
+      const typeGrp = document.getElementById('grp-type');
+      if (!typeChecked) {
+        document.getElementById('type-error').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('type-error').style.display = 'none';
+      }
+ 
+      if (!valid) return;
+ 
+      // ── Submit ──
+      const btn     = document.getElementById('cf-btn');
+      const btnText = document.getElementById('cf-btn-text');
+      btn.disabled  = true;
+      btnText.textContent = 'Sending…';
+ 
+      const contactType = [...typeRadios].find(r => r.checked)?.value || '';
+ 
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name:    name.value.trim(),
+        company:      document.getElementById('cf-company').value.trim() || 'Not provided',
+        from_email:   email.value.trim(),
+        phone:        document.getElementById('cf-phone').value.trim() || 'Not provided',
+        service:      service.value,
+        contact_type: contactType,
+        message:      message.value.trim(),
+      })
+      .then(() => {
+        document.getElementById('cf-form-wrap').style.display = 'none';
+        document.getElementById('cf-success').classList.add('show');
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err);
+        btnText.textContent = 'Failed — try again';
+        btn.disabled = false;
+      });
+    });
+  </script>
+ 
 </body>
 </html>
