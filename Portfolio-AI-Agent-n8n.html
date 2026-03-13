@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>AI Customer Support Automation | Sharon Velasquez</title>
+  <meta name="author" content="Sharon Velasquez" />
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .portfolio-description { font-family: 'DM Sans', sans-serif; }
+
+    /* ── Hero ── */
+    .cs-hero {
+      background: linear-gradient(135deg, #0f2a45 0%, #1B4F72 60%, #1a6a9a 100%);
+      border-radius: 12px;
+      padding: 48px 44px 44px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 120px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .cs-hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    .cs-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .cs-hero .lead {
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 640px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .cs-meta-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cs-meta-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── Section headings ── */
+    .cs-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      margin-bottom: 6px;
+    }
+    .cs-section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #0f2a45;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #dce8f0;
+    }
+    .cs-section { margin-bottom: 48px; }
+    .cs-divider { border: none; border-top: 1px solid #dce8f0; margin: 40px 0; }
+
+    /* ── Body text ── */
+    .portfolio-description p {
+      font-size: 14.5px;
+      color: #3d4f5c;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .portfolio-description h5 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      color: #0f2a45;
+      margin: 28px 0 10px;
+      font-size: 15px;
+    }
+
+    /* ── Callout boxes ── */
+    .cs-insight {
+      background: #eaf4fb;
+      border-left: 4px solid #1B4F72;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-insight-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1B4F72;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .cs-insight p { margin: 0; font-size: 14px !important; color: #0f2a45 !important; }
+    .cs-warning {
+      background: #fff8e7;
+      border-left: 4px solid #e6a817;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .cs-warning p { margin: 0; font-size: 14px !important; color: #5a4000 !important; }
+    .cs-warning strong { color: #7a5800; }
+
+    /* ── Project meta table ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: #dce8f0;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0 0 32px;
+    }
+    .meta-cell {
+      background: #fff;
+      padding: 14px 18px;
+    }
+    .meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6c8fa0;
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0f2a45;
+      line-height: 1.4;
+    }
+
+    /* ── Pain point cards ── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+    .pain-card {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      border-top: 3px solid #1B4F72;
+    }
+    .pain-icon {
+      font-size: 20px;
+      color: #1B4F72;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .pain-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #0f2a45;
+      margin-bottom: 6px;
+    }
+    .pain-desc {
+      font-size: 12.5px;
+      color: #6c8fa0;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Pipeline flow diagram ── */
+    .pipeline-wrap {
+      background: #1a1f2e;
+      border-radius: 12px;
+      padding: 28px 24px 24px;
+      margin: 20px 0 28px;
+      overflow-x: auto;
+    }
+    .pipeline-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 14px;
+    }
+    .pipeline-flow {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      flex-wrap: nowrap;
+      min-width: 700px;
+    }
+    .pipeline-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+      min-width: 80px;
+    }
+    .pipeline-node-box {
+      background: #252b3b;
+      border: 1px solid #3a4560;
+      border-radius: 8px;
+      padding: 10px 10px 8px;
+      text-align: center;
+      width: 100%;
+      position: relative;
+    }
+    .pipeline-node-box.trigger  { border-color: #569cd6; background: #1e3a5f; }
+    .pipeline-node-box.filter   { border-color: #e6a817; background: #2e2510; }
+    .pipeline-node-box.process  { border-color: #4ec9b0; background: #0f2e2a; }
+    .pipeline-node-box.ai       { border-color: #c586c0; background: #2a1535; }
+    .pipeline-node-box.output   { border-color: #6a9955; background: #0f2210; }
+    .pipeline-node-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 4px;
+    }
+    .pipeline-node-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      color: #cdd6f4;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+    .pipeline-node-sub {
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+    .pipeline-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 3px;
+      padding-top: 22px;
+      color: rgba(255,255,255,0.2);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .pipeline-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.45);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Stack layer table ── */
+    .cs-table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      margin: 20px 0 28px;
+      border: 1px solid #dce8f0;
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      font-family: 'DM Sans', sans-serif;
+      margin: 0;
+    }
+    .cs-table thead th {
+      background: #1B4F72;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .cs-table tbody td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #e8f0f7;
+      color: #3a4f5c;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .cs-table tbody tr:last-child td { border-bottom: none; }
+    .cs-table tbody tr:nth-child(even) { background: #f7fbff; }
+    .cs-table tbody tr:hover { background: #edf5fc; }
+    .cs-table code {
+      background: #eaf4fb;
+      color: #1B4F72;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+    }
+
+    /* ── Challenge/solution table override ── */
+    .cs-table .challenge-cell { color: #0f2a45; font-weight: 600; font-size: 13px; }
+    .cs-table .solution-cell  { color: #3d4f5c; font-size: 13px; }
+    .challenge-tag {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .resolved-tag {
+      display: inline-block;
+      background: #d4edda;
+      color: #155724;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Architecture decision cards ── */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 20px 0 28px;
+    }
+    .arch-card {
+      background: #fff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .arch-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .arch-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: #eaf4fb;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: #1B4F72;
+      font-size: 16px;
+    }
+    .arch-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f2a45;
+      line-height: 1.3;
+      padding-top: 3px;
+    }
+    .arch-vs {
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      color: #6c8fa0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .arch-desc {
+      font-size: 13px;
+      color: #3d4f5c;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── Results list ── */
+    .results-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+    }
+    .results-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #edf2f7;
+      font-size: 14px;
+      color: #3d4f5c;
+      line-height: 1.55;
+    }
+    .results-list li:last-child { border-bottom: none; }
+    .results-list .ri {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #d4edda;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 11px;
+      color: #155724;
+    }
+
+    /* ── Lessons cards ── */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .lesson-card {
+      background: #0f2a45;
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .lesson-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7ab8f5;
+      margin-bottom: 8px;
+    }
+    .lesson-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .lesson-desc {
+      font-size: 12.5px;
+      font-weight: 400;
+      color: rgba(241, 241, 241, 0.945) !important;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+
+    /* ── Phase 2 flow ── */
+    .phase2-flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 24px 0 8px;
+      background: #f7fbff;
+      border: 1px solid #dce8f0;
+      border-radius: 10px;
+      padding: 24px 20px;
+      justify-content: center;
+    }
+    .p2-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+      min-width: 100px;
+      padding: 0 6px;
+    }
+    .p2-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: #eaf4fb;
+      color: #1B4F72;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .p2-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: #0f2a45;
+    }
+    .p2-sub {
+      font-size: 11px;
+      color: #6c8fa0;
+      line-height: 1.4;
+      max-width: 100px;
+    }
+    .p2-arrow {
+      color: #dce8f0;
+      font-size: 20px;
+      padding: 0 4px;
+      flex-shrink: 0;
+      padding-bottom: 20px;
+    }
+
+    /* ── Tech stack ── */
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tech-pill {
+      background: #f4f8fb;
+      border: 1px solid #dce8f0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      color: #1B4F72;
+      display: flex; align-items: center; gap: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="assets/img/profile-img.PNG" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Sharon Velasquez</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/sharon-velasquez/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/sharonv153" class="google-plus"><i class="bx bxl-github"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero"      class="nav-link scrollto"><i class="bx bx-home"></i>         <span>Home</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>AI Automation</h2>
+          <ol><li><a href="index.html">Home</a></li><li>Case Study</li></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="portfolio-description">
+
+          <!-- ══ HERO ══ -->
+          <div class="cs-hero">
+            <div class="cs-hero-eyebrow">AI Automation · Systems Integration · Infrastructure</div>
+            <h1>AI-Powered Customer Support<br>Agent</h1>
+            <p class="lead">Designed and deployed a fully automated AI support assistant for Cherie Amour Boudoir — intercepting live chat messages, retrieving knowledge via RAG, and responding 24/7 without human intervention. Built end-to-end in 5 days on existing client infrastructure.</p>
+            <div class="cs-meta-pills">
+              <span class="cs-meta-pill">n8n</span>
+              <span class="cs-meta-pill">Chatwoot</span>
+              <span class="cs-meta-pill">Google Gemini</span>
+              <span class="cs-meta-pill">RAG</span>
+              <span class="cs-meta-pill">Docker</span>
+              <span class="cs-meta-pill">VPS</span>
+              <span class="cs-meta-pill">Google Cloud Platform</span>
+            </div>
+          </div>
+
+          <!-- ══ PROJECT META ══ -->
+          <div class="meta-grid">
+            <div class="meta-cell">
+              <div class="meta-label">Client</div>
+              <div class="meta-value">Cherie Amour Boudoir</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Industry</div>
+              <div class="meta-value">Photography / Boudoir Studio</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Timeline</div>
+              <div class="meta-value">5 Days (end-to-end)</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Role</div>
+              <div class="meta-value">Solo Architect &amp; Developer</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Completed</div>
+              <div class="meta-value">March 2026</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Est. Running Cost</div>
+              <div class="meta-value">Under $5 / month</div>
+            </div>
+          </div>
+
+          <!-- ══ 01 · EXECUTIVE SUMMARY ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">01</div>
+            <div class="cs-section-title">Executive Summary</div>
+            <p>Cherie Amour Boudoir was handling all customer inquiries manually through their website chat — including nights, weekends, and peak post-campaign traffic. Common questions about hours, pricing, policies, and locations were consuming staff time and going unanswered outside business hours.</p>
+            <p>This project delivered a fully automated AI support assistant built on open-source tooling and self-hosted on the client's existing VPS. The system uses a <strong>Retrieval-Augmented Generation (RAG)</strong> approach — the AI only answers based on client-approved content in a Google Doc, and gracefully redirects customers to the team for anything outside that scope. The client can update their knowledge base at any time without developer involvement.</p>
+            <div class="cs-insight">
+              <div class="cs-insight-label">What makes this different from a standard chatbot</div>
+              <p>A traditional rule-based chatbot breaks the moment a customer asks something slightly outside its script. A RAG-based AI agent reads a live knowledge document on every query — meaning it handles natural language variations, follows up on prior messages with context, and automatically reflects any updates the client makes to their Google Doc. No retraining, no redeployment.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 02 · THE PROBLEM ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">02</div>
+            <div class="cs-section-title">The Problem — Manual Support at Scale</div>
+            <p>As marketing campaigns drove increased website traffic, the manual support model created compounding pain points that a static FAQ page couldn't solve. Each issue below represented a real operational cost to the business.</p>
+
+            <div class="pain-grid">
+              <div class="pain-card">
+                <span class="pain-icon"><i class="bi bi-moon-stars"></i></span>
+                <div class="pain-title">No After-Hours Coverage</div>
+                <p class="pain-desc">Customers landing on the site overnight or on weekends left without answers — a direct booking conversion loss.</p>
+              </div>
+              <div class="pain-card">
+                <span class="pain-icon"><i class="bi bi-arrow-repeat"></i></span>
+                <div class="pain-title">Repetitive Staff Load</div>
+                <p class="pain-desc">The same questions about hours, policies, pricing, and locations consumed staff time — work that was already documented internally.</p>
+              </div>
+              <div class="pain-card">
+                <span class="pain-icon"><i class="bi bi-shuffle"></i></span>
+                <div class="pain-title">Inconsistent Answers</div>
+                <p class="pain-desc">Response quality and accuracy varied by team member. No single source of truth enforced at the customer-facing layer.</p>
+              </div>
+              <div class="pain-card">
+                <span class="pain-icon"><i class="bi bi-graph-up-arrow"></i></span>
+                <div class="pain-title">No Scalable Solution</div>
+                <p class="pain-desc">Marketing campaigns drove unpredictable spikes in inquiries. Manual handling didn't scale with traffic growth.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 03 · SYSTEM ARCHITECTURE ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">03</div>
+            <div class="cs-section-title">System Architecture — Two-Pipeline Design</div>
+            <p>The solution is built on two distinct pipelines. The <strong>Knowledge Pipeline</strong> maintains the AI's information source; the <strong>Chat Pipeline</strong> handles every customer message in real time. Separating these concerns means the client can update their knowledge base without touching any automation logic.</p>
+
+            <h5>Pipeline 2 — Chat Pipeline (10-Node n8n Workflow)</h5>
+
+            <div class="pipeline-wrap">
+              <div class="pipeline-label">Live Customer Message → AI Response</div>
+              <div class="pipeline-flow">
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box trigger">
+                    <div class="pipeline-node-num">01</div>
+                    <div class="pipeline-node-name">Chatwoot<br>Webhook</div>
+                    <div class="pipeline-node-sub">Receives all chat events</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box process">
+                    <div class="pipeline-node-num">02</div>
+                    <div class="pipeline-node-name">Squize<br>Webhook Data</div>
+                    <div class="pipeline-node-sub">Normalize &amp; map fields</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box filter">
+                    <div class="pipeline-node-num">03</div>
+                    <div class="pipeline-node-name">Check<br>Incoming</div>
+                    <div class="pipeline-node-sub">Filter: message_created + incoming only</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box process">
+                    <div class="pipeline-node-num">04</div>
+                    <div class="pipeline-node-name">Load<br>History</div>
+                    <div class="pipeline-node-sub">Fetch full conversation via API</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box process">
+                    <div class="pipeline-node-num">05</div>
+                    <div class="pipeline-node-name">Process<br>History</div>
+                    <div class="pipeline-node-sub">Transform to LLM-ready format</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box ai">
+                    <div class="pipeline-node-num">06</div>
+                    <div class="pipeline-node-name">AI Agent</div>
+                    <div class="pipeline-node-sub">Orchestrates tools, memory, response</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box ai">
+                    <div class="pipeline-node-num">07–09</div>
+                    <div class="pipeline-node-name">Gemini +<br>Memory + Docs</div>
+                    <div class="pipeline-node-sub">LLM · context · RAG retrieval</div>
+                  </div>
+                </div>
+                <div class="pipeline-arrow">›</div>
+
+                <div class="pipeline-node">
+                  <div class="pipeline-node-box output">
+                    <div class="pipeline-node-num">10</div>
+                    <div class="pipeline-node-name">Send<br>Message</div>
+                    <div class="pipeline-node-sub">Post response to Chatwoot</div>
+                  </div>
+                </div>
+
+              </div><!-- /pipeline-flow -->
+              <div class="pipeline-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#1e3a5f; border:1px solid #569cd6;"></div> Trigger</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#2e2510; border:1px solid #e6a817;"></div> Filter / Gate</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#0f2e2a; border:1px solid #4ec9b0;"></div> Data Processing</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#2a1535; border:1px solid #c586c0;"></div> AI Layer</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#0f2210; border:1px solid #6a9955;"></div> Output</div>
+              </div>
+            </div>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">Why Node 03 is critical</div>
+              <p>Without the incoming message filter, the AI's own outgoing responses would re-trigger the webhook — creating an infinite loop where the agent replies to itself. The dual condition (<code>event = message_created</code> AND <code>message_type = incoming</code>) ensures only genuine customer messages proceed through the pipeline.</p>
+            </div>
+
+
+            <h5>Technology Stack</h5>
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead>
+                  <tr><th>Layer</th><th>Technology</th><th>Role</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Automation</strong></td>
+                    <td><code>n8n v2.4.4</code> (self-hosted)</td>
+                    <td>Workflow orchestration and AI agent runtime</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Live Chat</strong></td>
+                    <td>Chatwoot (Docker)</td>
+                    <td>Customer-facing chat widget and inbox management</td>
+                  </tr>
+                  <tr>
+                    <td><strong>LLM</strong></td>
+                    <td>Google Gemini API</td>
+                    <td>Natural language understanding and response generation</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Knowledge Base</strong></td>
+                    <td>Google Docs</td>
+                    <td>Client-maintained, live source of truth for RAG retrieval</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Memory</strong></td>
+                    <td>n8n Simple Memory</td>
+                    <td>Per-conversation context using Chatwoot <code>conv_id</code> as session key</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Infrastructure</strong></td>
+                    <td>VPS + Docker + nginx</td>
+                    <td>Self-hosted on client's existing server; no new infrastructure cost</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CMS</strong></td>
+                    <td>WordPress</td>
+                    <td>Website where chat widget is embedded</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 04 · TECHNICAL CHALLENGES ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">04</div>
+            <div class="cs-section-title">Technical Challenges &amp; Resolutions</div>
+            <p>This project encountered a series of compounding infrastructure issues rather than AI configuration problems — a pattern common in self-hosted, multi-container deployments. Each challenge below required root-cause diagnosis before a fix could be applied.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead>
+                  <tr><th style="width:40%">Challenge</th><th>Resolution</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">Version Constraint</div><br>
+                      <span class="challenge-cell">n8n version too old to support AI/vector nodes</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Identified version gap; implemented workarounds using available nodes and Code node to replicate missing functionality within constraints.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">Reverse Proxy</div><br>
+                      <span class="challenge-cell">nginx (via hPanel/Hostinger) stripping <code>api_access_token</code> header on all requests</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Diagnosed via <code>curl</code> testing at internal vs. external URLs; confirmed proxy interference; pivoted to internal Docker networking, bypassing nginx entirely.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">Docker Networking</div><br>
+                      <span class="challenge-cell">n8n container could not reach Chatwoot via <code>127.0.0.1</code></span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Identified Docker network isolation as root cause; connected n8n to Chatwoot's Docker network using <code>docker network connect</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">Auth / 401</div><br>
+                      <span class="challenge-cell">Chatwoot API returning 401 through public domain</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Bypassed nginx entirely using internal container name (<code>chatwoot-rails-1:3000</code>) — cleaner, more secure, and eliminates the reverse proxy as a failure point.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">AI Behavior</div><br>
+                      <span class="challenge-cell">AI Agent ignoring Google Docs tool and hallucinating answers</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Fixed tool description and system prompt to explicitly instruct the agent to always query the knowledge tool before generating a response.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">Memory</div><br>
+                      <span class="challenge-cell">Simple Memory node failing with no session ID</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Configured session ID using Chatwoot <code>conv_id</code>, isolating memory context per customer conversation.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">RAG Quality</div><br>
+                      <span class="challenge-cell">Google Doc tabs not being read — only default tab loaded</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Consolidated all knowledge into a single, well-structured tab with clear section headings. Resolved retrieval gap immediately.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">API Quota</div><br>
+                      <span class="challenge-cell">Gemini API rate limiting during testing</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Identified free tier quota constraints; resolved by linking billing account to GCP project.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="challenge-tag">Webhook Logic</div><br>
+                      <span class="challenge-cell">Webhook catching wrong event types (<code>contact_updated</code>, <code>typing_on</code>)</span>
+                    </td>
+                    <td class="solution-cell">
+                      <div class="resolved-tag">Resolved</div><br>
+                      Added dual filter: <code>event = message_created</code> AND <code>message_type = incoming</code> — eliminates system events and prevents the agent from processing its own outgoing messages.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cs-warning">
+              <p><strong>Infrastructure was the hardest part — not AI.</strong> The majority of debugging time was spent on Docker networking, reverse proxy interference, and API authentication — not on LLM configuration. Self-hosted AI projects require full-stack fluency: you must be able to diagnose at every layer from nginx headers to container networking to LLM tool-calling behavior.</p>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 05 · ARCHITECTURE DECISIONS ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">05</div>
+            <div class="cs-section-title">Key Architecture Decisions</div>
+            <p>Each of the four major design choices below was made in response to a specific constraint or client requirement — not as a default. The alternatives considered are documented to show the reasoning behind the selected approach.</p>
+
+            <div class="arch-grid">
+              <div class="arch-card">
+                <div class="arch-card-header">
+                  <div class="arch-icon"><i class="bi bi-file-earmark-text"></i></div>
+                  <div>
+                    <div class="arch-title">RAG over Fine-Tuning</div>
+                    <div class="arch-vs">Selected · vs. fine-tuned model</div>
+                  </div>
+                </div>
+                <p class="arch-desc">Fine-tuning bakes knowledge into a model at training time — requiring retraining every time business information changes. RAG reads a live Google Doc on every query, so the client updates a document they already know and changes are reflected immediately. Zero developer involvement for content maintenance.</p>
+              </div>
+              <div class="arch-card">
+                <div class="arch-card-header">
+                  <div class="arch-icon"><i class="bi bi-hdd-network"></i></div>
+                  <div>
+                    <div class="arch-title">Internal Docker Networking</div>
+                    <div class="arch-vs">Selected · vs. public API calls</div>
+                  </div>
+                </div>
+                <p class="arch-desc">hPanel's nginx was silently stripping authentication headers on external requests. Routing all n8n-to-Chatwoot communication through Docker's internal network bypasses the reverse proxy entirely — faster, more secure, and eliminates a fragile external dependency.</p>
+              </div>
+              <div class="arch-card">
+                <div class="arch-card-header">
+                  <div class="arch-icon"><i class="bi bi-robot"></i></div>
+                  <div>
+                    <div class="arch-title">AI Agent over Basic LLM Chain</div>
+                    <div class="arch-vs">Upgraded · from template default</div>
+                  </div>
+                </div>
+                <p class="arch-desc">The starting template used a Basic LLM Chain with no tool use or memory. Upgrading to an AI Agent node enabled RAG (via tool calling), conversation memory, and more precise response control — all within the same workflow. The agent can reason about <em>when</em> to call the knowledge tool rather than always or never calling it.</p>
+              </div>
+              <div class="arch-card">
+                <div class="arch-card-header">
+                  <div class="arch-icon"><i class="bi bi-google"></i></div>
+                  <div>
+                    <div class="arch-title">Google Docs as Knowledge Base</div>
+                    <div class="arch-vs">Selected · vs. vector database</div>
+                  </div>
+                </div>
+                <p class="arch-desc">A vector database would provide more sophisticated semantic search — but it introduces infrastructure the client cannot manage independently. Google Docs was chosen because the client already uses Google Workspace, requires no training to edit, and is reflected immediately in the AI's responses. The right tool for the client's actual capabilities.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 06 · RESULTS ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">06</div>
+            <div class="cs-section-title">Results</div>
+
+            <p>The system was delivered end-to-end in 5 days and runs on the client's existing VPS infrastructure at minimal additional cost. The estimated Gemini API cost for typical support volume is under $5/month.</p>
+
+            <ul class="results-list">
+              <li>
+                <div class="ri"><i class="bi bi-check"></i></div>
+                <span>Fully automated customer support responding to inquiries <strong>24/7</strong> — including nights, weekends, and post-campaign traffic spikes</span>
+              </li>
+              <li>
+                <div class="ri"><i class="bi bi-check"></i></div>
+                <span>AI correctly answers questions about <strong>hours, policies, pricing FAQs, locations, and contact information</strong> based on the live knowledge document</span>
+              </li>
+              <li>
+                <div class="ri"><i class="bi bi-check"></i></div>
+                <span><strong>Graceful fallback</strong>: out-of-scope questions are redirected to the team with a specific call or email CTA — the AI never fabricates answers</span>
+              </li>
+              <li>
+                <div class="ri"><i class="bi bi-check"></i></div>
+                <span><strong>Per-conversation memory</strong> maintains natural, context-aware dialogue — follow-up questions are understood without customers repeating themselves</span>
+              </li>
+              <li>
+                <div class="ri"><i class="bi bi-check"></i></div>
+                <span><strong>Zero developer maintenance</strong> required for content updates — the client edits their Google Doc directly</span>
+              </li>
+              <li>
+                <div class="ri"><i class="bi bi-check"></i></div>
+                <span>Entire solution runs on <strong>existing VPS infrastructure</strong> — no new services, no new subscriptions beyond Gemini API usage</span>
+              </li>
+            </ul>
+          </div>
+
+          <figure class="figure" style="display:block; margin: 20px 0 28px;">
+              <img src="assets/img/portfolio/AI-Agent-RAG-Setup-by-SharonV.png" class="figure-img img-fluid rounded" alt="ER Diagram" style="width:100%; border:1px solid #dce8f0; border-radius:10px; box-shadow:0 2px 12px rgba(15,42,69,0.10);">
+              <figcaption class="figure-caption" style="font-family:'DM Mono',monospace; font-size:11px; color:#6c8fa0; margin-top:8px; text-align:center; letter-spacing:0.5px;">Screenshot of the actual n8n workflow.</figcaption>
+            </figure>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 07 · LESSONS LEARNED ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">07</div>
+            <div class="cs-section-title">Lessons Learned</div>
+
+            <div class="lesson-grid">
+              <div class="lesson-card">
+                <div class="lesson-num">Lesson 01</div>
+                <div class="lesson-title">Infrastructure matters as much as code</div>
+                <p class="lesson-desc">The majority of debugging time was infrastructure — Docker networking, reverse proxy behavior, API authentication. For self-hosted AI projects, full-stack fluency is a prerequisite, not a bonus.</p>
+              </div>
+              <div class="lesson-card">
+                <div class="lesson-num">Lesson 02</div>
+                <div class="lesson-title">Managed hosting panels create hidden complexity</div>
+                <p class="lesson-desc">hPanel silently interfered with nginx in ways that were difficult to diagnose. For future projects with custom API integrations, bare VPS (e.g., Hetzner) with Coolify is a significantly better platform choice.</p>
+              </div>
+              <div class="lesson-card">
+                <div class="lesson-num">Lesson 03</div>
+                <div class="lesson-title">Knowledge base structure directly affects AI quality</div>
+                <p class="lesson-desc">Answer quality improved dramatically once the Google Doc was consolidated into a single tab with clear section headings. LLM retrieval is sensitive to document structure — clean, labeled content produces accurate responses.</p>
+              </div>
+              <div class="lesson-card">
+                <div class="lesson-num">Lesson 04</div>
+                <div class="lesson-title">Test with production URLs early</div>
+                <p class="lesson-desc">Much of the debugging could have been caught sooner by testing the production webhook URL rather than the test trigger. End-to-end testing early in the build cycle saves significant troubleshooting time downstream.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 08 · NEXT STEPS ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">08</div>
+            <div class="cs-section-title">Phase 2 — Live Account Lookup via Stratus ERP</div>
+            <p>The current system answers questions from a static knowledge base. Phase 2 extends the AI agent with a second tool — a live connection to Stratus (the studio's ERP) — enabling it to answer personalized account questions like <em>"When is my photoshoot?"</em> without any staff involvement.</p>
+
+            <div class="cs-insight">
+              <div class="cs-insight-label">How the conversation would work</div>
+              <p>Customer: <em>"When is my photoshoot?"</em> → Agent: <em>"I can look that up for you — what email or phone number is on your account?"</em> → Customer provides it → Agent queries Stratus → Agent: <em>"Your session is booked for March 28th at 2:00 PM at the Austin studio."</em> The existing per-conversation memory handles the multi-turn exchange automatically — no new architecture needed for that part.</p>
+            </div>
+
+            <h5>Architecture Extension</h5>
+            <p>This is a natural extension of what's already built. The AI Agent (Node 06) already knows how to call tools — it calls the Google Docs knowledge tool today. Adding Stratus lookup is a matter of registering a second tool on the same agent. The agent will reason about <em>which</em> tool to use based on the customer's question, without any additional routing logic.</p>
+
+            <div class="cs-table-wrap">
+              <table class="cs-table">
+                <thead>
+                  <tr><th>Component</th><th>Already Built</th><th>Phase 2 Addition</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>AI Agent (Node 06)</strong></td>
+                    <td>Calls Google Docs tool for FAQs</td>
+                    <td>Gains a second tool: Stratus account lookup</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Conversation Memory</strong></td>
+                    <td>Context maintained per <code>conv_id</code></td>
+                    <td>No change — agent already remembers email given mid-conversation</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Stratus Integration</strong></td>
+                    <td>—</td>
+                    <td>n8n webhook → Zapier → Stratus API → response back to n8n</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Privacy Scoping</strong></td>
+                    <td>—</td>
+                    <td>System prompt instructs agent to only return data for the verified email — no arbitrary lookups</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5>Integration Approach — n8n → Zapier → Stratus</h5>
+            <p>Stratus exposes its data through a native Zapier integration. Rather than reverse-engineering the underlying API, the Phase 2 design uses Zapier as the integration bridge — a deliberate architectural choice that leverages Stratus's supported integration path and avoids building a custom API wrapper.</p>
+
+            <div class="phase2-flow">
+              <div class="p2-step">
+                <div class="p2-icon"><i class="bi bi-robot"></i></div>
+                <div class="p2-label">AI Agent</div>
+                <div class="p2-sub">Detects account question, collects email</div>
+              </div>
+              <div class="p2-arrow">→</div>
+              <div class="p2-step">
+                <div class="p2-icon"><i class="bi bi-diagram-2"></i></div>
+                <div class="p2-label">n8n HTTP Node</div>
+                <div class="p2-sub">Fires webhook to Zapier with email param</div>
+              </div>
+              <div class="p2-arrow">→</div>
+              <div class="p2-step">
+                <div class="p2-icon" style="background:#ff4a00; color:#fff;"><i class="bi bi-lightning-charge"></i></div>
+                <div class="p2-label">Zapier</div>
+                <div class="p2-sub">Queries Stratus via native integration</div>
+              </div>
+              <div class="p2-arrow">→</div>
+              <div class="p2-step">
+                <div class="p2-icon" style="background:#1a5c3a; color:#fff;"><i class="bi bi-database-check"></i></div>
+                <div class="p2-label">Stratus ERP</div>
+                <div class="p2-sub">Returns session data for account</div>
+              </div>
+              <div class="p2-arrow">→</div>
+              <div class="p2-step">
+                <div class="p2-icon"><i class="bi bi-arrow-return-left"></i></div>
+                <div class="p2-label">Webhook Response</div>
+                <div class="p2-sub">Zapier returns data back to n8n agent</div>
+              </div>
+            </div>
+
+            <div class="cs-warning">
+              <p><strong>Known consideration — latency.</strong> Zapier's execution time adds a round-trip delay between the customer's message and the AI's response. On Zapier's free tier this can reach 10–15 seconds, which may feel slow in a live chat context. Zapier paid tier significantly reduces this. If latency becomes a real issue, the fallback is to investigate whether Stratus exposes a direct REST endpoint that n8n can call without Zapier as an intermediary.</p>
+            </div>
+
+          </div>
+
+          <hr class="cs-divider">
+
+          <!-- ══ 09 · TOOLS ══ -->
+          <div class="cs-section">
+            <div class="cs-section-label">09</div>
+            <div class="cs-section-title">Tools &amp; Stack</div>
+            <div class="tech-stack">
+              <div class="tech-pill"><i class="bi bi-diagram-2"></i> n8n (self-hosted)</div>
+              <div class="tech-pill"><i class="bi bi-chat-dots"></i> Chatwoot</div>
+              <div class="tech-pill"><i class="bi bi-stars"></i> Google Gemini API</div>
+              <div class="tech-pill"><i class="bi bi-file-earmark-text"></i> Google Docs (RAG)</div>
+              <div class="tech-pill"><i class="bi bi-box-seam"></i> Docker</div>
+              <div class="tech-pill"><i class="bi bi-server"></i> VPS + nginx</div>
+              <div class="tech-pill"><i class="bi bi-wordpress"></i> WordPress</div>
+            </div>
+          </div>
+
+        </div><!-- /portfolio-description -->
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; <strong><span>Sharon Velasquez</span></strong></div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
